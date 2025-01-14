@@ -146,8 +146,8 @@ Config = {
 		{ 	zoneEnable = true,
 			job = "police",
 			garage = {
-				spawn = vector4(444.2, -996.26, 21.34, 270.02),
-				out = vector4(441.65, -992.86, 21.56, 174.98),
+				spawn = vector4(431.7, -946.16, 23.94, 184.93),
+				out = vector4(434.69, -941.7, 23.94, 189.89),
 				list = {
 					
 					-- ["mbu1bb"] = {
