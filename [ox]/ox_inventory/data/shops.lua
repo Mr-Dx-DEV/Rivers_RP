@@ -175,12 +175,12 @@ return {
 			{ name = 'empty_evidence_bag', price = 2, grade = 0 },
 
 		}, locations = {
-			vector3(427.61, -974.5, 21.56)
+			vector3(463.85, -998.2, 31.74)
 		}, targets = {
-			{ loc = vector3(427.61, -974.5, 21.56), length = 1, width = 5, heading = 0, minZ= 20.56, maxZ= 24.56, distance = 5 }
+			{ loc = vector3(463.85, -998.2, 31.74), length = 1, width = 5, heading = 268.43, minZ= 31.05, maxZ= 32.05, distance = 5 }
 		}
 	},
-
+	
 	Medicine = {
 		name = 'Medicine Cabinet',
 		--[[ groups = {
