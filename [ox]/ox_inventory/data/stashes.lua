@@ -1,13 +1,13 @@
 return {
 	{
-		coords = vec3(424.47, -977.31, 21.56),
+		coords = vec3(459.85, -998.92, 31.74),
 		target = {
-			loc = vec3(424.47, -977.31, 21.56),
+			loc = vec3(459.85, -998.92, 31.74),
 			length = 1.1,
 			width = 4.1,
-			heading = 90,
-			minZ = 20.56,
-			maxZ = 24.56,
+			heading = 174.63,
+			minZ = 31.05,
+			maxZ = 32.05,
 			label = 'Open personal locker'
 		},
 		name = 'policelocker',
@@ -17,7 +17,7 @@ return {
 		weight = 70000,
 		groups = shared.police
 	},
-
+	
 	{
 		coords = vec3(-452.14, -325.32, 34.91),
 		target = {
