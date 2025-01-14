@@ -3,7 +3,7 @@ Config.IssueHelper = false -- [DEF. false] [BOOLEAN] Use that if you need help o
 Config.Characters = {}
 Config.Characters.Free = 1
 Config.Characters.IdentifierType = "license"
-Config.Debug = true
+Config.Debug = false
 
 Config.CameraFOV = 20.0
 Config.Music = {
