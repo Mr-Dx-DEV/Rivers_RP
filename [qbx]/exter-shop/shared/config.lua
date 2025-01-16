@@ -176,9 +176,9 @@ Config.Shops = {
                     {name = "weapon_bat", label = "Bat", perPrice = 150, description = "General"},
                     {name = "weapon_hatchet", label = "Hatchet", perPrice = 150, description = "General"},
                     {name = "pistol_ammo", label = "Pistol Ammo", perPrice = 150, description = "General"},
-                    {name = "weapon_pistol", label = "Pistol", perPrice = 150, description = "General", requiredLicense = {'weapon'}},
-                    {name = "weapon_snspistol", label = "Sns Pistol", perPrice = 150, description = "General", requiredLicense = {'weapon'}},
-                    {name = "weapon_vintagepistol", label = "Vintage Pistol", perPrice = 150, description = "General", requiredLicense = {'weapon'}}
+                    {name = "weapon_pistol", label = "Pistol", perPrice = 150, description = "General"},
+                    {name = "weapon_snspistol", label = "Sns Pistol", perPrice = 150, description = "General"},
+                    {name = "weapon_vintagepistol", label = "Vintage Pistol", perPrice = 150, description = "General"}
                 }
             },
         },
@@ -190,7 +190,7 @@ Config.Shops = {
             {ped = nil, coords = vector4(841.92, -1035.32, 28.19, 1.56)},
             {ped = nil, coords = vector4(-1118.59, 2700.05, 18.55, 221.89)},
             {ped = nil, coords = vector4(2567.48, 292.59, 108.73, 349.68)},
-            {ped = nil, coords = vector4(23.0, -1105.67, 29.8, 162.91)},
+            {ped = nil, coords = vector4(18.41, -1108.98, 29.8, 340)},
             {ped = nil, coords = vector4(253.63, -51.02, 69.94, 72.91)},
             {ped = nil, coords = vector4(-331.23, 6085.37, 31.45, 228.02)},
             {ped = nil, coords = vector4(1692.67, 3761.38, 34.71, 227.65)},
