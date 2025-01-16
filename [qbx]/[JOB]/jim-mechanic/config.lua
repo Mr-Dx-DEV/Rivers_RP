@@ -348,12 +348,12 @@ Config = {
 		LockEmergency = false,  -- Enable this to lock make only "Emergency" (Class 18) vehicles to be used with the bench
 		Locations = {
 			{ coords = vec4(428.23, -953.99, 23.94, 264.18), prop = true, }, -- MRPD UNDERGROUND PARKING
-			{ coords = vec4(342.51, -570.98, 28.8, 70.0), prop = true, }, -- PILL BOX GARAGE
+			{ coords = vec4(321.05, -575.26, 28.74, 251.51), prop = true, }, -- PILL BOX GARAGE
 			{ coords = vec4(-1163.01, -2009.41, 13.18, 117.71), prop = true },
 		},
 		CosmeticTable = { 			-- This controls what will appear in the emergency mech bench, "false" to hide it
 			["Repair" ] = true,
-			["Paints"] = false,
+			["Paints"] = true,
 			["Horn"] = false,
 			["Hood"] = false,
 			["Exhaust"] = false,
@@ -368,7 +368,7 @@ Config = {
 			["RightFender"] = false,
 			["LeftFender"] = false,
 			["Liverys"] = true,
-			["OldLiverys"] = false,
+			["OldLiverys"] = true,
 			["RoofLiverys"] = false,
 			["Grille"] = false,
 			["FrontBumper"] = false,
@@ -383,7 +383,7 @@ Config = {
 			["ArchCovers"] = false,
 			["FuelTank"] = false,
 			["Aerials"] = false,
-			["Extras"] = false,
+			["Extras"] = true,
 			["Ornaments"] = false,
 			["DashBoard"] = false,
 			["Dials"] = false,
