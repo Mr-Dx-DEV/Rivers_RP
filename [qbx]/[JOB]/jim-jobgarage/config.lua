@@ -317,12 +317,12 @@ Config = {
 					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
 					-- 	performance = "max",
 					-- },
-					["emsairship"] = {
+					--[[ ["emsairship"] = {
 						CustomName = "EMS Airship",
 						livery = 0,
 						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
 						performance = "max",
-					},
+					}, ]]
 					
 					["emsbmwi4"] = {
 						CustomName = "EMS BMW i4",
