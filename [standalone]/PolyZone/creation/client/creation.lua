@@ -80,7 +80,7 @@ AddEventHandler("polyzone:pzfinish", function()
   TriggerEvent('chat:addMessage', {
     color = { 0, 255, 0},
     multiline = true,
-    args = {"Me", "Check your server root folder for polyzone_created_zones.txt to get the zone!"}
+    args = {"Me", "Check PolyZone's root folder for polyzone_created_zones.txt to get the zone!"}
   })
 
   lastCreatedZoneType = createdZoneType
@@ -150,7 +150,7 @@ function drawThread()
   Citizen.CreateThread(function()
     while drawZone do
       if createdZone then
-        createdZone:draw()
+        createdZone:draw(true)
       end
       Wait(0)
     end
