@@ -148,7 +148,7 @@ function StartMinigame(icons, time, difficulty)
 
     -- Difificulties are: "easy", "medium", "hard" :D
 
-    return exports['Howdy-Minigame']:Begin(icons, time)
+    return exports['howdy-hackminigame']:Begin(icons, time)
 end
 
 function ChangeClothes(type) 

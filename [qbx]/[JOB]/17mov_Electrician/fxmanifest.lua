@@ -34,7 +34,7 @@ escrow_ignore {
 }
 
 dependencies {
-    'Howdy-Minigame'
+    'howdy-hackminigame'
 }
 
 data_file 'VEHICLE_METADATA_FILE'    'stream/vehicles.meta'
