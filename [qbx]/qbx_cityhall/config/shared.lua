@@ -1,7 +1,7 @@
 return {
     cityhalls = {
         {
-            coords = vec3(-265.0, -963.6, 31.2),
+            coords = vec3(-551.53, -191.21, 37.22),
             showBlip = true,
             blip = {
                 label = 'City Services',
@@ -22,11 +22,11 @@ return {
                     label = 'Driver License',
                     cost = 50,
                 },
-                ['weapon'] = {
+                --[[ ['weapon'] = {
                     item = 'weaponlicense',
                     label = 'Weapon License',
                     cost = 50,
-                },
+                }, ]]
             },
         },
     },
