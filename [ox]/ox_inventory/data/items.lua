@@ -406,7 +406,7 @@ return {
 		label = "Vehicle Tablet",
 		weight = 200,
 		
-		image = "expert_gps_tablet.png",
+		image = "tablet.png",
 		unique = true,
 		useable = true,
 		shouldClose = true,
@@ -5073,7 +5073,7 @@ stack = false,
         server = {export = 'r14-evidence.breathalyzer'},
     },
 	["policetablet"] = {
-		label = "Police Tablet",
+		label = "Fingerprint",
 		weight = 5000,
 		stack = false,
 		close = true,
