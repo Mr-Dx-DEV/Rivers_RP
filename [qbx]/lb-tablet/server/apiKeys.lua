@@ -6,15 +6,15 @@
 -- A video tutorial for how to set up Fivemanage can be found here: https://www.youtube.com/watch?v=y3bCaHS6Moc
 
 API_KEYS = {
-    Video = "API_KEY_HERE",
-    Image = "API_KEY_HERE",
-    Audio = "API_KEY_HERE",
+    Video = "DVnw1uiXWqQCVmURYpF4F4KNyz4mNvR6",
+    Image = "DVnw1uiXWqQCVmURYpF4F4KNyz4mNvR6",
+    Audio = "DVnw1uiXWqQCVmURYpF4F4KNyz4mNvR6",
 }
 
 LOG_WEBHOOKS = {
-    Default = nil,
-    Police = nil,
-    Ambulance = nil,
+    Default = 'https://discordapp.com/api/webhooks/1329609757069414531/raT3o0tWWJQzXfT65W9k2BM1Lxcp70-KnWl9IrIOuCtCge5iTbjfYqwLskOz_mF5vi7J',
+    Police = 'https://discordapp.com/api/webhooks/1329609757069414531/raT3o0tWWJQzXfT65W9k2BM1Lxcp70-KnWl9IrIOuCtCge5iTbjfYqwLskOz_mF5vi7J',
+    Ambulance = 'https://discordapp.com/api/webhooks/1329609757069414531/raT3o0tWWJQzXfT65W9k2BM1Lxcp70-KnWl9IrIOuCtCge5iTbjfYqwLskOz_mF5vi7J',
 }
 
-DISCORD_TOKEN = nil -- you can set a discord bot token here to get the players discord avatar for logs
+DISCORD_TOKEN = 'MTMyOTU2NjAzOTg4ODg4ODAxMg.GfhSdW.FWfMAIMyK1G79LfsG1tWvwFEf1KrycuO5Lb94U' -- you can set a discord bot token here to get the players discord avatar for logs
