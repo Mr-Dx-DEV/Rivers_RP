@@ -99,7 +99,7 @@ Config.HeistVehBlipSettings = {
     -- Cash Transport truck blip settings, used in cops notification, and for crime after heist start.
     sprite = 477,
     color = 43,
-    scale = 1.2,
+    scale = 0.3,
     label = "Target Heist Truck",
     labelForCops = "Cash Transport Heist",
 }
@@ -148,7 +148,7 @@ Config.Blips = { -- Here you can configure Company blip.
     [1] = {
         Sprite = 460,
         Color = 69,
-        Scale = 0.8,
+        Scale = 0.3,
         Pos = vector3(-195.32, -835.13, 30.73),
         Label = 'Gruppe Sechs Job'
     },

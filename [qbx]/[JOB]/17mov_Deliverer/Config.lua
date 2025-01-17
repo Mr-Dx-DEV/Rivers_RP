@@ -52,7 +52,7 @@ Config.Blips = {                                                    -- Here you 
     [1] = {
         Sprite = 568,
         Color = 48,
-        Scale = 0.8,
+        Scale = 0.3,
         Pos = vector3(78.66, 111.75, 81.17),
         Label = 'Deliverer Job'
     },

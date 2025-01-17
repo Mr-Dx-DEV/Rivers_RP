@@ -39,7 +39,7 @@ Config.Blips = {                        -- Here you can configure Job Blip
     [1] = {
         Sprite = 590,
         Color = 26,
-        Scale = 0.8,
+        Scale = 0.3,
         Pos = vector3(751.06, 222.85, 87.42),
         Label = 'Electrician'
     },

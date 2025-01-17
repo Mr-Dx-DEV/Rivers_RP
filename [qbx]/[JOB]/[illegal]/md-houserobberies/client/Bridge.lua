@@ -157,7 +157,7 @@ function PoliceCall(chance)
 				sound = 1,
 				blip = {
 					sprite = 431, 
-					scale = 1.2, 
+					scale = 0.5, 
 					colour = 3,
 					flashes = false, 
 					text = '420-69 HouseRobbery',

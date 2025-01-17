@@ -200,19 +200,19 @@ Config.BlipSprites = {
     ['plane'] = {
         owned = 423,
         notOwned = 372,
-        size = 0.5,
+        size = 0.3,
         color = 67
     },
     ['vehicle'] = {
         owned = 357,
         notOwned = 369,
-        size = 0.5,
+        size = 0.3,
         color = 67
     },
     ['boat'] = {
         owned = 410,
         notOwned = 371,
-        size = 0.5,
+        size = 0.3,
         color = 67
     },
     ['impound'] = {

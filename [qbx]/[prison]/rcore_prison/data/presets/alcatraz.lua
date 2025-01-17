@@ -458,7 +458,7 @@ return {
                 state = Config.RenderNPCBlips,
                 name = _U('BLIPS.DEALER'),
                 sprite = 155,
-                scale = 1.0,
+                scale = 0.5,
                 color = 0,
             },
             items = {

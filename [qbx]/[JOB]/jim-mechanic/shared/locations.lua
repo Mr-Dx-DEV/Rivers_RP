@@ -60,7 +60,7 @@ Config.Locations[#Config.Locations+1] = { --[[ GABZ ALTA STREET BENNYS ]]--
 		color = 81,
 		sprite = 446,
 		disp = 6,
-		scale = 0.7,
+		scale = 0.5,
 		cat = nil,
 	},
 	discord = {

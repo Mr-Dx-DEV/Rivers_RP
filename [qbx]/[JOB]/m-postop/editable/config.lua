@@ -32,7 +32,7 @@ HSN.Config = {
                 ped = { enable = true, hash = GetHashKey('s_m_m_ups_02') },
                 marker = { enable = false, type = 2, r = 200, g = 0, b = 0, rotX = 0.0, rotY = 0.0, rotZ = 0.0 },
                 text = { enable = true, message = "E - PostOP", zoffset = 0.35 },
-                blip = { enable = true, id = 267, color = 17, scale = 0.65, label = "POST OP" },
+                blip = { enable = true, id = 267, color = 17, scale = 0.3, label = "POST OP" },
                 target = true,
                 InteractionHandler = "ox-target" -- 'qb-target' & 'ox-target' & 'bt-target'
             }
@@ -44,14 +44,14 @@ HSN.Config = {
                 ped = { enable = true, hash = GetHashKey('s_m_m_ups_02') },
                 marker = { enable = false, type = 2, r = 200, g = 0, b = 0, rotX = 0.0, rotY = 0.0, rotZ = 0.0 },
                 text = { enable = true, message = "E - Gardrop", zoffset = 0.35 },
-                blip = { enable = true, id = 73, color = 17, scale = 0.55, label = "POST OP Wardrobe" },
+                blip = { enable = true, id = 73, color = 17, scale = 0.3, label = "POST OP Wardrobe" },
                 target = true,
                 InteractionHandler = "ox-target" -- 'qb-target' & 'ox-target' & 'bt-target'
 
             }
         },
     },
-    DeliveryBlip = { id = 1, color = 2, scale = 0.55, label = "Delivery Point" },
+    DeliveryBlip = { id = 1, color = 2, scale = 0.3, label = "Delivery Point" },
     DeliverAmount = {
         min = 1,
         max = 5,

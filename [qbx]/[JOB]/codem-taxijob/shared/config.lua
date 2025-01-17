@@ -10,7 +10,7 @@ Config.NpcLocation = {
       show = true, -- if you want to disable the blip, set this to false
       sprite = 198, 
       color  = 5,
-      scale = 0.8,
+      scale = 0.3,
     }
 }
 

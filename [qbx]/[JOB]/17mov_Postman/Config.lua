@@ -52,7 +52,7 @@ Config.Blips = {                                -- Here you can configure Compan
     [1] = {
         Sprite = 365,
         Color = 44,
-        Scale = 0.8,
+        Scale = 0.3,
         Pos = vector3(-232.16, -915.15, 32.31),
         Label = 'Postman Job'
     },
