@@ -30,7 +30,7 @@ end
 ---@param useOffset boolean?
 ---@return boolean?
 local function canInteractWithDoor(entity, coords, door, useOffset)
-    if not GetIsDoorValid(entity, door) or GetVehicleDoorLockStatus(entity) > 1 or IsVehicleDoorDamaged(entity, door) or cache.vehicle then return end
+    if not GetIsDoorValid(entity, door) or GetVehicleDoorLockStatus(entity) > 1 or IsVehicleDoorDamaged(entity, door) then return end
 
     if useOffset then return true end
 
@@ -127,6 +127,37 @@ api.addGlobalVehicle({
             onSelectDoor(data, 4)
         end
     },
+
+    {
+        name = 'ox_target:body',
+        icon = 'fa-solid fa-car-burst',
+        label = 'Flip Car',
+        canInteract = function(entity, distance, coords, name, boneId)
+            if not IsVehicleOnAllWheels(entity) then return true end
+        end,
+        onSelect = function(data)
+            TriggerEvent('animations:client:EmoteCommandStart', { "mechanic" })
+            if lib.progressBar({
+                    duration = 5000,
+                    label = 'Flipping Car',
+                    position = 'bottom',
+                    useWhileDead = false,
+                    canCancel = true,
+                    disable = {
+                       mouse = false,
+                       car = true,
+                       move = true,
+                       combat = true,
+                    },
+                }) then -- Done
+                SetVehicleOnGroundProperly(data.entity)
+                TriggerEvent('animations:client:EmoteCommandStart', { "c" })
+            else -- Cancel
+                TriggerEvent('animations:client:EmoteCommandStart', { "c" })
+            end
+        end
+    },
+
     {
         name = 'ox_target:trunk',
         icon = 'fa-solid fa-car-rear',
