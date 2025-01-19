@@ -174,6 +174,21 @@ return {
 			{ name = "tablet", price = 1000, grade = 0 },
 			{ name = 'empty_evidence_bag', price = 2, grade = 0 },
 
+
+
+
+			{ name = 'spikespack', price = 2, grade = 0 },
+			{ name = 'nikon', price = 2, grade = 0 },
+			{ name = 'gsrtestkit', price = 2, grade = 0 },
+			{ name = 'dnatestkit', price = 2, grade = 0 },
+			{ name = 'drugtestkit', price = 2, grade = 0 },
+			{ name = 'breathalyzer', price = 2, grade = 0 },
+			{ name = 'accesstool', price = 2, grade = 0 },
+			{ name = 'fingerprintreader', price = 2, grade = 0 },
+			{ name = 'sdcard', price = 2, grade = 0 },
+
+
+
 		}, locations = {
 			vector3(463.85, -998.2, 31.74)
 		}, targets = {

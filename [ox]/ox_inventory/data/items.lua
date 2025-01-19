@@ -5002,7 +5002,13 @@ stack = false,
         stack = true,
         description = 'This is an evidence bag.',
     },
-
+	['spikespack'] = {
+        consume = 0.0,
+        label = 'spike spack',
+        weight = 0,
+        stack = true,
+        description = 'spikespack.',
+    },
     ['nikon'] = {
         consume = 0.0,
         label = 'Nikoff G600',
