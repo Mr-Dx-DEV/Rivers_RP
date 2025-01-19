@@ -1802,7 +1802,16 @@ return {
 			useable = true
 		}
 	},
-	
+	['rentalpapers'] = {
+		label = "Rental Papers",
+		weight = 0,
+		stack = false,
+		close = false,
+		description = "Rental Papers",
+		client = {
+			image = "rentalpapers.png",
+		},
+	},
 ---- policebadge
 ['stevo_policebadge'] = {
 label = 'Police Badge',
