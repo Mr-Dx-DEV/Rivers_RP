@@ -187,6 +187,8 @@ return {
 			{ name = 'fingerprintreader', price = 2, grade = 0 },
 			{ name = 'sdcard', price = 2, grade = 0 },
 
+			
+			{ name = 'specialbadge', price = 2, grade = 0 },
 
 
 		}, locations = {
