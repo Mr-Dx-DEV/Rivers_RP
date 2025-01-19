@@ -36,7 +36,8 @@ Config.Permissions = {
 
     ["license:752d3dcf72a91b86fa42fa2f8e6dc2f16788c47f"] = "god",    -- jafar
     ["license:d51b181bcdcb8ddb8c83bf42facc546d345d983f"] = "god",    -- Mr 47
-    ["discord:811436286006657025"] = "god",    -- Dx
+    ["license:a045ed84bc7b147ab67442c4be4c70a4bb7d0ad5"] = "god",    -- Dx
+    
     ["license:e53fc8ad086776f6babbb3a413db15a5bc4f78bc"] = "god",    -- 3z
     ["license:02f832612ddc8b612fe144773dd393be27018642"] = "god",    -- 3z
 
