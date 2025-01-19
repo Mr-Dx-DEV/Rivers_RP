@@ -1,8 +1,13 @@
-if not LoadResourceFile(cache.resource, 'web/build/index.html') then
+if not LoadResourceFile(lib.name, 'web/build/index.html') then
 	error('Unable to load UI. Build ox_doorlock or download the latest release.\n	^3https://github.com/overextended/ox_doorlock/releases/latest/download/ox_doorlock.zip^0')
 end
 
-if not lib.checkDependency('ox_lib', '3.14.0', true) then return end
+do
+	local success, msg = lib.checkDependency('ox_lib', '3.0.0')
+	if not success then error(msg) end
+end
+
+lib.locale()
 
 local function createDoor(door)
 	local double = door.doors
@@ -279,6 +284,8 @@ local function useClosestDoor()
 	end
 end
 
+exports('useClosestDoor', useClosestDoor)
+
 CreateThread(function()
 	local lockDoor = locale('lock_door')
 	local unlockDoor = locale('unlock_door')
@@ -286,8 +293,9 @@ CreateThread(function()
 	local drawSprite = Config.DrawSprite
 
 	if drawSprite then
-		local sprite1 = drawSprite[0]?[1]
-		local sprite2 = drawSprite[1]?[1]
+		local sprite1 = drawSprite[0] and drawSprite[0][1] -- Verifica se existe e atribui corretamente
+		local sprite2 = drawSprite[1] and drawSprite[1][1]
+		local sprite3 = drawSprite[2] and drawSprite[2][1] -- Adiciona a terceira sprite para a condição de distância
 
 		if sprite1 then
 			RequestStreamedTextureDict(sprite1, true)
@@ -295,6 +303,10 @@ CreateThread(function()
 
 		if sprite2 then
 			RequestStreamedTextureDict(sprite2, true)
+		end
+
+		if sprite3 then
+			RequestStreamedTextureDict(sprite3, true) -- Solicita a terceira sprite
 		end
 	end
 
@@ -311,12 +323,18 @@ CreateThread(function()
 				local door = nearbyDoors[i]
 
 				if door.distance < door.maxDistance then
-					if door.distance < (ClosestDoor?.distance or 10) then
+					if not ClosestDoor or door.distance < ClosestDoor.distance then
 						ClosestDoor = door
 					end
 
 					if drawSprite and not door.hideUi then
-						local sprite = drawSprite[door.state]
+						local sprite
+
+						if door.distance >= 3 and door.distance <= 5 then
+							sprite = drawSprite[2] -- Mostra a terceira sprite se a distância estiver entre 3 e 5
+						else
+							sprite = drawSprite[door.state]
+						end
 
 						if sprite then
 							SetDrawOrigin(door.coords.x, door.coords.y, door.coords.z)
@@ -326,7 +344,9 @@ CreateThread(function()
 					end
 				end
 			end
-		else ClosestDoor = nil end
+		else
+			ClosestDoor = nil
+		end
 
 		if ClosestDoor and ClosestDoor.distance < ClosestDoor.maxDistance then
 			if Config.DrawTextUI and not ClosestDoor.hideUi and ClosestDoor.state ~= showUI then
@@ -345,6 +365,3 @@ CreateThread(function()
 		Wait(num > 0 and 0 or 500)
 	end
 end)
-
-exports('useClosestDoor', useClosestDoor)
-exports('getClosestDoor', function() return ClosestDoor end)

@@ -6,9 +6,9 @@ game         'gta5'
 
 --[[ Resource Information ]]--
 name         'ox_doorlock'
-version      '1.18.0'
+version      '1.14.4'
 license      'GPL-3.0-or-later'
-author       'Overextended'
+author       'Overextended & Karma Developments'
 repository   'https://github.com/overextended/ox_doorlock'
 
 --[[ Manifest ]]--
@@ -24,6 +24,8 @@ client_scripts {
 
 server_scripts {
 	'@oxmysql/lib/MySQL.lua',
+	'server/convert.lua',
+	'server/framework/*.lua',
 	'server/main.lua',
 }
 
@@ -43,9 +45,4 @@ data_file 'AUDIO_SOUNDDATA' 'audio/data/oxdoorlock_sounds.dat'
 dependencies {
 	'oxmysql',
 	'ox_lib',
-}
-
-ox_libs {
-    'locale',
-    'table',
 }

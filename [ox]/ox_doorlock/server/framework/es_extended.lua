@@ -1,5 +1,7 @@
 local resourceName = 'es_extended'
 
+if not GetResourceState(resourceName):find('start') then return end
+
 SetTimeout(0, function()
     local ESX = exports[resourceName]:getSharedObject()
 
@@ -63,3 +65,4 @@ function IsPlayerInGroup(player, filter)
         end
     end
 end
+
