@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karma Developments Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.0/progressbar.min.js"></script>
+
+    <script src="javascript.js"></script>
+</head>
+
+<body>
+    <div id="dispatch_monitor" class="dispatchs" style="display: block;">
+    </div>
+    <div class="dispatch-menu" style="display: none;">
+        <div class="header">Karma Dispatch</div>
+        <div class="overview" style="display: block;">
+            <div class="header2">Recent Alerts</div>
+            <div id="overview_dispatch" class="dispatchs2"></div>
+        </div>
+        <div class="calls" style="display: none;">
+            <div class="header2">Assigned Calls</div>
+            <div id="assigned_calls" class="dispatchs2"></div>
+        </div>
+        <div class="units" style="display: none;">
+            <div class="header2">Units</div>
+            <div class="create_unit">
+                <div class="text">Create Unit</div>
+            </div>
+            <input type="text" class="form__input" id="search" placeholder="Search" required="" />
+                   
+                    <div id="dispatchinputXD" class="dispatchinputXD">
+                        <div class="dispatch" style="background: rgba(51, 58, 129, 0.80);">
+                            <div class="dispatch-infos" style="margin-top: 0vh;">
+                                <div class="header" style="background: rgba(36, 40, 82, 0.40)">
+                                    <img id="header-icon" src="img/blueperson.svg" alt="">
+                                    <div id="character-name" class="dispatch-name" style="text-shadow: 0px 0px black; width: 23vh;">Create your Unit</div>
+                                </div>
+                    
+                                <div class="frame">
+                                    <img id="frame-icon" src="img/pd.png" alt="" style="width: 1vh; height: 1.3vh; margin-left: .6vh; padding-top: .4vh;">
+                                    <div class="text">
+                                        <input type="text" placeholder="Unit Callsign" id="unitcallsign" style="width: 23vh; background: rgba(36, 40, 82, 0.40); color: white; border: none; padding: 0.5vh; font-size: 1.2vh;">
+                                    </div>
+                                </div>
+                    
+                                <div class="frame">
+                                    <img id="frame-icon" src="img/ticket.png" alt="" style="padding-top: .4vh; width: 1.4vh; height: 1.4vh;">
+                                    <div class="text">
+                                        <input type="text" placeholder="Unit Code" id="unitcode" style="width: 23vh; background: rgba(36, 40, 82, 0.40); color: white; border: none; padding: 0.5vh; font-size: 1.2vh;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+              <div id="unit_cont" class="dispatch2"></div>
+
+
+        </div>
+        <div class="officers" style="display: none;">
+            <div class="header2">Officers</div>
+            
+            <div id="officers_cont" class="dispatch2"></div>
+        </div>
+
+        <div class="overview_button">
+            <img id="icon" src="img/overview-icon.svg" alt="">
+            <div class="bg"></div>
+            <div class="text">Overview</div>
+        </div>
+
+        <div class="calls_button">
+            <img id="icon" src="img/calls_icon.svg" alt="">
+            <div class="bg"></div>
+            <div class="text" style="margin-top: -4.5vh; width: 9vh;">Assigned Calls</div>
+        </div>
+
+        <div class="units_button">
+            <img id="icon" src="img/units-icon.png" alt="">
+            <div class="bg"></div>
+            <div class="text">Units</div>
+        </div>
+
+        <div class="officers_button">
+            <img id="icon" src="img/units-icon.png" alt="">
+            <div class="bg"></div>
+            <div class="text">Officers</div>
+        </div>
+        
+    </div>
+</body>
