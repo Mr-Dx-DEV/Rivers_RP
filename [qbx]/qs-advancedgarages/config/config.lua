@@ -225,7 +225,7 @@ Config.GarageSellTax = 1.3              -- Percentage of profit that the person 
 Config.ImpoundPrice = 500               -- Impound default value to remove vehicles
 Config.RepairKit = false                -- Enable or disable the 'repairkit' item
 
-Config.DisableBlips = false             -- Disable all blips or show them on your map?
+Config.DisableBlips = true             -- Disable all blips or show them on your map?
 Config.ShortNames = false               -- This config will shorten the names so your blips are much less
 Config.startCinematic = 5               -- Cinematic Cams being AFK in the garage, it's a beautiful cinematic cam (by default it is 1.3, one and a half minutes)
 Config.PlayerToVehicleAnimation = true  -- Enable or disable the animation of the player entering the car
