@@ -5,6 +5,7 @@ description 'Multicharacter'
 lua54 'yes'
 
 files {
+    'logo.png',
     'client/html/*.html',
     'client/html/css/*.css',
     'client/html/css/ux/*.css',

@@ -53,8 +53,8 @@ Config.Effects = {
 }
 
 Config.SpawnCoords = {
-    coords = vector3(-1037.449, -2737.475, 20.16927), -- [COORDS] Set your desired coords for the users that will create their characters
-    heading = 329.1169 -- [INT] Heading of the given coords
+    coords = vector3(-1080.71, -2801.33, 21.32), -- [COORDS] Set your desired coords for the users that will create their characters
+    heading = 329.23 -- [INT] Heading of the given coords
 }
 
 Config.DefaultSettings = {}

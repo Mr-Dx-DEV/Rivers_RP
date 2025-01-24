@@ -3061,6 +3061,26 @@ stack = false,
 			image = "rolex.png",
 		}
 	},
+	["ls_jackstand"] = {
+		label = "Jack Stand",
+		weight = 1,
+		stack = true,
+		close = true,
+		description = "Jack Stand",
+		client = {
+			image = "ls_jackstand.png",
+		}
+	},
+	["ls_jackstand_alt"] = {
+		label = "Alternative Jack Stand",
+		weight = 1500,
+		stack = true,
+		close = true,
+		description = "Alternative Jack Stand",
+		client = {
+			image = "ls_jackstand_alt.png",
+		}
+	},
 
 	["coke_small_brick"] = {
 		label = "Coke Package",
