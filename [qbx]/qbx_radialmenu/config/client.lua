@@ -216,12 +216,12 @@ return {
 
     jobItems = {
         police = {
-            {
-                id = 'emergencyButton',
-                icon = 'bell',
-                label = 'Emergency Button',
-                event = 'police:client:SendPoliceEmergencyAlert',
-            },
+            -- {
+            --     id = 'emergencyButton',
+            --     icon = 'bell',
+            --     label = 'Emergency Button',
+            --     event = 'police:client:SendPoliceEmergencyAlert',
+            -- },
             {
                 id = 'resetHouse',
                 icon = 'key',
@@ -265,7 +265,7 @@ return {
                     },
                 },
             },
-            {
+            --[[ {
                 id = 'policeObjects',
                 icon = 'road',
                 label = 'Police Objects',
@@ -318,7 +318,7 @@ return {
                         event = 'police:client:deleteObject',
                     },
                 },
-            },
+            }, ]]
         },
         ambulance = {
             {
@@ -339,12 +339,12 @@ return {
                 label = 'Heal Wounds',
                 event = 'hospital:client:TreatWounds',
             },
-            {
-                id = 'emergencyButton',
-                icon = 'bell',
-                label = 'Emergency Button',
-                serverEvent = 'hospital:server:emergencyAlert',
-            },
+            -- {
+            --     id = 'emergencyButton',
+            --     icon = 'bell',
+            --     label = 'Emergency Button',
+            --     serverEvent = 'hospital:server:emergencyAlert',
+            -- },
             {
                 id = 'escort',
                 icon = 'user-group',
