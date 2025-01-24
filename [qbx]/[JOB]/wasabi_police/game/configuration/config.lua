@@ -410,7 +410,7 @@ Config.GPSBlips = {
     enabled = true,     -- Enabled?
     item = false,        -- Item required? Note: You have to use it then
     sprites = {
-        none = 443,      -- Blip for when not in a vehicle
+        none = 0,      -- Blip for when not in a vehicle
         car = 672,       -- Blip for when in vehicles
         bike = 226,      -- Blip for when on bikes
         boat = 427,      -- Blip for when in boats
@@ -419,8 +419,8 @@ Config.GPSBlips = {
     },
     settings = {
         color = 3,
-        scale = 0.5,
-        short = false,
+        scale = 0.6,
+        short = true,
         category = 7
     }
 }
