@@ -15,33 +15,66 @@ return {
     ['police'] = {
         label = 'LSPD',
         type = 'leo',
-        defaultDuty = true,
+        defaultDuty = false,
         offDutyPay = false,
         grades = {
             [0] = {
-                name = 'Recruit',
+                name = 'Cadet',
                 payment = 50
             },
             [1] = {
-                name = 'Officer',
-                payment = 75
+                name = 'Solo Cadet',
+                payment = 60
             },
             [2] = {
-                name = 'Sergeant',
-                payment = 100
+                name = 'Officer I',
+                payment = 75
             },
             [3] = {
+                name = 'Officer II',
+                payment = 85
+            },
+            [4] = {
+                name = 'Senior Officer',
+                payment = 95
+            },
+            [5] = {
+                name = 'Corporal',
+                payment = 100
+            },
+            [6] = {
+                name = 'Sergeant',
+                payment = 110
+            },
+            [7] = {
+                name = 'Staff Sergeant',
+                payment = 120
+            },
+            [8] = {
                 name = 'Lieutenant',
                 payment = 125
             },
-            [4] = {
-                name = 'Chief',
+            [9] = {
+                name = 'Captain',
+                payment = 135
+            },
+            [10] = {
+                name = 'Major',
+                payment = 140
+            },
+            [11] = {
+                name = 'Assistant Chief',
+                payment = 145
+            },
+            [12] = {
+                name = 'Chief of Police',
                 isboss = true,
                 bankAuth = true,
                 payment = 150
             },
         },
     },
+    
     ['bcso'] = {
         label = 'BCSO',
         type = 'leo',
