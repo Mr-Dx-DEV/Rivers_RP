@@ -38,7 +38,7 @@ Config.Lang = 'en' -- [locales/.lua]
 
 Config.ConvertQBoxLicense = false -- If you are using QBox, make this true Qbox uses license2 and license, license2 is a only rockstar license and does not change
 
-Config.Clothing = 'qb-clothing' -- illenium-appearance, fivem-appearance (old illenium for qb), qb-clothing, custom
+Config.Clothing = 'illenium-appearance' -- illenium-appearance, fivem-appearance (old illenium for qb), qb-clothing, custom
 
 Config.SkinTable = 'playerskins' -- If you are using skins inside players just set 'skin' | playerskins or skin
 
