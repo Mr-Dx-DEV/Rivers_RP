@@ -53,7 +53,7 @@ Config.Blips = { -- Here you can configure Company blip.
     [1] = {
         Sprite = 318,
         Color = 52,
-        Scale = 0.3,
+        Scale = 0.5,
         Pos = vector3(-321.56, -1545.74, 30.01),
         Label = 'Garbage Job'
     },
