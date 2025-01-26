@@ -2,15 +2,15 @@ Config = {}
 
 Config.Debug = false
 
-Config.ClothingCost = 200
+Config.ClothingCost = 100
 Config.BarberCost = 100
 Config.TattooCost = 100
-Config.SurgeonCost = 5000
+Config.SurgeonCost = 100
 
 Config.ChargePerTattoo = true -- Charge players per tattoo. Config.TattooCost will become the cost of 1 tattoo. The cost can be overridden by adding `cost` key in shared/tattoos.lua for specific tattoos
 
 -- Only set this to true if you're using rcore_tattoos
-Config.RCoreTattoosCompatibility = true
+Config.RCoreTattoosCompatibility = false
 
 Config.AsynchronousLoading = false -- Change this to false if you want the NUI data to load before displaying the appearance UI
 
@@ -26,23 +26,29 @@ Config.NotifyOptions = {
 
 Config.OutfitCodeLength = 10
 
-Config.UseRadialMenu = true
+Config.UseRadialMenu = false
 Config.UseOxRadial = false -- Set to true to use ox_lib radial menu, both this and UseRadialMenu must be true 
 
 Config.EnablePedsForShops = true
-Config.EnablePedsForClothingRooms = false
-Config.EnablePedsForPlayerOutfitRooms = false
+Config.EnablePedsForClothingRooms = true
+Config.EnablePedsForPlayerOutfitRooms = true
 
 Config.EnablePedMenu = true
 Config.PedMenuGroup = "group.admin"
 
-Config.ShowNearestShopOnly = true
-Config.HideRadar = true -- Hides the minimap while the appearance menu is open
+Config.EnableJobOutfitsCommand = false -- Enables /joboutfits and /gangoutfits commands
+
+Config.ShowNearestShopOnly = false
+Config.HideRadar = false -- Hides the minimap while the appearance menu is open
 Config.NearestShopBlipUpdateDelay = 10000
 
 Config.InvincibleDuringCustomization = true
 
 Config.PreventTrackerRemoval = true -- Disables "Scarf and Chains" section if the player has tracker
+Config.TrackerClothingOptions = {
+    drawable = 13,
+    texture = 0
+}
 
 Config.NewCharacterSections = {
     Ped = true,
@@ -59,18 +65,13 @@ Config.GenderBasedOnPed = true
 Config.AlwaysKeepProps = false
 
 Config.PersistUniforms = false -- Keeps Job / Gang Outfits on player reconnects / logout
-Config.OnDutyOnlyClothingRooms = true -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
+Config.OnDutyOnlyClothingRooms = false -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
 
-Config.BossManagedOutfits = true -- Allows Job / Gang bosses to manage their own job / gang outfits
+Config.BossManagedOutfits = false -- Allows Job / Gang bosses to manage their own job / gang outfits
 
 Config.ReloadSkinCooldown = 5000
 
 Config.AutomaticFade = false -- Enables automatic fading and hides the Fade section from Hair
-
--- ACE Permissions Config
-Config.EnableACEPermissions = false
-Config.ACEResetCooldown = 5000
-Config.ACEListCooldown = 60 * 60 * 1000 -- 1 Hour
 
 Config.DisableComponents = {
     Masks = false,
@@ -93,11 +94,14 @@ Config.DisableProps = {
     Bracelets = false
 }
 
+---@type string[]
+Config.Aces = {} -- list of ace permissions used for blacklisting
+
 Config.Blips = {
     ["clothing"] = {
         Show = true,
-        Sprite = 73,
-        Color = 3,
+        Sprite = 366,
+        Color = 47,
         Scale = 0.3,
         Name = "Clothing Store",
     },
@@ -116,7 +120,7 @@ Config.Blips = {
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
-        Show = false,
+        Show = true,
         Sprite = 102,
         Color = 4,
         Scale = 0.3,
@@ -539,248 +543,38 @@ Config.Stores = {
     },
     {
         type = "surgeon",
-        coords = vector4(-444.94, -303.78, 34.91, 214.74),
+        coords = vector4(298.78, -572.81, 43.26, 114.27),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
         points = {
-            vector3(-447.09, -303.46, 34.91),
-            vector3(-444.68, -307.36, 34.91),
-            vector3(-435.12, -304.22, 34.91),
-            vector3(-437.37, -298.98, 34.91)
+            vector3(298.84417724609, -572.92205810547, 43.26),
+            vector3(296.39556884766, -575.65942382812, 43.26),
+            vector3(293.56317138672, -572.60675048828, 43.26),
+            vector3(296.28656005859, -570.330078125, 43.26)
         }
-    },
-    {
-        type = "clothing",
-        coords = vector4(461.24075317383, -998.06762695313, 31.201772689819, 177.13272094727),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(457.61828613281, -999.81573486328, 30.689510345459),
-            vector3(459.50323486328, -995.51306152344, 30.689510345459),
-            vector3(463.88369750977, -995.90087890625, 30.689510345459),
-            vector3(463.90933227539, -999.73992919922, 30.941181182861),
-        }
-    },
-    {   
-        type = "clothing",  --Hospital
-        coords = vector4(-443.02, -311.43, 34.91, 205.28),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(-443.39, -314.21, 34.91),
-            vector3(-440.94, -313.23, 34.91),
-            vector3(-442.54, -309.36, 34.91),
-            vector3(-444.98, -310.33, 34.91),
-        }
-    },
-    { -- CatCafe
-        type = "clothing",
-        coords = vector4(-587.07, -1050.14, 22.34, 85.42),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(-587.86, -1051.8, 22.34),
-            vector3(-589.1, -1051.51, 22.34),
-            vector3(-588.75, -1049.05, 22.37),
-            vector3(-586.58, -1049.04, 22.34),
-        }
-    },
-    { --PizzaThis
-        type = "clothing",
-        coords = vector4(810.36, -760.47, 31.27, 96.47),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(807.29, -758.84, 31.27),
-            vector3(813.62, -758.91, 31.27),
-            vector3(813.83, -762.21, 31.27),
-            vector3(811.3, -763.04, 31.27),
-            vector3(810.86, -764.88, 31.27),
-            vector3(807.42, -762.68, 31.27)
-        }
-    },
-    { --BurgerShot
-        type = "clothing",
-        coords = vector4(-1179.99, -893.85, 13.8, 285.37),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(-1181.48, -894.09, 13.8),
-            vector3(-1180.3, -895.89, 13.8),
-            vector3(-1177.83, -894.61, 13.8),
-            vector3(-1179.65, -892.59, 13.8)
-        }
-    },
-    { --beanmachine
-    type = "clothing",
-    coords = vector4(-634.53686523438, 226.70176696777, 81.881553649902, 3.7137248516083),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(-633.65795898438, 227.87237548828, 81.881523132324),
-        vector3(-634.89892578125, 228.0057220459, 81.881523132324),
-        vector3(-635.66174316406, 225.70460510254, 81.881523132324),
-        vector3(-633.88262939453, 225.67266845703, 81.881523132324)
-        }
-    },
-    { --Mechanic Tuner
-    type = "clothing",
-    coords = vector4(153.42, -3013.18, 7.04, 97.62),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(153.88, -3015.07, 7.04),
-        vector3(152.46, -3014.82, 7.06),
-        vector3(151.95, -3009.94, 7.04),
-        vector3(154.21, -3009.89, 7.04)
-        }
-    },
-    { --Mechanic LS
-    type = "clothing",
-    coords = vector4(-349.25, -124.06, 39.05, 253.92),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(-351.62, -126.17, 39.01),
-        vector3(-348.69, -126.82, 39.01),
-        vector3(-347.16, -122.44, 39.01),
-        vector3(-349.62, -121.39, 39.01)
-        }
-    },
-    { --vanilla
-    type = "clothing",
-    coords = vector4(-1382.0, -634.89, 30.32, 164.96),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(-1382.9, -638.25, 30.32),
-        vector3(-1385.58, -634.69, 30.32),
-        vector3(-1381.53, -632.24, 30.32),
-        vector3(-1379.07, -635.72, 30.32)
-        }
-    },
-    { --atom
-    type = "clothing",
-    coords = vector4(85.36, 294.69, 110.21, 253.79),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(83.84, 294.46, 110.21),
-        vector3(84.16, 295.34, 110.21),
-        vector3(87.36, 294.92, 110.21),
-        vector3(87.21, 293.35, 110.21)
-        }
-    },
-    { --Koi
-    type = "clothing",
-    coords = vector4(-1060.08, -1436.54, -1.42, 315.2),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(-1058.43, -1438.32, -1.42),
-        vector3(-1061.99, -1438.68, -1.42),
-        vector3(-1061.99, -1438.68, -1.42),
-        vector3(-1058.04, -1434.5, -1.42)
-        }
-    },
-    { --Pearls
-    type = "clothing",
-    coords = vector4(-1838.36, -1186.09, 14.31, 161.68),
-    size = vector3(4, 4, 4),
-    rotation = 45,
-    usePoly = false,
-    showBlip = false,
-    points = {
-        vector3(-1835.8, -1185.23, 14.31),
-        vector3(-1837.76, -1183.59, 14.31),
-        vector3(-1841.23, -1189.33, 14.31),
-        vector3(-1839.21, -1190.32, 14.72)
-        }
-    },
-    {  ---Devis PD
-        type = "clothing",
-        coords = vector4(367.94, -1602.04, 29.29, 56.74),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(367.94, -1602.04, 29.29),
-            vector3(370.15, -1604.1, 29.29),
-            vector3(366.7, -1600.05, 29.29),
-            vector3(365.51, -1600.82, 29.29),
-        }
-    },
-    {  --- Sandy PD
-        type = "clothing",
-        coords = vector4(1840.74, 3680.03, 34.19, 99.32),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(1842.91, 3679.23, 34.32),
-            vector3(1840.52, 3682.86, 34.19),
-            vector3(1837.76, 3680.57, 34.19),
-            vector3(1839.22, 3677.63, 34.19),
-        }
-    },
-    {  --- Mechanic Visao
-        type = "clothing",
-        coords = vector4(947.62, -1462.62, 31.37, 93.46),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(945.53, -1464.98, 31.37),
-            vector3(945.69, -1460.51, 31.37),
-            vector3(948.56, -1460.06, 31.4),
-            vector3(948.35, -1464.53, 31.37),
-        }
-    },
-    {  --- Bennys Mechanic
-        type = "clothing",
-        coords = vector4(-223.5, -1321.33, 30.89, 275.48),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        showBlip = false,
-        points = {
-            vector3(-221.45, -1319.94, 30.89),
-            vector3(-221.29, -1322.87, 30.89),
-            vector3(-225.59, -1319.95, 30.89),
-            vector3(-226.21, -1322.81, 30.89),
-        }
-    },
+    }
 }
 
 
 Config.ClothingRooms = {
-    
+    {
+        job = "police",
+        coords = vector4(454.91, -990.89, 30.69, 193.4),
+        size = vector3(4, 4, 4),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(460.41918945312, -993.11444091797, 30.69),
+            vector3(449.39508056641, -993.60614013672, 30.69),
+            vector3(449.88696289062, -990.23779296875, 30.69),
+            vector3(450.97882080078, -989.71411132812, 30.69),
+            vector3(451.0325012207, -987.89904785156, 30.69),
+            vector3(453.47863769531, -987.76928710938, 30.69),
+            vector3(454.35513305664, -988.46459960938, 30.69),
+            vector3(460.4231262207, -987.94573974609, 30.69)
+        }
+    }
 }
 
 

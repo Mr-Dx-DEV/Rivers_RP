@@ -1,10 +1,13 @@
 fx_version "cerulean"
 game "gta5"
+
 author "snakewiz & iLLeniumStudios"
 description "A flexible player customization script for FiveM servers."
 repository "https://github.com/iLLeniumStudios/illenium-appearance"
-version "v5.2.0"
+version "v5.7.0"
+
 lua54 "yes"
+
 client_scripts {
   "game/constants.lua",
   "game/util.lua",
@@ -19,12 +22,15 @@ client_scripts {
   "client/framework/qb/migrate.lua",
   "client/framework/esx/compatibility.lua",
   "client/framework/esx/main.lua",
+  "client/framework/ox/main.lua",
   "client/target/target.lua",
   "client/target/qb.lua",
   "client/target/ox.lua",
   "client/management/management.lua",
+  "client/management/common.lua",
   "client/management/qb.lua",
   "client/management/qbx.lua",
+  "client/management/esx.lua",
   "client/radial/radial.lua",
   "client/radial/qb.lua",
   "client/radial/ox.lua",
@@ -34,6 +40,7 @@ client_scripts {
   "client/props.lua",
   "client/client.lua",
 }
+
 server_scripts {
   "@oxmysql/lib/MySQL.lua",
   "server/database/database.lua",
@@ -49,10 +56,13 @@ server_scripts {
   "server/framework/esx/main.lua",
   "server/framework/esx/migrate.lua",
   "server/framework/esx/callbacks.lua",
+  "server/framework/esx/management.lua",
+  "server/framework/ox/main.lua",
   "server/util.lua",
   "server/server.lua",
   "server/permissions.lua"
 }
+
 shared_scripts {
   "shared/config.lua",
   "shared/blacklist.lua",
@@ -64,6 +74,7 @@ shared_scripts {
   "locales/locales.lua",
   "locales/ar.lua",
   "locales/bg.lua",
+  "locales/cs.lua",
   "locales/de.lua",
   "locales/en.lua",
   "locales/es-ES.lua",
@@ -73,10 +84,13 @@ shared_scripts {
   "locales/nl.lua",
   "locales/pt-BR.lua",
   "locales/ro-RO.lua",
+  "locales/id.lua",
   "@ox_lib/init.lua"
 }
+
 files {
   "web/dist/index.html",
   "web/dist/assets/*.js"
 }
+
 ui_page "web/dist/index.html"
