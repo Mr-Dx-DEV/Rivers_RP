@@ -240,7 +240,7 @@ Config.missionPeds = {
         -- this will result in better/worse days for selling the wheels
         price = math.random(300, 500),
         blip = {
-            showBlip = true, -- whether or not to show the location blip on the map
+            showBlip = false, -- whether or not to show the location blip on the map
             blipColor = 28,
             blipIcon = 480,
             blipLabel = 'Wheel Theft Missions'

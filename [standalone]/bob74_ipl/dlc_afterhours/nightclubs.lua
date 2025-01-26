@@ -488,31 +488,31 @@ AfterHoursNightclubs = {
     },
 
     -- -680, -2461, 14
-    Airport = {
-        id = 6,
+    -- Airport = {
+    --     id = 6,
 
-        Barrier = {
-            Enable = function(state)
-                if state == nil then
-                    state = true
-                end
+    --     Barrier = {
+    --         Enable = function(state)
+    --             if state == nil then
+    --                 state = true
+    --             end
 
-                AfterHoursNightclubs.Barrier.Enable(AfterHoursNightclubs.Airport.id, state)
-            end
-        },
-        Posters = {
-            Enable = function(poster, state)
-                if state == nil then
-                    state = true
-                end
+    --             AfterHoursNightclubs.Barrier.Enable(AfterHoursNightclubs.Airport.id, state)
+    --         end
+    --     },
+    --     Posters = {
+    --         Enable = function(poster, state)
+    --             if state == nil then
+    --                 state = true
+    --             end
 
-                AfterHoursNightclubs.Posters.Enable(AfterHoursNightclubs.Airport.id, poster, state)
-            end,
-            Clear = function()
-                AfterHoursNightclubs.Posters.Clear(AfterHoursNightclubs.Airport.id)
-            end
-        }
-    },
+    --             AfterHoursNightclubs.Posters.Enable(AfterHoursNightclubs.Airport.id, poster, state)
+    --         end,
+    --         Clear = function()
+    --             AfterHoursNightclubs.Posters.Clear(AfterHoursNightclubs.Airport.id)
+    --         end
+    --     }
+    -- },
 
     -- 192, -3168, 6
     Elysian = {
@@ -684,9 +684,9 @@ AfterHoursNightclubs = {
         AfterHoursNightclubs.DelPerro.Posters.Enable(AfterHoursNightclubs.Posters, true)
         AfterHoursNightclubs.DelPerro.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
 
-        AfterHoursNightclubs.Airport.Barrier.Enable(true)
-        AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters, true)
-        AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
+        -- AfterHoursNightclubs.Airport.Barrier.Enable(true)
+        -- AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters, true)
+        -- AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
 
         AfterHoursNightclubs.Elysian.Barrier.Enable(true)
         AfterHoursNightclubs.Elysian.Posters.Enable(AfterHoursNightclubs.Posters, true)
