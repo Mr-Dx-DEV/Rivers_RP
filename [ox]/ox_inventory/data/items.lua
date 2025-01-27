@@ -1,4 +1,39 @@
 return {
+
+	---- snipe-blip
+	["tracker"] = {
+		label = "Tracker",
+		weight = 500,
+		stack = true,
+		close = true,
+		description = "Tracker that lets you show other officers",
+		client = {
+			image = "tracker.png",
+			remove = function(total)
+				pcall(function() return exports["snipe-blips"]:RemoveTrackerItem() end)
+			end
+		},
+		
+	},
+	
+	["gangtracker"] = {
+		label = "gangtracker",
+		weight = 500,
+		stack = true,
+		close = true,
+		description = "Tracker that lets you show other Gang Members",
+		client = {
+			image = "tracker.png",
+			remove = function(total)
+				pcall(function() return exports["snipe-blips"]:RemoveTrackerItem() end)
+			end
+		},
+		
+	},
+
+
+
+	---------------
 	["pigeonmeat"] = {
         label = "Pigeon Meat",
         weight = 1000,
