@@ -7,9 +7,27 @@ Config.Blacklist = {
             lowerBody = {},
             bags = {},
             shoes = {},
-            scarfAndChains = {},
+            scarfAndChains = {
+                { -- Romeo Marko Vest
+                drawables = {339},
+                citizenids = {"FRS1UK37"},
+                },
+                { -- Romeo Marko Vest
+                drawables = {340},
+                citizenids = {"OWPIH87J"},
+                },
+                { -- dabologyphd Police Chain
+                drawables = {341},
+                citizenids = {"FRS1UK37"},
+                },
+            },
             shirts = {},
-            bodyArmor = {},
+            bodyArmor = {
+                { -- Romeo Marko Vest
+                drawables = {250},
+                citizenids = {"L65AEIY6", "PDEG22KL"},
+                },
+            },
             decals = {},
             jackets = {}
         },

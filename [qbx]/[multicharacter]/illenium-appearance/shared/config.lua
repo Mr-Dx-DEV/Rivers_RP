@@ -2,15 +2,15 @@ Config = {}
 
 Config.Debug = false
 
-Config.ClothingCost = 100
-Config.BarberCost = 100
-Config.TattooCost = 100
-Config.SurgeonCost = 100
+Config.ClothingCost = 20
+Config.BarberCost = 20
+Config.TattooCost = 20
+Config.SurgeonCost = 50
 
 Config.ChargePerTattoo = true -- Charge players per tattoo. Config.TattooCost will become the cost of 1 tattoo. The cost can be overridden by adding `cost` key in shared/tattoos.lua for specific tattoos
 
 -- Only set this to true if you're using rcore_tattoos
-Config.RCoreTattoosCompatibility = false
+Config.RCoreTattoosCompatibility = true
 
 Config.AsynchronousLoading = false -- Change this to false if you want the NUI data to load before displaying the appearance UI
 
@@ -73,6 +73,11 @@ Config.ReloadSkinCooldown = 5000
 
 Config.AutomaticFade = false -- Enables automatic fading and hides the Fade section from Hair
 
+-- ACE Permissions Config
+Config.EnableACEPermissions = false
+Config.ACEResetCooldown = 5000
+Config.ACEListCooldown = 60 * 60 * 1000 -- 1 Hour
+
 Config.DisableComponents = {
     Masks = false,
     UpperBody = false,
@@ -94,36 +99,33 @@ Config.DisableProps = {
     Bracelets = false
 }
 
----@type string[]
-Config.Aces = {} -- list of ace permissions used for blacklisting
-
 Config.Blips = {
     ["clothing"] = {
         Show = true,
         Sprite = 366,
         Color = 47,
-        Scale = 0.3,
+        Scale = 0.7,
         Name = "Clothing Store",
     },
     ["barber"] = {
         Show = true,
         Sprite = 71,
         Color = 0,
-        Scale = 0.3,
+        Scale = 0.7,
         Name = "Barber",
     },
     ["tattoo"] = {
         Show = true,
         Sprite = 75,
         Color = 4,
-        Scale = 0.3,
+        Scale = 0.7,
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
         Show = true,
         Sprite = 102,
         Color = 4,
-        Scale = 0.3,
+        Scale = 0.7,
         Name = "Plastic Surgeon",
     }
 }
@@ -372,6 +374,310 @@ Config.Stores = {
             vector3(122.56930541992, -207.83396911621, 54.56)
         }
     },
+
+    -- ADDONS
+
+    { -- PD
+    type = "clothing",
+    coords = vector4(606.18, 12.49, 87.8, 338.12),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(606.39, 15.53, 87.8),
+        vector3(604.32, 11.1, 87.8),
+        vector3(610.06, 8.98, 87.8),
+        vector3(611.65, 12.89, 87.8)
+        }
+    },
+
+    { -- PD
+    type = "clothing",
+    coords = vector4(-602.182, -420.662, 35.172, 5.644),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-607.023, -415.822, 35.172), 
+        vector3(-606.343, -426.932, 35.172), 
+        vector3(-598.827, -427.065, 35.172), 
+        vector3(-598.753, -415.759, 35.172)
+        }
+    },
+
+    { -- MRPD
+    type = "clothing",
+    coords = vector4(461.53, -998.17, 31.13, 1.24),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(463.9, -995.95, 30.69), 
+        vector3(459.03, -995.63, 30.69), 
+        vector3(458.55, -999.7, 30.69), 
+        vector3(463.87, -999.47, 30.69)
+        }
+    },
+
+    { -- EMS
+    type = "clothing",
+    coords = vector4(-1019.79, -420.66, 39.62, 72.48),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1021.64, -419.26, 39.62),
+        vector3(-1019.73, -418.13, 39.62),
+        vector3(-1018.16, -421.82, 39.62),
+        vector3(-1020.0, -422.64, 39.62),
+        }
+    },
+    { -- Fire Department
+    type = "clothing",
+    coords = vector4(-1032.8, -1391.7, 4.97, 77.3),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1032.1, -1395.06, 4.97),
+        vector3(-1030.7, -1390.61, 4.97),
+        vector3(-1036.15, -1388.7, 4.97),
+        vector3(-1037.02, -1391.84, 4.97)
+        }
+    },
+
+    { -- Cat Cafe
+    type = "clothing",
+    coords = vector4(-587.01, -1050.32, 22.34, 89.1),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-587.82, -1051.29, 22.34),
+        vector3(-588.27, -1049.05, 22.34),
+        vector3(-586.58, -1049.05, 22.34),
+        vector3(-586.58, -1050.48, 22.34)
+        }
+    },
+
+    { -- Burger Shot
+    type = "clothing",
+    coords = vector4(-1199.22, -902.27, 13.89, 213.64),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1199.39, -903.46, 13.89),
+        vector3(-1197.91, -902.49, 13.89),
+        vector3(-1199.38, -900.78, 13.89),
+        vector3(-1200.91, -901.34, 13.89)
+        }
+    },
+
+    { -- Vanilla Unicorn 1
+    type = "clothing",
+    coords = vector4(103.07, -1300.28, 29.22, 29.49),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(104.3, -1300.64, 29.22),
+        vector3(102.92, -1301.44, 29.22),
+        vector3(101.97, -1299.5, 29.22),
+        vector3(103.09, -1298.85, 29.22)
+        }
+    },
+
+    { -- Vanilla Unicorn 2
+    type = "clothing",
+    coords = vector4(135.28, -1291.85, 22.65, 211.68),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(133.43, -1290.47, 22.65),
+        vector3(135.06, -1289.53, 22.65),
+        vector3(136.58, -1292.16, 22.65),
+        vector3(134.99, -1293.17, 22.65)
+        }
+    },
+
+    { -- Savage Studios
+    type = "clothing",
+    coords = vector4(-2685.31, -151.68, 11.38, 36.96),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-2684.58, -151.25, 11.38),
+        vector3(-2685.6, -150.11, 11.38),
+        vector3(-2687.98, -152.55, 11.38),
+        vector3(-2687.35, -153.7, 11.38)
+        }
+    },
+
+    { -- Savage Studios Barber
+    type = "barber",
+    coords = vector4(-2692.36, -143.84, 11.39, 131),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    points = {
+        vector3(-2690.45, -144.55, 11.38),
+        vector3(-2691.6, -145.52, 11.83),
+        vector3(-2693.85, -142.71, 11.83),
+        vector3(-2692.55, -141.75, 11.38)
+        }
+    },
+
+    { -- Hayes Autos
+    type = "clothing",
+    coords = vector4(-1424.98, -457.13, 35.91, 29.35),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1423.72, -457.35, 35.91),
+        vector3(-1424.4, -455.98, 35.91),
+        vector3(-1425.66, -456.56, 35.91),
+        vector3(-1424.61, -458.23, 35.91)
+        }
+    },
+
+    { -- Midnight Garage
+    type = "clothing",
+    coords = vector4(150.14, -3008.21, 7.04, 269.19),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(151.63, -3007.38, 7.22),
+        vector3(151.95, -3009.91, 7.04),
+        vector3(145.55, -3009.53, 7.97),
+        vector3(145.55, -3007.34, 7.63)
+        }
+    },
+
+    { -- White Widow
+    type = "clothing",
+    coords = vector4(-1330.46, -1220.46, 5.79, 203.85),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1331.7, -1220.78, 5.79),
+        vector3(-1331.51, -1222.4, 5.79),
+        vector3(-1328.48, -1221.59, 5.79),
+        vector3(-1329.35, -1219.84, 5.79)
+        }
+    },
+
+    { -- Puff Puff Pass
+    type = "clothing",
+    coords = vector4(-1559.18, -452.91, 35.89, 317.25),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1559.18, -454.6, 35.89),
+        vector3(-1560.57, -453.36, 35.89),
+        vector3(-1558.47, -450.74, 35.89),
+        vector3(-1556.9, -452.07, 35.89)
+        }
+    },
+
+    { -- Harmony Autos
+    type = "clothing",
+    coords = vector4(1178.74, 2623.18, 42.13, 86.4),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(1178.83, 2624.59, 42.13),
+        vector3(1174.57, 2624.75, 42.13),
+        vector3(1176.0, 2621.13, 42.18),
+        vector3(1178.56, 2621.07, 42.18)
+        }
+    },
+
+    -- GANGS
+
+    { -- BB Gang Block
+    type = "clothing",
+    coords = vector4(-1077.77, -1678.35, 4.58, 297.43),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1078.27, -1682.42, 4.58),
+        vector3(-1082.02, -1678.12, 4.58),
+        vector3(-1077.81, -1674.74, 4.58),
+        vector3(-1074.16, -1679.5, 4.58)
+        }
+    },
+
+    { -- Lost MC Gang Block
+    type = "clothing",
+    coords = vector4(1441.73, -2608.09, 48.52, 344.78),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(1443.27, -2610.03, 48.52),
+        vector3(1439.46, -2608.56, 48.52),
+        vector3(1440.82, -2605.7, 48.52),
+        vector3(1444.26, -2606.47, 48.52)
+        }
+    },
+
+    { -- DPY Gang Block
+    type = "clothing",
+    coords = vector4(-1573.73, -225.99, 49.38, 152.32),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1574.72, -223.49, 49.38),
+        vector3(-1571.38, -225.32, 49.38),
+        vector3(-1573.51, -227.75, 49.38),
+        vector3(-1575.68, -226.71, 49.38)
+        }
+    },
+
+    { -- Playboys Gang Block
+    type = "clothing",
+    coords = vector4(-1499.73, 115.23, 55.58, 63.43),
+    size = vector3(4, 4, 4),
+    rotation = 45,
+    usePoly = false,
+    showBlip = false,
+    points = {
+        vector3(-1496.62, 115.61, 55.66),
+        vector3(-1499.32, 112.72, 55.58),
+        vector3(-1503.08, 114.6, 55.58),
+        vector3(-1499.87, 118.64, 55.58)
+        }
+    },
+
+
     {
         type = "barber",
         coords = vector4(-814.22, -183.7, 37.57, 116.91),
@@ -463,7 +769,7 @@ Config.Stores = {
             vector3(-282.98211669922, 6230.015625, 30.7)
         }
     },
-    {
+    --[[ {
         type = "tattoo",
         coords = vector4(1322.6, -1651.9, 51.2, 42.47),
         size = vector3(4, 4, 4),
@@ -540,18 +846,18 @@ Config.Stores = {
             vector3(-298.23013305664, 6199.2451171875, 31.49),
             vector3(-294.1501159668, 6203.2700195312, 31.49)
         }
-    },
+    }, ]]
     {
         type = "surgeon",
-        coords = vector4(298.78, -572.81, 43.26, 114.27),
+        coords = vector4(-1017.14, -439.88, 39.62, 23.82),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
         points = {
-            vector3(298.84417724609, -572.92205810547, 43.26),
-            vector3(296.39556884766, -575.65942382812, 43.26),
-            vector3(293.56317138672, -572.60675048828, 43.26),
-            vector3(296.28656005859, -570.330078125, 43.26)
+            vector3(-1020.09, -437.16, 39.62),
+            vector3(-1016.6, -436.09, 39.62),
+            vector3(-1014.54, -442.27, 39.62),
+            vector3(-1017.1, -443.55, 39.62),
         }
     }
 }
