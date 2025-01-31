@@ -259,7 +259,7 @@ AfterHoursNightclubs = {
 
             Enable = function(trophy, state, color, refresh)
                 SetIplPropState(AfterHoursNightclubs.interiorId, trophy, state, refresh)
-                SetInteriorPropColor(AfterHoursNightclubs.interiorId, trophy, color)
+                SetInteriorEntitySetColor(AfterHoursNightclubs.interiorId, trophy, color)
             end
         },
         DryIce = {
@@ -287,11 +287,11 @@ AfterHoursNightclubs = {
                 if state then
                     RequestNamedPtfxAsset("scr_ba_club")
                     while not HasNamedPtfxAssetLoaded("scr_ba_club") do
-                        Citizen.Wait(0)
+                        Wait(0)
                     end
 
                     for key, emitter in pairs(AfterHoursNightclubs.Interior.DryIce.Emitters) do
-                        UseParticleFxAssetNextCall("scr_ba_club")
+                        UseParticleFxAsset("scr_ba_club")
                         StartParticleFxLoopedAtCoord("scr_ba_club_smoke_machine", emitter.pos.x, emitter.pos.y, emitter.pos.z, emitter.rot.x, emitter.rot.y, emitter.rot.z, AfterHoursNightclubs.Interior.DryIce.scale, false, false, false, true)
                     end
                 else
@@ -488,31 +488,31 @@ AfterHoursNightclubs = {
     },
 
     -- -680, -2461, 14
-    -- Airport = {
-    --     id = 6,
+    Airport = {
+        id = 6,
 
-    --     Barrier = {
-    --         Enable = function(state)
-    --             if state == nil then
-    --                 state = true
-    --             end
+        Barrier = {
+            Enable = function(state)
+                if state == nil then
+                    state = true
+                end
 
-    --             AfterHoursNightclubs.Barrier.Enable(AfterHoursNightclubs.Airport.id, state)
-    --         end
-    --     },
-    --     Posters = {
-    --         Enable = function(poster, state)
-    --             if state == nil then
-    --                 state = true
-    --             end
+                AfterHoursNightclubs.Barrier.Enable(AfterHoursNightclubs.Airport.id, state)
+            end
+        },
+        Posters = {
+            Enable = function(poster, state)
+                if state == nil then
+                    state = true
+                end
 
-    --             AfterHoursNightclubs.Posters.Enable(AfterHoursNightclubs.Airport.id, poster, state)
-    --         end,
-    --         Clear = function()
-    --             AfterHoursNightclubs.Posters.Clear(AfterHoursNightclubs.Airport.id)
-    --         end
-    --     }
-    -- },
+                AfterHoursNightclubs.Posters.Enable(AfterHoursNightclubs.Airport.id, poster, state)
+            end,
+            Clear = function()
+                AfterHoursNightclubs.Posters.Clear(AfterHoursNightclubs.Airport.id)
+            end
+        }
+    },
 
     -- 192, -3168, 6
     Elysian = {
@@ -684,9 +684,9 @@ AfterHoursNightclubs = {
         AfterHoursNightclubs.DelPerro.Posters.Enable(AfterHoursNightclubs.Posters, true)
         AfterHoursNightclubs.DelPerro.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
 
-        -- AfterHoursNightclubs.Airport.Barrier.Enable(true)
-        -- AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters, true)
-        -- AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
+        AfterHoursNightclubs.Airport.Barrier.Enable(true)
+        AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters, true)
+        AfterHoursNightclubs.Airport.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
 
         AfterHoursNightclubs.Elysian.Barrier.Enable(true)
         AfterHoursNightclubs.Elysian.Posters.Enable(AfterHoursNightclubs.Posters, true)
