@@ -12,6 +12,7 @@ return {
         [`TITAN`] = true,
         [`RHINO`] = true,
         [`FIRETRUK`] = true,
+        [`policeb`] = true,
         [`MULE`] = true,
         [`MAVERICK`] = true,
         [`BLIMP`] = true,
