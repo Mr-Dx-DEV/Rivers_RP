@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v6.0.0/css/pro.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Ovo&family=Press+Start+2P&family=Source+Sans+Pro&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div class="app" id="app">
+        <div class="IV">
+            <div class="visualll"></div>
+            <div class="menuduty">
+                <div class="label">Change duty</div>
+                <div class="buttonsmenus">
+                <div class="buttonsduty" id="onnduty">on duty</div>
+                <div class="buttonsduty" id="offfdutyy">off duty</div>
+                <!-- <div class="buttonsduty" id="busyyy">busy</div> -->
+                </div>
+                <div class="buttonswings">
+                    <div id="ccommander" class="buttonswing"><i class="fa-solid fa-star"></i></div>
+                    <div id="cdispatch" class="buttonswing"><i class="fa-solid fa-satellite-dish"></i></div>
+                </div>
+            </div>
+            <div class="IV-firstsection">                
+                <!-- <div class="circle-container">
+                    <div class="circle-text">Officers</div>
+                    <div id="count" style="font-size: 1.34vh; font-weight: bolder; text-align: center;" class="circle">11</div>
+                </div> -->
+    
+                <div class="circle-container">
+                    <div class="circle-text"></div>
+                    <div id="settings" class="circle" style="width: fit-content; height: fit-content; cursor: pointer;"><i class="fa-sharp fa-solid fa-bars-sort"></i></div>
+                </div>
+    
+                <div class="circle-container">
+                    <div class="circle-text"></div>
+                    <div id="menu" class="circle" style="position: absolute; left: 95%; top: -60px;"><i class="fa-duotone fa-clipboard"></i></div>
+                </div>
+
+                <div class="circle-container">
+                    <div class="circle-text"></div>
+                    <div id="visual" class="circle" style="position: absolute; left: 78%;  top: -55px;"><i class="fa-light fa-eye"></i></div>
+                </div>
+    
+                <!-- <div class="circle-container">
+                    <div class="circle-text">Break</div>
+                    <div id="cbreak" class="circle"><i class="fa-sharp fa-solid fa-circle-pause"></i></div>
+                </div> -->
+                <!-- <div class="circle-container">
+                    <div class="circle-text">Dispatch</div>
+                    <div id="cdispatch" class="circle"><i class="fa-duotone fa-user-police-tie"></i></div>
+                </div>
+    
+                <div class="circle-container">
+                    <div class="circle-text">Commander</div>
+                    <div id="ccommander" class="circle"><i class="fa-solid fa-siren"></i></div>
+                </div> -->
+    
+                <div class="circle-container">
+                    <div class="circle-text"></div>
+                    <div id="changecallsign" class="circle" style="position: absolute; left: 70%;  top: -20px;"><i class="fa-duotone fa-pen-to-square"></i></div>
+                </div>
+
+                <div class="circle-container">
+                    <div class="circle-text"></div>
+                    <div id="closeee" class="circle" style="position: absolute; left: 70%;  top: 20px;"><i class="fa-solid fa-x"></i></div>
+                </div>
+                <!-- <div class="IV-secondsection">
+                    
+                    <div class="circle-container">
+                        <div class="circle-text">Filter</div>
+                        <div id="FilterMenu" class="circle"><i class="fa-solid fa-arrow-down-a-z"></i></div>
+                    </div>
+
+                    <div class="circle-container">
+                        <div class="circle-text">Show Commanders</div>
+                        <div id="FilterMenuCommanders" class="circle"><i class="fa-solid fa-siren"></i></div>
+                    </div>
+
+                    <div class="circle-container">
+                        <div class="circle-text">Show Dispatch</div>
+                        <div id="FilterMenuDispatch" class="circle"><i class="fa-duotone fa-user-police-tie"></i></div>
+                    </div>
+
+                    
+                    <div class="circle-container">
+                        <div class="circle-text">Show Break Officers</div>
+                        <div id="FilterMenuBreak" class="circle"><i class="fa-sharp fa-solid fa-circle-pause"></i></div>
+                    </div>
+
+                    <div class="circle-container">
+                        <div class="circle-text">Show On Duty Officers</div>
+                        <div id="FilterMenuOnDuty" class="circle"><i class="fa-duotone fa-clipboard"></i></div>
+                    </div>
+
+                    <div class="circle-container">
+                        <div class="circle-text">Show Off Duty Officers</div>
+                        <div id="FilterMenuOffDuty" class="circle"><i class="fa-duotone fa-clipboard"></i></div>
+                    </div>
+
+
+                    <div class="circle-container">
+                        <div class="circle-text">Show All Officers</div>
+                        <div id="FilterMenuShowEveryone" class="circle circle-active"><i class="fa-solid fa-user-group"></i></div>
+                    </div>
+
+                </div> -->
+            </div>
+        </div>
+        <div id="main-title" class="title"><div class="settings"><i class="fa-sharp fa-solid fa-bars-sort"></i></div><div class="title-text">Police List</div></div>
+        <div class="header1">
+            Police
+        </div>
+
+        <div class="main-officers-container">
+            <div id="fbi" class="officers"></div>
+            <div id="dispatch" class="officers"></div>
+            <div id="duty" class="officers"></div>
+            <div id="break" class="officers"></div>
+            <div id="offduty" class="officers"></div>
+            <div id="everyone" class="officers"></div>
+        </div>
+    </div>
+</body>
+<script src="./app.js"></script>
+
+</html>
