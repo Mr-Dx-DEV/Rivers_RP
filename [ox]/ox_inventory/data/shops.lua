@@ -174,7 +174,8 @@ return {
 			{ name = "tablet", price = 1000, grade = 0 },
 			{ name = 'empty_evidence_bag', price = 2, grade = 0 },
 
-
+			{ name = "bodycam", price = 800, grade = 0 },
+			{ name = "dashcam", price = 800, grade = 0 },
 
 
 			{ name = 'spikespack', price = 2, grade = 0 },
