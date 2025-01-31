@@ -1,6 +1,6 @@
 local Core
 
-Config.Framework = "STANDALONE"
+Config.Framework = "QBCore"
 
 CreateThread(function()
     Citizen.Wait(2500)
@@ -76,7 +76,7 @@ function Notify(msg)
         else
             SetNotificationTextEntry('STRING')
             AddTextComponentString(msg)
-            DrawNotification(false, true)
+            DrawNotification(0,1)
         end
     end
 end
@@ -131,22 +131,19 @@ function ShowHelpNotification(msg)
     DisplayHelpTextThisFrame('HelpNotification', false)
 end
 
-function DrawText3Ds(x, y, z, text)
-    local onScreen,_x,_y=World3dToScreen2d(x, y, z)
+function DrawText3Ds(x,y,z, text)
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
     SetTextScale(0.32, 0.32)
     SetTextFont(4)
-    SetTextProportional(true)
+    SetTextProportional(1)
     SetTextColour(255, 255, 255, 255)
     SetTextEntry("STRING")
-    SetTextCentre(true)
+    SetTextCentre(1)
     AddTextComponentString(text)
-    DrawText(_x, _y)
-    local factor = string.len(text) / 500
-    DrawRect(_x, _y + 0.0125, 0.030 + factor, 0.03, 0, 0, 0, 150)
-end
-
-function IsDead(ped)
-    return GetEntityHealth(ped) == 0
+    DrawText(_x,_y)
+    local factor = (string.len(text)) / 500
+    DrawRect(_x,_y+0.0125, 0.030+ factor, 0.03, 0, 0, 0, 150)
 end
 
 function ChangeClothes(type)
@@ -159,7 +156,7 @@ function ChangeClothes(type)
     while not HasAnimDictLoaded("clothingshirt") do Citizen.Wait(0) end
 
     local PlayerPed = PlayerPedId()
-    TaskPlayAnim(PlayerPed, "clothingshirt", "try_shirt_positive_d", 8.0, 1.0, -1, 49, 0, false, false, false)
+    TaskPlayAnim(PlayerPed, "clothingshirt", "try_shirt_positive_d", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
     Citizen.Wait(1000)
     if type == "work" then
         if GetEntityModel(PlayerPedId()) == 1885233650 then
@@ -180,10 +177,11 @@ function ChangeClothes(type)
             end)
         end
 
-        TriggerEvent("fivem-appearance:client:reloadSkin")
-        TriggerEvent("fivem-appearance:ReloadSkin")
-        TriggerEvent("illenium-appearance:client:reloadSkin")
-        TriggerEvent("illenium-appearance:ReloadSkin")
+        -- TriggerEvent("fivem-appearance:client:reloadSkin")
+        -- TriggerEvent("fivem-appearance:ReloadSkin")
+        -- TriggerEvent("illenium-appearance:client:reloadSkin")
+        -- TriggerEvent("illenium-appearance:ReloadSkin")
+        TriggerEvent("illenium-appearance:client:jobresetskin")
     end
     Citizen.Wait(1000)
     ClearPedTasks(PlayerPed)

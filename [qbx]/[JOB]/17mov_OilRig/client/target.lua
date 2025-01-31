@@ -17,12 +17,12 @@ function SpawnPeds()
 		Citizen.Wait(50)
 	end
 
-    SpawnedPed = CreatePed(0, model, Config.Locations.DutyToggle.Coords[1].x, Config.Locations.DutyToggle.Coords[1].y, Config.Locations.DutyToggle.Coords[1].z - 1.0, 91.53, false, true)
+    spawnedPed = CreatePed(0, model, Config.Locations.DutyToggle.Coords[1].x, Config.Locations.DutyToggle.Coords[1].y, Config.Locations.DutyToggle.Coords[1].z - 1.0, 91.53, false, true)
 
-    FreezeEntityPosition(SpawnedPed, true)
-    SetBlockingOfNonTemporaryEvents(SpawnedPed, true)
-    SetEntityInvincible(SpawnedPed, true)
-    exports[targetSystem]:AddTargetEntity(SpawnedPed, {
+    FreezeEntityPosition(spawnedPed, true)
+    SetBlockingOfNonTemporaryEvents(spawnedPed, true)
+    SetEntityInvincible(spawnedPed, true)
+    exports[targetSystem]:AddTargetEntity(spawnedPed, {
         options = {
             {
                 event = "oilrigJob:OpenMainMenu",

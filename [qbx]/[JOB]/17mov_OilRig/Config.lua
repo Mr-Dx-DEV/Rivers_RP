@@ -1,10 +1,10 @@
 -- { 17movement.net } --
 Config = {}
-Config.UseTarget = false
-Config.UseBuiltInNotifications = true
+Config.UseTarget = true
+Config.UseBuiltInNotifications = false
 
-Config.OneGasPercentWorth = 100                     -- How much script should pay for one percent of collected gas.
-Config.OneQuestPercentWorth = 50                    -- How much script should pay for one percent of side quests done.
+Config.OneGasPercentWorth = 10                     -- How much script should pay for one percent of collected gas.
+Config.OneQuestPercentWorth = 10                    -- How much script should pay for one percent of side quests done.
 
 -- Reward is being calculated like that: math.floor(gasProgress * Config.OneGasPercentWorth) + math.floor(questProgress * Config.OneQuestPercentWorth)
 -- Please remember about some mulitplers like Config.multiplyRewardWhileWorkingInGroup etc..
@@ -14,10 +14,10 @@ Config.RequireItemFromWholeTeam = true              -- If it's false, then only 
 Config.RequiredJob = "none"                         -- Set to "none" if you dont want to use jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true              -- If it's false, then only the host needs to have the job, if it's true, then everybody from the group needs to have the Config.RequiredJob
 Config.RequireOneFriendMinimum = false              -- Set to true if you want to force players to create teams
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If set to false, then everybody will get same amount. Avalible only in modern UI
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player works in a 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If set to false, then everybody will get same amount. Avalible only in modern UI
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player works in a 4 member group, the reward will be $4000. (baseReward * partyCount)
 
-Config.PenaltyAmount = 500                          -- Penalty that is levied when a player finishes work without a company vehicle
+Config.PenaltyAmount = 100                          -- Penalty that is levied when a player finishes work without a company vehicle
 Config.DontPayRewardWithoutVehicle = false          -- Set to true if you want to not pay reward to players who want to end without company vehicle (accepting the penalty)
 Config.DeleteVehicleWithPenalty = false             -- Delete Vehicle even if its not company vehicle
 Config.JobCooldown = 0 * 60 -- 10 * 60              -- 0 minutes cooldown between making jobs (in brackets there's example for 10 minutes)
@@ -27,7 +27,6 @@ Config.ProgressBarOffset = "25px"                   -- Value in px of counter of
 Config.ProgressBarAlign = "bottom-center"           -- Align of the progressbar
 
 Config.SoundVolumeMultipler = 1.0                   -- Here you can change sounds volume multipler
-Config.RequireAllTeamOnRig = true                   -- Here you force that everyone from lobby needs to be at rig to perform any work action
 
 Config.ExplodeChance = {
     [110] = 10,
@@ -46,8 +45,8 @@ Config.RewardItemsToGive = { -- Here you can add items reward as payout for job
     -- },
 }
 
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime they're starting the job.
-Config.EnableCloakroom = true                       -- if false, then you can't see the Cloakroom button under Work Menu
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime they're starting the job.
+Config.EnableCloakroom = false                       -- if false, then you can't see the Cloakroom button under Work Menu
 Config.Clothes = {
     male = {
         ["mask"] = {clotheId = 0, variation = 0},
@@ -94,19 +93,21 @@ Config.Blips = { -- Here you can configure Company blip.
     [1] = {
         Sprite = 356,
         Color = 26,
-        Scale = 0.3,
+        Scale = 0.8,
         Pos = vector3(1395.79, -3278.07, 6.23),
         Label = 'Oil Rig Job'
     },
 }
 
 Config.BlipsStyles = {
+
     EndJob = {
         label = "~b~[OILRIG]~s~ End Job",
         sprite = 1,
         scale = 1.0,
         color = 26,
     },
+
     Boat = {
         label = "~b~[OILRIG]~s~ Boat Location",
         sprite = 1,
@@ -418,7 +419,6 @@ Config.Lang = {
     ["noContainerLocation"] = "There's no free container locations",
     ["noRig"] = "There's no avalible work to do",
     ["endJob"] = "Press ~INPUT_CONTEXT~ to ~y~end ~s~working.",
-    ["unableToPerform"] = "To perform this action everyone from your party need to be at rig platform",
 
     -- Server
     ["isAlreadyHost"] = "This player leads his team.",
@@ -442,7 +442,6 @@ Config.Lang = {
     ["newBoss"] = "The previous lobby boss has left the server. You are now the team leader",
     ["wait"] = "Please wait few seconds and try again later",
     ["craneBusy"] = "Crane is busy. Please try again later",
-    ["finishTask"] = "Before you can start this task you need to finish current.",
 
     -- NUI
     ["NUI_weldingJobTitle"] = "Welding",
@@ -502,9 +501,9 @@ Config.RigsLocations = {
         },
         Containers = {
             ContainerCoords = {
-                { coords = vector4(4022.0, -1915.0, 56.89, 180.0), percentReward = 6.5},
-                { coords = vector4(4027.0, -1915.0, 56.89, 180.0), percentReward = 6.5},
-                { coords = vector4(4032.0, -1915.0, 56.89, 180.0), percentReward = 6.5},
+                { coords = vector4(4022.0, -1915.0, 56.89, 180.0), percentReward = 8.5},
+                { coords = vector4(4027.0, -1915.0, 56.89, 180.0), percentReward = 8.5},
+                { coords = vector4(4032.0, -1915.0, 56.89, 180.0), percentReward = 8.5},
             },
             Destination = vector4(4026.07, -1926.02, 56.89, 180.0)
         },
