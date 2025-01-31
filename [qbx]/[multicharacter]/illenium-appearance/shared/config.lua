@@ -122,7 +122,7 @@ Config.Blips = {
         Name = "Tattoo Shop",
     },
     ["surgeon"] = {
-        Show = true,
+        Show = false,
         Sprite = 102,
         Color = 4,
         Scale = 0.7,
@@ -768,7 +768,7 @@ Config.Stores = {
             vector3(-276.25280761719, 6222.4013671875, 30.7),
             vector3(-282.98211669922, 6230.015625, 30.7)
         }
-    },
+    }
     --[[ {
         type = "tattoo",
         coords = vector4(1322.6, -1651.9, 51.2, 42.47),
@@ -847,7 +847,7 @@ Config.Stores = {
             vector3(-294.1501159668, 6203.2700195312, 31.49)
         }
     }, ]]
-    {
+    --[[ {
         type = "surgeon",
         coords = vector4(-1017.14, -439.88, 39.62, 23.82),
         size = vector3(4, 4, 4),
@@ -859,7 +859,7 @@ Config.Stores = {
             vector3(-1014.54, -442.27, 39.62),
             vector3(-1017.1, -443.55, 39.62),
         }
-    }
+    } ]]
 }
 
 
