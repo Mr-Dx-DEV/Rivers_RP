@@ -20,7 +20,7 @@ Config.FlashingBlips = true
 Config.FlashingBlipsTimer = 100 -- default speed (every 100ms it will toggle between color and flashing_color)
 
 Config.TrackerItems = {
-    enabled = true, -- if you want to enable tracker items, set this to true. If you want to disable tracker items, set this to false.
+    enabled = false, -- if you want to enable tracker items, set this to true. If you want to disable tracker items, set this to false.
     jobItemName = "tracker", -- item name to use to enable blips for jobs
     gangItemName = "gangtracker", -- item name to use to enable blips for gangs
 }
