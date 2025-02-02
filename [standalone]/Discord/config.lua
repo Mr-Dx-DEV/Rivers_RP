@@ -2,18 +2,25 @@ Config = {}
 
 Config.Delay = 45000
 
-
+--[[ 
 Config.Discord = {
-AppId = "1329566039888888012", -- The discord application ID.
-BigAsset = 'logo', -- Name of a rich presence asset, will show up as the big image
-BigText = 'Rivers RP', -- Text that will show when someone hovers over the big image
-SmallAsset = 'logo',-- Small image asset name
-Line1 = 'Playing a game', -- Text that will appear on line #1
-Line2 = 'playercount',  -- Text that will appear on line #2
-SmallText = 'Rivers RP 2.0', -- Text that will appear when hovering over small image
-Button1Text = 'Connect', -- Text that will appear on the first button
-Button1Link = 'fivem://connect/d7k3ld', -- Link that will open when pressing the first button
-Button2Text = 'Join Discord', -- Text that will appear on the second button
-Button2Link = 'https://discord.gg/Rv1' -- Link that will open when pressing the second button.
-}
-
+    isEnabled = false,                                     -- If set to true, then discord rich presence will be enabled
+    applicationId = '00000000000000000',                   -- The discord application id
+    iconLarge = 'logo_name',                               -- The name of the large icon
+    iconLargeHoverText = 'This is a Large icon with text', -- The hover text of the large icon
+    iconSmall = 'small_logo_name',                         -- The name of the small icon
+    iconSmallHoverText = 'This is a Small icon with text', -- The hover text of the small icon
+    updateRate = 60000,                                    -- How often the player count should be updated
+    showPlayerCount = true,                                -- If set to true the player count will be displayed in the rich presence
+    maxPlayers = 48,                                       -- Maximum amount of players
+    buttons = {
+        {
+            text = 'First Button!',
+            url = 'fivem://connect/localhost:30120'
+        },
+        {
+            text = 'Second Button!',
+            url = 'fivem://connect/localhost:30120'
+        }
+    }
+} ]]

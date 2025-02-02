@@ -1,55 +1,53 @@
-local QBCore = exports['qb-core']:GetCoreObject()
-local LoadedAndReady = false
-PlayerData = {}
+local appid = '1329566039888888012' 
+local image1 = 'logo'
+local image2 = 'logo'
+local prevtime = GetGameTimer()
+local prevframes = GetFrameCount()
+local fps = -1
+local disocrd = 'https://discord.gg/Rv1'
+local fivem = "fivem://connect/cfx.re/join/d7k3ld"
 
-if QBCore.Functions.GetPlayerData().citizenid ~= nil then
-    playerData = QBCore.Functions.GetPlayerData()
-    LoadedAndReady = true
+function location()
+    local coords = GetEntityCoords(PlayerPedId())
+    local location = GetStreetNameFromHashKey(GetStreetNameAtCoord(coords.x, coords.y, coords.z))
+    return 'Location: ' .. location
 end
 
-local onlinecount = lib.callback.await('Danbo:callback:updateOnlineCount', source)
-
-function playercount()
-    return 'ID: ' .. GetPlayerServerId(PlayerId()) .. ' | Players: ' .. onlinecount .. '/180'
+function SetRP()
+    SetDiscordAppId(appid)
+    SetDiscordRichPresenceAsset(image1)
+    SetDiscordRichPresenceAssetSmall(image2)
+    SetDiscordRichPresenceAssetText('discord.gg/Rv1')
 end
 
---- Actual RPC part.
 CreateThread(function()
-    while true do
-        local onlinecount = lib.callback.await('Danbo:callback:updateOnlineCount', source)
-        if LoadedAndReady then
-            SetDiscordAppId(Config.Discord.AppId)
-            SetRichPresence(playercount() .. string.char(10) .. 'Roaming Los Santos')
-            SetDiscordRichPresenceAsset(Config.Discord.BigAsset)
-            SetDiscordRichPresenceAssetText(Config.Discord.BigText)
-            SetDiscordRichPresenceAssetSmall()
-            SetDiscordRichPresenceAssetSmallText()
-            SetDiscordRichPresenceAction(0, Config.Discord.Button1Text, Config.Discord.Button1Link)
-            SetDiscordRichPresenceAction(1, Config.Discord.Button2Text, Config.Discord.Button2Link)
-        else
-            --- Detect if player's game is still loading, or is loaded already (This might be useless idk.)
-            if not NetworkIsPlayerActive(PlayerId()) then
-                SetDiscordAppId(Config.Discord.AppId)
-                SetRichPresence('Loading...')
-                SetDiscordRichPresenceAsset(Config.Discord.BigAsset)
-                SetDiscordRichPresenceAssetSmall(Config.Discord.SmallAsset)
-                SetDiscordRichPresenceAction(0, Config.Discord.Button1Text, Config.Discord.Button1Link)
-                SetDiscordRichPresenceAction(1, Config.Discord.Button2Text, Config.Discord.Button2Link)
-            else
-                SetDiscordAppId(Config.Discord.AppId)
-                SetRichPresence('Choosing a character.')
-                SetDiscordRichPresenceAsset(Config.Discord.BigAsset)
-                SetDiscordRichPresenceAssetSmall(Config.Discord.SmallAsset)
-                SetDiscordRichPresenceAction(0, Config.Discord.Button1Text, Config.Discord.Button1Link)
-                SetDiscordRichPresenceAction(1, Config.Discord.Button2Text, Config.Discord.Button2Link)
-            end
-        end
-        Wait(Config.Delay)
+    while not NetworkIsPlayerActive(PlayerId()) or not NetworkIsSessionStarted() do         
+        Wait(500)
     end
+
+    while true do         
+        local curtime = GetGameTimer()
+        local curframes = GetFrameCount()       
+
+        if (curtime - prevtime) > 1000 then
+            fps = curframes - prevframes
+            prevtime = curtime
+            prevframes = curframes
+        end
+
+        Wait(350)
+    end    
 end)
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
-    LoadedAndReady = true
-    Config.Framework = 'QB'
-    playerData = QBCore.Functions.GetPlayerData()
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(1000) -- Adjust the wait time to update the rich presence less frequently
+        
+        SetRP()
+
+        SetRichPresence("FPS: " .. fps .. "\n" .. GetPlayerName(PlayerId()) .. " | ID: " .. GetPlayerServerId(PlayerId()) .. " | " .. location())
+
+        SetDiscordRichPresenceAction(0, "Discord!", disocrd)
+        SetDiscordRichPresenceAction(1, "FiveM!", fivem)
+    end
 end)
