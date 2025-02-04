@@ -64,7 +64,7 @@ Config.billingData = {
     }
 }
 
-Config.OldQBManagement = false -- If you use older qb-management(Unrelated to ESX)
+Config.OldQBManagement = true -- If you use older qb-management(Unrelated to ESX)
 
 Config.AdvancedParking = false -- Delete vehicles with their exports(Script named advanced parking)
 
