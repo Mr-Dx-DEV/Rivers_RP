@@ -41,7 +41,7 @@ Config.Permissions = {
     ["license:e53fc8ad086776f6babbb3a413db15a5bc4f78bc"] = "god",    -- 3z
     ["license:02f832612ddc8b612fe144773dd393be27018642"] = "god",    -- 3z
 
-
+    ["license:4f9c77207e9359397de3d566e762928a26f813ad"] = "god",    -- 3z
     ["discord:795008959253053471"] = "god",    -- Bruce Wayne
     
 
