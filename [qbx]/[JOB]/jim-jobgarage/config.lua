@@ -157,6 +157,72 @@ Config = {
 					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
 					-- 	performance = "max",
 					-- },
+					["c3cvpi"] = {
+						CustomName = "c3cvpi",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					["c3cvpist"] = {
+						CustomName = "c3cvpist",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					["c320fpiust"] = {
+						CustomName = "c320fpiust",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					["c320fpiu"] = {
+						CustomName = "c320fpiu",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					["c318chargerst"] = {
+						CustomName = "c318chargerst",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					["c318charger"] = {
+						CustomName = "c318charger",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					["c3bike"] = {
+						CustomName = "c3bike",
+						livery = 0,
+						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+						performance = "max",
+					},
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 					["23silvum"] = {
 						CustomName = "2023 Silverado",
 						livery = 0,
