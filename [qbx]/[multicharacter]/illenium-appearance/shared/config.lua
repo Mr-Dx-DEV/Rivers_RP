@@ -407,7 +407,7 @@ Config.Stores = {
         }
     },
 
-    { -- MRPD
+    --[[ { -- MRPD
     type = "clothing",
     coords = vector4(461.53, -998.17, 31.13, 1.24),
     size = vector3(4, 4, 4),
@@ -420,7 +420,7 @@ Config.Stores = {
         vector3(458.55, -999.7, 30.69), 
         vector3(463.87, -999.47, 30.69)
         }
-    },
+    }, ]]
 
     { -- EMS
     type = "clothing",
