@@ -80,6 +80,7 @@ if cache.game == 'redm' then return end
 ---@field modLivery? number
 ---@field modRoofLivery? number
 ---@field modLightbar? number
+---@field livery? number
 ---@field windows? number[]
 ---@field doors? number[]
 ---@field tyres? table<number | string, 1 | 2>
@@ -99,20 +100,29 @@ RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
     end
 end)
 
---[[ Alternative to NetEvent - disabled (at least for now?)
-AddStateBagChangeHandler('setVehicleProperties', '', function(bagName, _, value)
+AddStateBagChangeHandler('ox_lib:setVehicleProperties', '', function(bagName, _, value)
     if not value or not GetEntityFromStateBagName then return end
 
-    local entity = GetEntityFromStateBagName(bagName)
-    local networked = not bagName:find('localEntity')
+    while NetworkIsInTutorialSession() do Wait(0) end
 
-    if networked and NetworkGetEntityOwner(entity) ~= cache.playerId then return end
+    local entityExists, entity = pcall(lib.waitFor, function()
+        local entity = GetEntityFromStateBagName(bagName)
 
-    if lib.setVehicleProperties(entity, value) then
-        Entity(entity).state:set('setVehicleProperties', nil, true)
+        if entity > 0 then return entity end
+    end, '', 10000)
+
+    if not entityExists then return end
+
+    lib.setVehicleProperties(entity, value)
+    Wait(200)
+
+    -- this delay and second-setting of vehicle properties hopefully counters the
+    -- weird sync/ownership/shitfuckery when setting props on server-side vehicles
+    if NetworkGetEntityOwner(entity) == cache.playerId then
+        lib.setVehicleProperties(entity, value)
+        Entity(entity).state:set('ox_lib:setVehicleProperties', nil, true)
     end
 end)
-]]
 
 local gameBuild = GetGameBuildNumber()
 
@@ -126,32 +136,20 @@ function lib.getVehicleProperties(vehicle)
         local paintType1 = GetVehicleModColor_1(vehicle)
         local paintType2 = GetVehicleModColor_2(vehicle)
 
-        if GetVehicleXenonLightsCustomColor(vehicle) == 1 then
-            local _, r, g, b = GetVehicleXenonLightsCustomColor(vehicle)
-            headlightColor = { r, g, b }
-        else
-            headlightColor = GetVehicleHeadlightsColour(vehicle)
+        if GetIsVehiclePrimaryColourCustom(vehicle) then
+            colorPrimary = { GetVehicleCustomPrimaryColour(vehicle) }
         end
 
-        if GetIsVehiclePrimaryColourCustom(vehicle) then
-            local r, g, b = GetVehicleCustomPrimaryColour(vehicle)
-            colorPrimary = { r, g, b, colorPrimary }
-        end
         if GetIsVehicleSecondaryColourCustom(vehicle) then
-            local r, g, b = GetVehicleCustomSecondaryColour(vehicle)
-            colorSecondary = { r, g, b, colorSecondary }
+            colorSecondary = { GetVehicleCustomSecondaryColour(vehicle) }
         end
 
         local extras = {}
+
         for i = 1, 15 do
-            if DoesExtraExist(vehicle, i) then extras[i] = IsVehicleExtraTurnedOn(vehicle, i) and 0 or 1 end
-        end
-
-        local modLiveryCount = GetVehicleLiveryCount(vehicle)
-        local modLivery = GetVehicleLivery(vehicle)
-
-        if modLiveryCount == -1 or modLivery == -1 then
-            modLivery = GetVehicleMod(vehicle, 48)
+            if DoesExtraExist(vehicle, i) then
+                extras[i] = IsVehicleExtraTurnedOn(vehicle, i) and 0 or 1
+            end
         end
 
         local damage = {
@@ -161,6 +159,7 @@ function lib.getVehicleProperties(vehicle)
         }
 
         local windows = 0
+
         for i = 0, 7 do
             RollUpWindow(vehicle, i)
 
@@ -171,6 +170,7 @@ function lib.getVehicleProperties(vehicle)
         end
 
         local doors = 0
+
         for i = 0, 5 do
             if IsVehicleDoorDamaged(vehicle, i) then
                 doors += 1
@@ -212,7 +212,7 @@ function lib.getVehicleProperties(vehicle)
             wheelSize = GetVehicleWheelSize(vehicle),
             wheels = GetVehicleWheelType(vehicle),
             windowTint = GetVehicleWindowTint(vehicle),
-            xenonColor = headlightColor,
+            xenonColor = GetVehicleXenonLightsColor(vehicle),
             neonEnabled = neons,
             neonColor = { GetVehicleNeonLightsColour(vehicle) },
             extras = extras,
@@ -267,25 +267,20 @@ function lib.getVehicleProperties(vehicle)
             modTank = GetVehicleMod(vehicle, 45),
             modWindows = GetVehicleMod(vehicle, 46),
             modDoorR = GetVehicleMod(vehicle, 47),
-            modLivery = modLivery,
+            modLivery = GetVehicleMod(vehicle, 48),
             modRoofLivery = GetVehicleRoofLivery(vehicle),
             modLightbar = GetVehicleMod(vehicle, 49),
+            livery = GetVehicleLivery(vehicle),
             windows = damage.windows,
             doors = damage.doors,
             tyres = damage.tyres,
             bulletProofTyres = GetVehicleTyresCanBurst(vehicle),
             driftTyres = gameBuild >= 2372 and GetDriftTyresEnabled(vehicle),
-
             -- no setters?
             -- leftHeadlight = GetIsLeftVehicleHeadlightDamaged(vehicle),
             -- rightHeadlight = GetIsRightVehicleHeadlightDamaged(vehicle),
             -- frontBumper = IsVehicleBumperBrokenOff(vehicle, true),
             -- rearBumper = IsVehicleBumperBrokenOff(vehicle, false),
-
-            modKit49 = GetVehicleMod(vehicle, 49),
-            liveryRoof = GetVehicleRoofLivery(vehicle),
-			modBProofTires = not GetVehicleTyresCanBurst(vehicle),
-			modDrift = gameBuild >= 2372 and GetDriftTyresEnabled(vehicle),
         }
     end
 end
@@ -293,156 +288,361 @@ end
 ---@param vehicle number
 ---@param props VehicleProperties
 ---@param fixVehicle? boolean Fix the vehicle after props have been set. Usually required when adding extras.
----@return boolean?
+---@return boolean isEntityOwner True if the entity is networked and the client is the current entity owner.
 function lib.setVehicleProperties(vehicle, props, fixVehicle)
     if not DoesEntityExist(vehicle) then
-        error(("Unable to set vehicle properties for '%s' (entity does not exist)"):
-        format(vehicle))
+        error(("Unable to set vehicle properties for '%s' (entity does not exist)"):format(vehicle))
     end
 
-    if NetworkGetEntityIsNetworked(vehicle) and NetworkGetEntityOwner(vehicle) ~= cache.playerId then
-        error((
-            "Unable to set vehicle properties for '%s' (client is not entity owner)"):format(vehicle))
-    end
+    local colorPrimary, colorSecondary = GetVehicleColours(vehicle)
+    local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
+
+    SetVehicleModKit(vehicle, 0)
+    -- SetVehicleAutoRepairDisabled(vehicle, true)
+
     if props.extras then
         for id, disable in pairs(props.extras) do
             SetVehicleExtra(vehicle, tonumber(id) --[[@as number]], disable == 1)
         end
     end
-    local colorPrimary, colorSecondary = GetVehicleColours(vehicle)
-    local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
-    SetVehicleModKit(vehicle, 0)
-    -- SetVehicleAutoRepairDisabled(vehicle, true)
-    if props.plate then                             SetVehicleNumberPlateText(vehicle, props.plate) end
-    if props.plateIndex then                        SetVehicleNumberPlateTextIndex(vehicle, props.plateIndex) end
-    if props.bodyHealth then                        SetVehicleBodyHealth(vehicle, props.bodyHealth + 0.0) end
-    if props.engineHealth then                      SetVehicleEngineHealth(vehicle, props.engineHealth + 0.0) end
-    if props.tankHealth then                        SetVehiclePetrolTankHealth(vehicle, props.tankHealth + 0.0) end
-    if props.fuelLevel then                         SetVehicleFuelLevel(vehicle, props.fuelLevel + 0.0) end
-    if props.oilLevel then                          SetVehicleOilLevel(vehicle, props.oilLevel + 0.0) end
-    if props.dirtLevel then                         SetVehicleDirtLevel(vehicle, props.dirtLevel + 0.0) end
+
+    if props.plate then
+        SetVehicleNumberPlateText(vehicle, props.plate)
+    end
+
+    if props.plateIndex then
+        SetVehicleNumberPlateTextIndex(vehicle, props.plateIndex)
+    end
+
+    if props.bodyHealth then
+        SetVehicleBodyHealth(vehicle, props.bodyHealth + 0.0)
+    end
+
+    if props.engineHealth then
+        SetVehicleEngineHealth(vehicle, props.engineHealth + 0.0)
+    end
+
+    if props.tankHealth then
+        SetVehiclePetrolTankHealth(vehicle, props.tankHealth + 0.0)
+    end
+
+    if props.fuelLevel then
+        SetVehicleFuelLevel(vehicle, props.fuelLevel + 0.0)
+    end
+
+    if props.oilLevel then
+        SetVehicleOilLevel(vehicle, props.oilLevel + 0.0)
+    end
+
+    if props.dirtLevel then
+        SetVehicleDirtLevel(vehicle, props.dirtLevel + 0.0)
+    end
+
     if props.color1 then
-        if type(props.color1) == "number" then
-            colorPrimary = props.color1
-            SetVehicleColours(vehicle, colorPrimary, colorSecondary)
+        if type(props.color1) == 'number' then
+            ClearVehicleCustomPrimaryColour(vehicle)
+            SetVehicleColours(vehicle, props.color1 --[[@as number]], colorSecondary --[[@as number]])
         else
-            colorPrimary = props.color1[4]
+            if props.paintType1 then SetVehicleModColor_1(vehicle, props.paintType1, 0, props.pearlescentColor or 0) end
+
             SetVehicleCustomPrimaryColour(vehicle, props.color1[1], props.color1[2], props.color1[3])
-            SetVehicleColours(vehicle, props.color1[4], colorSecondary)
         end
     end
+
     if props.color2 then
-        if type(props.color2) == "number" then
-            SetVehicleColours(vehicle, colorPrimary, props.color2)
+        if type(props.color2) == 'number' then
+            ClearVehicleCustomSecondaryColour(vehicle)
+            SetVehicleColours(vehicle, props.color1 or colorPrimary --[[@as number]], props.color2 --[[@as number]])
         else
+            if props.paintType2 then SetVehicleModColor_2(vehicle, props.paintType2, 0) end
+
             SetVehicleCustomSecondaryColour(vehicle, props.color2[1], props.color2[2], props.color2[3])
-            SetVehicleColours(vehicle, colorPrimary, props.color2[4])
         end
     end
+
+    if props.pearlescentColor or props.wheelColor then
+        SetVehicleExtraColours(vehicle, props.pearlescentColor or pearlescentColor, props.wheelColor or wheelColor)
+    end
+
+    if props.interiorColor then
+        SetVehicleInteriorColor(vehicle, props.interiorColor)
+    end
+
+    if props.dashboardColor then
+        SetVehicleDashboardColor(vehicle, props.dashboardColor)
+    end
+
+    if props.wheels then
+        SetVehicleWheelType(vehicle, props.wheels)
+    end
+
+    if props.wheelSize then
+        SetVehicleWheelSize(vehicle, props.wheelSize)
+    end
+
+    if props.wheelWidth then
+        SetVehicleWheelWidth(vehicle, props.wheelWidth)
+    end
+
+    if props.windowTint then
+        SetVehicleWindowTint(vehicle, props.windowTint)
+    end
+
     if props.neonEnabled then
         for i = 1, #props.neonEnabled do
             SetVehicleNeonLightEnabled(vehicle, i - 1, props.neonEnabled[i])
         end
     end
+
     if props.windows then
         for i = 1, #props.windows do
             RemoveVehicleWindow(vehicle, props.windows[i])
         end
     end
+
     if props.doors then
         for i = 1, #props.doors do
             SetVehicleDoorBroken(vehicle, props.doors[i], true)
         end
     end
+
     if props.tyres then
         for tyre, state in pairs(props.tyres) do
             SetVehicleTyreBurst(vehicle, tonumber(tyre) --[[@as number]], state == 2, 1000.0)
         end
     end
 
-    if props.pearlescentColor or props.wheelColor then SetVehicleExtraColours(vehicle, props.pearlescentColor or pearlescentColor, props.wheelColor or wheelColor) end
-    if props.interiorColor then                     SetVehicleInteriorColor(vehicle, props.interiorColor) end
-    if props.dashboardColor then                    SetVehicleDashboardColor(vehicle, props.dashboardColor) end
-    if props.wheels then                            SetVehicleWheelType(vehicle, props.wheels) end
-    if props.wheelSize then                         SetVehicleWheelSize(vehicle, props.wheelSize) end
-    if props.wheelWidth then                        SetVehicleWheelWidth(vehicle, props.wheelWidth) end
-    if props.windowTint then                        SetVehicleWindowTint(vehicle, props.windowTint) end
-    if props.neonColor then                         SetVehicleNeonLightsColour(vehicle, props.neonColor[1], props.neonColor[2], props.neonColor[3]) end
-    if props.tyreSmokeColor then                    SetVehicleTyreSmokeColor(vehicle, props.tyreSmokeColor[1], props.tyreSmokeColor[2], props.tyreSmokeColor[3]) end
-    if props.modSpoilers then                       SetVehicleMod(vehicle, 0, props.modSpoilers, false) end
-    if props.modFrontBumper then                    SetVehicleMod(vehicle, 1, props.modFrontBumper, false) end
-    if props.modRearBumper then                     SetVehicleMod(vehicle, 2, props.modRearBumper, false) end
-    if props.modSideSkirt then                      SetVehicleMod(vehicle, 3, props.modSideSkirt, false) end
-    if props.modExhaust then                        SetVehicleMod(vehicle, 4, props.modExhaust, false) end
-    if props.modFrame then                          SetVehicleMod(vehicle, 5, props.modFrame, false) end
-    if props.modGrille then                         SetVehicleMod(vehicle, 6, props.modGrille, false) end
-    if props.modHood then                           SetVehicleMod(vehicle, 7, props.modHood, false) end
-    if props.modFender then                         SetVehicleMod(vehicle, 8, props.modFender, false) end
-    if props.modRightFender then                    SetVehicleMod(vehicle, 9, props.modRightFender, false) end
-    if props.modRoof then                           SetVehicleMod(vehicle, 10, props.modRoof, false) end
-    if props.modEngine then                         SetVehicleMod(vehicle, 11, props.modEngine, false) end
-    if props.modBrakes then                         SetVehicleMod(vehicle, 12, props.modBrakes, false) end
-    if props.modTransmission then                   SetVehicleMod(vehicle, 13, props.modTransmission, false) end
-    if props.modHorns then                          SetVehicleMod(vehicle, 14, props.modHorns, false) end
-    if props.modSuspension then                     SetVehicleMod(vehicle, 15, props.modSuspension, false) end
-    if props.modArmor then                          SetVehicleMod(vehicle, 16, props.modArmor, false) end
-    if props.modNitrous then                        SetVehicleMod(vehicle, 17, props.modNitrous, false) end
-    if props.modTurbo ~= nil then                   ToggleVehicleMod(vehicle, 18, props.modTurbo) end
-    if props.modSubwoofer ~= nil then               ToggleVehicleMod(vehicle, 19, props.modSubwoofer) end
-    if props.modHydraulics ~= nil then              ToggleVehicleMod(vehicle, 21, props.modHydraulics) end
-    if props.modXenon ~= nil then                   ToggleVehicleMod(vehicle, 22, props.modXenon) end
+    if props.neonColor then
+        SetVehicleNeonLightsColour(vehicle, props.neonColor[1], props.neonColor[2], props.neonColor[3])
+    end
+
+    if props.modSmokeEnabled ~= nil then
+        ToggleVehicleMod(vehicle, 20, props.modSmokeEnabled)
+    end
+
+    if props.tyreSmokeColor then
+        SetVehicleTyreSmokeColor(vehicle, props.tyreSmokeColor[1], props.tyreSmokeColor[2], props.tyreSmokeColor[3])
+    end
+
+    if props.modSpoilers then
+        SetVehicleMod(vehicle, 0, props.modSpoilers, false)
+    end
+
+    if props.modFrontBumper then
+        SetVehicleMod(vehicle, 1, props.modFrontBumper, false)
+    end
+
+    if props.modRearBumper then
+        SetVehicleMod(vehicle, 2, props.modRearBumper, false)
+    end
+
+    if props.modSideSkirt then
+        SetVehicleMod(vehicle, 3, props.modSideSkirt, false)
+    end
+
+    if props.modExhaust then
+        SetVehicleMod(vehicle, 4, props.modExhaust, false)
+    end
+
+    if props.modFrame then
+        SetVehicleMod(vehicle, 5, props.modFrame, false)
+    end
+
+    if props.modGrille then
+        SetVehicleMod(vehicle, 6, props.modGrille, false)
+    end
+
+    if props.modHood then
+        SetVehicleMod(vehicle, 7, props.modHood, false)
+    end
+
+    if props.modFender then
+        SetVehicleMod(vehicle, 8, props.modFender, false)
+    end
+
+    if props.modRightFender then
+        SetVehicleMod(vehicle, 9, props.modRightFender, false)
+    end
+
+    if props.modRoof then
+        SetVehicleMod(vehicle, 10, props.modRoof, false)
+    end
+
+    if props.modEngine then
+        SetVehicleMod(vehicle, 11, props.modEngine, false)
+    end
+
+    if props.modBrakes then
+        SetVehicleMod(vehicle, 12, props.modBrakes, false)
+    end
+
+    if props.modTransmission then
+        SetVehicleMod(vehicle, 13, props.modTransmission, false)
+    end
+
+    if props.modHorns then
+        SetVehicleMod(vehicle, 14, props.modHorns, false)
+    end
+
+    if props.modSuspension then
+        SetVehicleMod(vehicle, 15, props.modSuspension, false)
+    end
+
+    if props.modArmor then
+        SetVehicleMod(vehicle, 16, props.modArmor, false)
+    end
+
+    if props.modNitrous then
+        SetVehicleMod(vehicle, 17, props.modNitrous, false)
+    end
+
+    if props.modTurbo ~= nil then
+        ToggleVehicleMod(vehicle, 18, props.modTurbo)
+    end
+
+    if props.modSubwoofer ~= nil then
+        ToggleVehicleMod(vehicle, 19, props.modSubwoofer)
+    end
+
+    if props.modHydraulics ~= nil then
+        ToggleVehicleMod(vehicle, 21, props.modHydraulics)
+    end
+
+    if props.modXenon ~= nil then
+        ToggleVehicleMod(vehicle, 22, props.modXenon)
+    end
+
     if props.xenonColor then
-        if type(props.xenonColor) == "number" then
-            ClearVehicleXenonLightsCustomColor(vehicle)
-            SetVehicleXenonLightsColor(vehicle, props.headlightColor)
-        else
-            SetVehicleXenonLightsCustomColor(vehicle, props.headlightColor[1], props.headlightColor[2], props.headlightColor[3])
-            SetVehicleXenonLightsColor(vehicle, -1)
-        end
+        SetVehicleXenonLightsColor(vehicle, props.xenonColor)
     end
-    if props.modFrontWheels then                    SetVehicleMod(vehicle, 23, props.modFrontWheels, props.modCustomTiresF) end
-    if props.modBackWheels then                     SetVehicleMod(vehicle, 24, props.modBackWheels, props.modCustomTiresR) end
-    if props.modPlateHolder then                    SetVehicleMod(vehicle, 25, props.modPlateHolder, false) end
-    if props.modVanityPlate then                    SetVehicleMod(vehicle, 26, props.modVanityPlate, false) end
-    if props.modTrimA then                          SetVehicleMod(vehicle, 27, props.modTrimA, false) end
-    if props.modOrnaments then                      SetVehicleMod(vehicle, 28, props.modOrnaments, false) end
-    if props.modDashboard then                      SetVehicleMod(vehicle, 29, props.modDashboard, false) end
-    if props.modDial then                           SetVehicleMod(vehicle, 30, props.modDial, false) end
-    if props.modDoorSpeaker then                    SetVehicleMod(vehicle, 31, props.modDoorSpeaker, false) end
-    if props.modSeats then                          SetVehicleMod(vehicle, 32, props.modSeats, false) end
-    if props.modSteeringWheel then                  SetVehicleMod(vehicle, 33, props.modSteeringWheel, false) end
-    if props.modShifterLeavers then                 SetVehicleMod(vehicle, 34, props.modShifterLeavers, false) end
-    if props.modAPlate then                         SetVehicleMod(vehicle, 35, props.modAPlate, false) end
-    if props.modSpeakers then                       SetVehicleMod(vehicle, 36, props.modSpeakers, false) end
-    if props.modTrunk then                          SetVehicleMod(vehicle, 37, props.modTrunk, false) end
-    if props.modHydrolic then                       SetVehicleMod(vehicle, 38, props.modHydrolic, false) end
-    if props.modEngineBlock then                    SetVehicleMod(vehicle, 39, props.modEngineBlock, false) end
-    if props.modAirFilter then                      SetVehicleMod(vehicle, 40, props.modAirFilter, false) end
-    if props.modStruts then                         SetVehicleMod(vehicle, 41, props.modStruts, false) end
-    if props.modArchCover then                      SetVehicleMod(vehicle, 42, props.modArchCover, false) end
-    if props.modAerials then                        SetVehicleMod(vehicle, 43, props.modAerials, false) end
-    if props.modTrimB then                          SetVehicleMod(vehicle, 44, props.modTrimB, false) end
-    if props.modTank then                           SetVehicleMod(vehicle, 45, props.modTank, false) end
-    if props.modWindows then                        SetVehicleMod(vehicle, 46, props.modWindows, false) end
-    if props.modDoorR then                          SetVehicleMod(vehicle, 47, props.modDoorR, false) end
-    if props.modLivery then                         SetVehicleMod(vehicle, 48, props.modLivery, false) SetVehicleLivery(vehicle, props.modLivery) end
-    if props.modRoofLivery then                     SetVehicleRoofLivery(vehicle, props.modRoofLivery) end
-    if props.modLightbar then                       SetVehicleMod(vehicle, 49, props.modLightbar, false) end
-    if props.modSmokeEnabled ~= nil then            ToggleVehicleMod(vehicle, 20, props.modSmokeEnabled) end
-    if props.bulletProofTyres ~= nil then           SetVehicleTyresCanBurst(vehicle, props.bulletProofTyres) end
-    if gameBuild >= 2372 and props.driftTyres then  SetDriftTyresEnabled(vehicle, true) end
 
-    if props.modKit49 then          SetVehicleMod(vehicle, 49, props.modKit49, false) end
-    if props.liveryRoof then        SetVehicleRoofLivery(vehicle, props.liveryRoof) end
+    if props.modFrontWheels then
+        SetVehicleMod(vehicle, 23, props.modFrontWheels, props.modCustomTiresF)
+    end
+
+    if props.modBackWheels then
+        SetVehicleMod(vehicle, 24, props.modBackWheels, props.modCustomTiresR)
+    end
+
+    if props.modPlateHolder then
+        SetVehicleMod(vehicle, 25, props.modPlateHolder, false)
+    end
+
+    if props.modVanityPlate then
+        SetVehicleMod(vehicle, 26, props.modVanityPlate, false)
+    end
+
+    if props.modTrimA then
+        SetVehicleMod(vehicle, 27, props.modTrimA, false)
+    end
+
+    if props.modOrnaments then
+        SetVehicleMod(vehicle, 28, props.modOrnaments, false)
+    end
+
+    if props.modDashboard then
+        SetVehicleMod(vehicle, 29, props.modDashboard, false)
+    end
+
+    if props.modDial then
+        SetVehicleMod(vehicle, 30, props.modDial, false)
+    end
+
+    if props.modDoorSpeaker then
+        SetVehicleMod(vehicle, 31, props.modDoorSpeaker, false)
+    end
+
+    if props.modSeats then
+        SetVehicleMod(vehicle, 32, props.modSeats, false)
+    end
+
+    if props.modSteeringWheel then
+        SetVehicleMod(vehicle, 33, props.modSteeringWheel, false)
+    end
+
+    if props.modShifterLeavers then
+        SetVehicleMod(vehicle, 34, props.modShifterLeavers, false)
+    end
+
+    if props.modAPlate then
+        SetVehicleMod(vehicle, 35, props.modAPlate, false)
+    end
+
+    if props.modSpeakers then
+        SetVehicleMod(vehicle, 36, props.modSpeakers, false)
+    end
+
+    if props.modTrunk then
+        SetVehicleMod(vehicle, 37, props.modTrunk, false)
+    end
+
+    if props.modHydrolic then
+        SetVehicleMod(vehicle, 38, props.modHydrolic, false)
+    end
+
+    if props.modEngineBlock then
+        SetVehicleMod(vehicle, 39, props.modEngineBlock, false)
+    end
+
+    if props.modAirFilter then
+        SetVehicleMod(vehicle, 40, props.modAirFilter, false)
+    end
+
+    if props.modStruts then
+        SetVehicleMod(vehicle, 41, props.modStruts, false)
+    end
+
+    if props.modArchCover then
+        SetVehicleMod(vehicle, 42, props.modArchCover, false)
+    end
+
+    if props.modAerials then
+        SetVehicleMod(vehicle, 43, props.modAerials, false)
+    end
+
+    if props.modTrimB then
+        SetVehicleMod(vehicle, 44, props.modTrimB, false)
+    end
+
+    if props.modTank then
+        SetVehicleMod(vehicle, 45, props.modTank, false)
+    end
+
+    if props.modWindows then
+        SetVehicleMod(vehicle, 46, props.modWindows, false)
+    end
+
+    if props.modDoorR then
+        SetVehicleMod(vehicle, 47, props.modDoorR, false)
+    end
+
+    if props.modLivery then
+        SetVehicleMod(vehicle, 48, props.modLivery, false)
+    end
+
+    if props.modRoofLivery then
+        SetVehicleRoofLivery(vehicle, props.modRoofLivery)
+    end
+
+    if props.modLightbar then
+        SetVehicleMod(vehicle, 49, props.modLightbar, false)
+    end
+
+    if props.livery then
+        SetVehicleLivery(vehicle, props.livery)
+    end
+
+    if props.bulletProofTyres ~= nil then
+        SetVehicleTyresCanBurst(vehicle, props.bulletProofTyres)
+    end
+
     if gameBuild >= 2372 and props.driftTyres then
-        if props.modDrift then
-            SetDriftTyresEnabled(vehicle, true)
-        end
+        SetDriftTyresEnabled(vehicle, true)
     end
-    SetVehicleTyresCanBurst(vehicle, not props.modBProofTires)
-    TriggerServerEvent('jim-mechanic:server:loadStatus', props, VehToNet(vehicle))
 
-    if fixVehicle then SetVehicleFixed(vehicle) end
+    if fixVehicle then
+        SetVehicleFixed(vehicle)
+    end
 
-    return true
+    return not NetworkGetEntityIsNetworked(vehicle) or NetworkGetEntityOwner(vehicle) == cache.playerId
 end
