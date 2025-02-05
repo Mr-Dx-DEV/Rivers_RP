@@ -1,6 +1,6 @@
 local Core
 
-Config.Framework = "STANDALONE"
+Config.Framework = "QBCore"
 
 CreateThread(function()
     Citizen.Wait(2500)
@@ -97,8 +97,8 @@ function SetVehicle(_vehicle)
 
     
     -- Fuel systems
-    if GetResourceState("LegacyFuel") == "started" then
-        exports["LegacyFuel"]:SetFuel(vehicle, 100.0)
+    if GetResourceState("Renewed-Fuel") == "started" then
+        exports["Renewed-Fuel"]:SetFuel(vehicle, 100.0)
     end
 
     if GetResourceState("cdn-fuel") == "started" then
@@ -148,7 +148,7 @@ function StartMinigame(icons, time, difficulty)
 
     -- Difificulties are: "easy", "medium", "hard" :D
 
-    return exports['howdy-hackminigame']:Begin(icons, time)
+    return exports['Howdy-Minigame']:Begin(icons, time)
 end
 
 function ChangeClothes(type) 
@@ -183,10 +183,11 @@ function ChangeClothes(type)
             end)
         end
 
-        TriggerEvent("fivem-appearance:client:reloadSkin")
-        TriggerEvent("fivem-appearance:ReloadSkin")
-        TriggerEvent("illenium-appearance:client:reloadSkin")
-        TriggerEvent("illenium-appearance:ReloadSkin")
+        -- TriggerEvent("fivem-appearance:client:reloadSkin")
+        -- TriggerEvent("fivem-appearance:ReloadSkin")
+        -- TriggerEvent("illenium-appearance:client:reloadSkin")
+        -- TriggerEvent("illenium-appearance:ReloadSkin")
+        TriggerEvent("illenium-appearance:client:jobresetskin")
     end
     Citizen.Wait(1000)
     ClearPedTasks(PlayerPed)

@@ -1,12 +1,12 @@
 Config = {}
 
 Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
-    Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
 Config.UseBuiltInNotifications = true   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
 
-Config.UseTarget = false                                            -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
+Config.UseTarget = true                                            -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
 Config.RequiredJob = "none"                                         -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.RequireOneFriendMinimum = false                              -- Set to true if you want to force players to create teams
@@ -14,7 +14,7 @@ Config.JobVehicleModel = "17mov_DeliveryCar"                        -- Vehicle J
 Config.VehicleBackBone = "handle_dside_r"                           -- Only used when Config.Target == false. On coords of this bone, the 3D Text about interact with vehicle is displayed.
 Config.VehicleBootOffset = 5                                        -- Means 5 meters back from basic vehicle coords. Used when trying to take parcel out of the vehicle.
 Config.VehicleSearchingScenario = "prop_human_parking_meter"        -- Scenario used while "searcing" inside vehicle.
-Config.Price = 100                                                  -- 100$ per one delivery
+Config.Price = 15                                                   -- 100$ per one delivery
 Config.BlockHostFromWorking = true                                  -- Means that if players are working in group, then the host only can drive veh, parntner needs to deliver. Set to false if you want also host to be able to deliver
 Config.EnableVehicleTeleporting = true                              -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
 Config.enableSpawningPedsInDoors = true                             -- Set to false if you don't want to use peds in doors. 
@@ -38,7 +38,7 @@ Config.RewardItemsToGive = {
     -- },
 }
 
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime when they're starting job.
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime when they're starting job.
 
 Config.PenaltyAmount = 500                      -- Penalty that is levied when a player finishes work without a company vehicle
 Config.DontPayRewardWithoutVehicle = false      -- Set to true if you want to dont pay reward to players who want's to end without company vehicle (accepting the penalty)
@@ -52,7 +52,7 @@ Config.Blips = {                                                    -- Here you 
     [1] = {
         Sprite = 568,
         Color = 48,
-        Scale = 0.3,
+        Scale = 0.8,
         Pos = vector3(78.66, 111.75, 81.17),
         Label = 'Deliverer Job'
     },
@@ -95,7 +95,7 @@ Config.Locations = {                                               -- Here u can
 }
 
 Config.SpawnPoint = vector4(72.67, 120.83, 79.18, 158.66)  -- Vehicle spawn point
-Config.EnableCloakroom = true                                 -- Set to false if you want to hide the "CLoakroom" button under WorkMenu
+Config.EnableCloakroom = false                                 -- Set to false if you want to hide the "CLoakroom" button under WorkMenu
 
 Config.Clothes = {
     male = {

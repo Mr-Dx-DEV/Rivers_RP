@@ -1,5 +1,4 @@
 local targetSystem
-
 if Config.Framework == "QBCore" then
     targetSystem = "qb-target"
 else
@@ -11,23 +10,19 @@ if GetResourceState("ox_target") ~= "missing" then
 end
 
 function SpawnPeds()
-    if DoesEntityExist(SpawnedPed) then return end
-
+    if DoesEntityExist(spawnedPed) then return end
     local model = `a_m_y_mexthug_01`
-    local pedCoords = vector4(2444.23, 1543.69, 38.89, 177.63)
-
     RequestModel(model)
 	while not HasModelLoaded(model) do
 		Wait(50)
 	end
 
-    SpawnedPed = CreatePed(0, model, pedCoords.x, pedCoords.y, pedCoords.z, pedCoords.w, false, true)
+    spawnedPed = CreatePed(0, model, vector4(2444.23, 1543.69, 38.89, 177.63), false, true)
 
-    FreezeEntityPosition(SpawnedPed, true)
-    SetBlockingOfNonTemporaryEvents(SpawnedPed, true)
-    SetEntityInvincible(SpawnedPed, true)
-
-    exports[targetSystem]:AddTargetEntity(SpawnedPed, {
+    FreezeEntityPosition(spawnedPed, true)
+    SetBlockingOfNonTemporaryEvents(spawnedPed, true)
+    SetEntityInvincible(spawnedPed, true)
+    exports[targetSystem]:AddTargetEntity(spawnedPed, {
         options = {
             {
                 event = "minerjob:OpenMainMenu",

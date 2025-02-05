@@ -1,5 +1,5 @@
 local Core
-Config.Framework = "STANDALONE"
+Config.Framework = "QBCore"
 
 TriggerEvent("__cfx_export_qb-core_GetCoreObject", function(getCore)
     Core = getCore()
@@ -77,7 +77,7 @@ function Notify(source, msg)
 end
 
 
-function Pay(source, amount, lobbySize, cleanedWindows, configLocationIndex)
+function Pay(source, amount, lobbySize, cleanedWindows)
     local itemsToGive = amount / Config.Price
     if Config.Framework == "QBCore" then
         local Player = Core.Functions.GetPlayer(source)

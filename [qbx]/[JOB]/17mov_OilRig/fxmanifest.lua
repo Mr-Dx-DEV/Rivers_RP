@@ -1,5 +1,3 @@
-shared_scripts { '@FiniAC/fini_events.lua' }
-
 fx_version "cerulean"
 version "1.0.43"
 game "gta5"

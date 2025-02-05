@@ -1,22 +1,22 @@
 Config = {}
 
 Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
-    Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
-Config.UseTarget = false                -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
-Config.UseBuiltInNotifications = true   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used. Avalible only with modern UI
+Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.UseTarget = true                -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
+Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used. Avalible only with modern UI
 Config.RequiredJob = "none"             -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.RequireOneFriendMinimum = false  -- Set to true if you want to force players to create teams
-Config.OnePercentWorth = 100            -- Means that 1% progress will reward players with $100
+Config.OnePercentWorth = 10           -- Means that 1% progress will reward players with $100
 
 -- ^^ Here you can change payout. Tags for search tool: reward, payout, payment, money, cash, bank
 
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount. Avalible only in modern UI
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount. Avalible only in modern UI
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
 
 Config.EnableVehicleTeleporting = true          -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
 Config.JobVehicleModel = "17mov_BuilderCar"               -- Model of the company car
-Config.PenaltyAmount = 500                      -- Penalty that is levied when a player finishes work without a company vehicle
+Config.PenaltyAmount = 50                      -- Penalty that is levied when a player finishes work without a company vehicle
 Config.DontPayRewardWithoutVehicle = false      -- Set to true if you want to dont pay reward to players who want's to end without company vehicle (accepting the penalty)
 Config.DeleteVehicleWithPenalty = false         -- Delete Vehicle even if its not company veh
 Config.MixerModel = "17mov_Mixer"                     -- Model of concrete mixer used for pouring concrete  
@@ -45,7 +45,7 @@ Config.RewardItemsToGive = {
 }
 
 Config.RequireFullJob = false                       -- Set it to true, if you want players first to have 100% of progress, otherwise they'll not be able to end job.
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime when they're starting job.
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime when they're starting job.
 Config.RequiredItem = "none"                        -- Set it to anything you want, to require players to have some item in their inventory before they start the job
 Config.RequireItemFromWholeTeam = true              -- If it's false, then only host needs to have the required item, otherwise all team needs it.
 
@@ -54,7 +54,7 @@ Config.Blips = { -- Here you can configure Company blip.
     [1] = {
         Sprite = 801,
         Color = 69,
-        Scale = 0.3,
+        Scale = 0.8,
         Pos = vector3(926.47, -1560.25, 30.74),
         Label = 'Builder Job'
     },
@@ -105,7 +105,7 @@ Config.Locations = {       -- Here u can change all of the base job locations.
 
 Config.SpawnPoint = vector4(923.85, -1563.85, 30.73, 94.1)      -- Company car spawn point
 Config.MixerSpawnPoint = vector4(921.05, -1568.3, 30.7, 91.05)  -- Company Mixer Spawn Point
-Config.EnableCloakroom = true                                   -- if false, then you can't see the Cloakroom button under Work Menu
+Config.EnableCloakroom = false                                   -- if false, then you can't see the Cloakroom button under Work Menu
 Config.Clothes = {
 
     male = {

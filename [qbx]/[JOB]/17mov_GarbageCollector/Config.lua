@@ -1,14 +1,14 @@
 Config = {}
 
 Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
-    Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
 
-Config.UseBuiltInNotifications = true   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
-Config.Price = 2            -- Price per one bag inside trashmaster. 100 is maximum so full trash = 200$ / partyCount
+Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.Price = 15            -- Price per one bag inside trashmaster. 100 is maximum so full trash = 200$ / partyCount
 
-Config.UseTarget = false                 -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
+Config.UseTarget = true                 -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
 Config.RequiredJob = "none"             -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.RequireOneFriendMinimum = false  -- Set to true if you want to force players to create teams
@@ -17,7 +17,7 @@ Config.EnableGamePoolDeleting = true    -- Set to false only when using old vers
 Config.JobVehicleModel = "trash"                -- Model of the company car
 Config.VehicleBackBone = "seat_dside_r1"        -- Bone used only when Config.UseTarget = false. 3D text is displayed on the coordinates of this bone telling us to put the bag in the trunk
 Config.VehicleBackBoneCenter = "brakelight_l"   -- Bone used only when Config.UseTarget = false. On the cords of this bone, a player walks up to throw the bag
-Config.PenaltyAmount = 500                      -- Penalty that is levied when a player finishes work without a company vehicle
+Config.PenaltyAmount = 100                      -- Penalty that is levied when a player finishes work without a company vehicle
 Config.DeleteVehicleWithPenalty = false         -- Delete Vehicle even if its not company veh
 Config.DontPayRewardWithoutVehicle = false      -- Set to true if you want to dont pay reward to players who want's to end without company vehicle (accepting the penalty)
 Config.EnableVehicleTeleporting = true          -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
@@ -46,14 +46,14 @@ Config.RequiredItem = "none"                        -- Set it to anything you wa
 Config.RequireItemFromWholeTeam = true              -- If it's false, then only host needs to have the required item, otherwise all team needs it.
 
 Config.RequireFullJob = false                       -- Set it to true, if you want players first to have 100% of progress, otherwise they'll not be able to end job.
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime when they're starting job.
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime when they're starting job.
 
 Config.RestrictBlipToRequiredJob = false            -- Set to true, to hide job blip for players, who dont have RequiredJob. If requried job is "none", then this option will not have any effect.
 Config.Blips = { -- Here you can configure Company blip.
     [1] = {
         Sprite = 318,
         Color = 52,
-        Scale = 0.5,
+        Scale = 0.8,
         Pos = vector3(-321.56, -1545.74, 30.01),
         Label = 'Garbage Job'
     },
@@ -136,7 +136,7 @@ Config.Locations = {       -- Here u can change all of the base job locations.
 }
 
 Config.SpawnPoint = vector4(-316.98, -1537.58, 26.64, 338.0)  -- Company car spawn point
-Config.EnableCloakroom = true                                 -- if false, then you can't see the Cloakroom button under Work Menu
+Config.EnableCloakroom = false                                 -- if false, then you can't see the Cloakroom button under Work Menu
 Config.Clothes = {
 
     -- Here you can configure clothes. More information on: https://docs.fivem.net/natives/?_0xD4F7B05C. Under this link you can see what id means what component.

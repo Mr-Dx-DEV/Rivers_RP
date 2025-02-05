@@ -1,8 +1,8 @@
 Config = {}
 Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
 
-Config.UseTarget = false                -- Set to true if you want to use Target System. You can configure your target under /client/target.lua file.
-Config.UseBuiltInNotifications = true   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
+Config.UseTarget = true                -- Set to true if you want to use Target System. You can configure your target under /client/target.lua file.
+Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
 Config.RequiredJob = "none"             -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.EnableVehicleTeleporting = true  -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
@@ -22,12 +22,12 @@ Config.MinimumCoursesToHard = 30        -- Same as above but with hard level :D
 Config.EnableRedArrowMarker = true      -- Set to false to hide big red arrow over a target location
 Config.ElectrocuteDamage = 10           -- How many dmg failed minigame will took 
 
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
 
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime when they're starting job.
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime when they're starting job.
 
-Config.VehicleDeposit = 500           -- Deposit for the car collected at the time of pulling out, and refunded when returning the car
+Config.VehicleDeposit = 100           -- Deposit for the car collected at the time of pulling out, and refunded when returning the car
 
 Config.DeleteVehicleWithPenalty = false         -- Delete Vehicle even if its not company veh
 
@@ -39,16 +39,16 @@ Config.Blips = {                        -- Here you can configure Job Blip
     [1] = {
         Sprite = 590,
         Color = 26,
-        Scale = 0.3,
+        Scale = 0.8,
         Pos = vector3(751.06, 222.85, 87.42),
         Label = 'Electrician'
     },
 }
 
 Config.Payments = {                    -- Reward for completing one level with a given difficulty level
-    ["easy"] = 500,
-    ["medium"] = 750,
-    ["hard"] = 1000,
+    ["easy"] = 80,
+    ["medium"] = 150,
+    ["hard"] = 250,
 }
 
 Config.RewardItemsToGive = {
@@ -158,7 +158,7 @@ Config.Lang = {
     ["newBoss"] = "The previous lobby boss has left the server. You are now the team leader",
 }
 
-Config.EnableCloakroom = true                                 -- Set to false if you want to hide the "CLoakroom" button under WorkMenu
+Config.EnableCloakroom = false                                 -- Set to false if you want to hide the "CLoakroom" button under WorkMenu
 Config.Clothes = {
     male = {
         ["mask"] = {clotheId = 0, variation = 0},

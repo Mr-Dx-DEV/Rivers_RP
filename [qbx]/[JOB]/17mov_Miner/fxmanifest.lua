@@ -1,5 +1,5 @@
 fx_version "cerulean"
-version "1.0.27"
+version "1.0.22"
 game "gta5"
 author "17Movement"
 lua54 'yes'
@@ -25,7 +25,7 @@ ui_page "web/index.html"
 files {
     "web/index.html",
     "web/assets/**/*.*",
-    'stream/data/17mov_door_game.dat151.rel',
+    'stream/data/17mov_door_game.dat151.rel',    
     'stream/data/17movtimecycleinteriorminer.xml',
     'stream/data/17movmineshafttimecycle.xml',
 }

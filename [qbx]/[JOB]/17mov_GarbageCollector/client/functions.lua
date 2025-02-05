@@ -1,6 +1,6 @@
 local Core
 
-Config.Framework = "STANDALONE"
+Config.Framework = "QBCore"
 
 CreateThread(function()
     Citizen.Wait(2500)
@@ -8,7 +8,7 @@ CreateThread(function()
         RegisterNetEvent('17mov_DrawDefaultNotification'..GetCurrentResourceName(), function(msg)
             Notify(msg)
         end)
-
+        
         if Core == nil then
             TriggerEvent("esx:getSharedObject", function(obj)
                 Core = obj
@@ -38,7 +38,7 @@ function onBagDetach(entity, toJobVehicle)
     -- toJobVehicle param tells u if player detached bag on the floor, or into the vehicle (adding progress)
 end
 
-function onBagPickup(entity)
+function onBagPickup(entity) 
     -- Another function for devs
 end
 
@@ -52,13 +52,13 @@ function GetClosestVehicle(coords)
         local closestDst = 200.0
         local closestVeh = 0
         for k,v in pairs(vehicles) do
-            local distance = #(GetEntityCoords(v) - GetEntityCoords(PlayerPedId()))
+            local distance = #(GetEntityCoords(v) - GetEntityCoords(PlayerPedId())) 
             if distance < closestDst then
                 closestDst = distance
                 closestVeh = v
             end
         end
-
+        
         return closestVeh
     end
 end
@@ -78,7 +78,7 @@ function DeleteVehicleByCore(vehicle)
         Core.Functions.DeleteVehicle(vehicle)
     elseif Config.Framework == "ESX" then
         Core.Game.DeleteVehicle(vehicle)
-    else
+    else 
         SetEntityAsMissionEntity(vehicle, false, true)
         DeleteVehicle(vehicle)
     end
@@ -124,10 +124,10 @@ function SetVehicle(_vehicle)
     TriggerServerEvent("vehicles_keys:selfGiveVehicleKeys", plate)
     TriggerEvent("vehiclekeys:client:SetOwner", plate)
 
-
+    
     -- Fuel systems
-    if GetResourceState("LegacyFuel") == "started" then
-        exports["LegacyFuel"]:SetFuel(vehicle, 100.0)
+    if GetResourceState("Renewed-Fuel") == "started" then
+        exports["Renewed-Fuel"]:SetFuel(vehicle, 100.0)
     end
 
     if GetResourceState("cdn-fuel") == "started" then
@@ -141,7 +141,7 @@ function SetVehicle(_vehicle)
     Entity(vehicle).state.fuel = 100.0
 end
 
-function RemoveKeys()
+function RemoveKeys() 
     if GetResourceState("qs-vehiclekeys") == "started" then
         exports["qs-vehiclekeys"]:RemoveKeys(plate, model)
     end
@@ -173,11 +173,8 @@ function ShowHelpNotification(msg)
     EndTextCommandDisplayHelp(0, false, true, -1)
 end
 
-function IsDead(ped)
-    return GetEntityHealth(ped) == 0
-end
+function ChangeClothes(type) 
 
-function ChangeClothes(type)
     if Config.Framework ~= "QBCore" and Config.Framework ~= "ESX" then
         print("CANNOT CHANGE CLOTHES, PLEASE CONFIGURE UR CLOTHES SYSTEM IN /Client/Functions.lua file.")
         return
@@ -199,7 +196,7 @@ function ChangeClothes(type)
                 SetPedComponentVariation(PlayerPed, v["component_id"], v["drawable"], v["texture"], 0)
             end
         end
-    else
+    else 
         if Config.Framework == "QBCore" then
             TriggerServerEvent('qb-clothes:loadPlayerSkin')
         elseif Config.Framework == "ESX" then
@@ -208,10 +205,11 @@ function ChangeClothes(type)
             end)
         end
 
-        TriggerEvent("fivem-appearance:client:reloadSkin")
-        TriggerEvent("fivem-appearance:ReloadSkin")
-        TriggerEvent("illenium-appearance:client:reloadSkin")
-        TriggerEvent("illenium-appearance:ReloadSkin")
+        -- TriggerEvent("fivem-appearance:client:reloadSkin")
+        -- TriggerEvent("fivem-appearance:ReloadSkin")
+        -- TriggerEvent("illenium-appearance:client:reloadSkin")
+        -- TriggerEvent("illenium-appearance:ReloadSkin")
+        TriggerEvent("illenium-appearance:client:jobresetskin")
     end
     Citizen.Wait(1000)
     ClearPedTasks(PlayerPed)

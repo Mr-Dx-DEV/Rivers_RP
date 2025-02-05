@@ -1,5 +1,5 @@
 local Core
-Config.Framework = "STANDALONE"
+Config.Framework = "QBCore"
 
 TriggerEvent("__cfx_export_qb-core_GetCoreObject", function(getCore)
     Core = getCore()

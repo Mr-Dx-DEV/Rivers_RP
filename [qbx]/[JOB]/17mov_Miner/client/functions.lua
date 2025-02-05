@@ -1,6 +1,6 @@
 local Core
 
-Config.Framework = "STANDALONE"
+Config.Framework = "QBCore"
 
 CreateThread(function()
     Wait(2500)
@@ -127,10 +127,11 @@ function ChangeClothes(type)
             end)
         end
 
-        TriggerEvent("fivem-appearance:client:reloadSkin")
-        TriggerEvent("fivem-appearance:ReloadSkin")
-        TriggerEvent("illenium-appearance:client:reloadSkin")
-        TriggerEvent("illenium-appearance:ReloadSkin")
+        -- TriggerEvent("fivem-appearance:client:reloadSkin")
+        -- T    riggerEvent("fivem-appearance:ReloadSkin")
+         -- TriggerEvent("illenium-appearance:client:reloadSkin")
+        -- TriggerEvent("illenium-appearance:ReloadSkin")
+        TriggerEvent("illenium-appearance:client:jobresetskin")
     end
 
     Wait(1000)

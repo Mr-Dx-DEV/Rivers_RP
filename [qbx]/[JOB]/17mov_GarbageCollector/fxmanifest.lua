@@ -2,7 +2,7 @@ fx_version "cerulean"
 game "gta5"
 author "Malizniak - 17Movement"
 lua54 "yes"
-version "4.0.7"
+version "4.0.6"
 
 this_is_a_map "yes"
 
@@ -16,7 +16,7 @@ ui_page "web/driver.html"
 server_scripts {
     "server/functions.lua",
     "server/server.lua",
-}
+} 
 
 client_scripts {
     "client/target.lua",

@@ -1,22 +1,22 @@
 Config = {}
 
 Config.useModernUI = true              -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
-    Config.splitReward = true          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
 
-Config.UseBuiltInNotifications = true   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
+Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
 
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
 
 Config.DefaultBucket = 0                        -- Set here default bucket for your server. If you dont know what's it, leave it as 0.
-Config.UseTarget = false                        -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
+Config.UseTarget = true                        -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
 Config.RequiredJob = "none"                     -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.RequireOneFriendMinimum = false          -- Set to true if you want to force players to create teams
 
 Config.JobVehicleModel = "17mov_WindowCar"                 -- Model of the company car
 Config.EnableVehicleTeleporting = true          -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
-Config.PenaltyAmount = 500                      -- Penalty that is levied when a player finishes work without a company vehicle
+Config.PenaltyAmount = 100                      -- Penalty that is levied when a player finishes work without a company vehicle
 Config.DeleteVehicleWithPenalty = false         -- Delete Vehicle even if its not company veh
 Config.DontPayRewardWithoutVehicle = false      -- Set to true if you want to dont pay reward to players who want's to end without company vehicle (accepting the penalty)
 Config.JobCooldown = 0 * 60 -- 10 * 60            -- 0 minutes cooldown between making jobs (in brackets there's example for 10 minutes)
@@ -37,7 +37,7 @@ Config.RewardItemsToGive = {
 Config.HamperGoUpControl = 188                  -- Button with which the platform rises. See https://docs.fivem.net/docs/game-references/controls/ for more info
 Config.HamperGoDownControl = 187                -- Button with which the platform lowers. ^^ 
 
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime when they're starting job.
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime when they're starting job.
 Config.RequiredItem = "none"                        -- Set it to anything you want, to require players to have some item in their inventory before they start the job
 Config.RequireItemFromWholeTeam = true              -- If it's false, then only host needs to have the required item, otherwise all team needs it.
 
@@ -46,7 +46,7 @@ Config.Blips = { -- Here you can configure Company blip.
     [1] = {
         Sprite = 177,
         Color = 7,
-        Scale = 0.3,
+        Scale = 0.8,
         Pos = vec3(-1243.98, -1240.71, 11.03),
         Label = 'Cleaning Job'
     },
@@ -101,9 +101,9 @@ Config.Locations = {       -- Here u can change all of the base job locations.
 
 Config.SpawnPoint = vec4(-1231.34, -1225.93, 6.9, 73.52)  -- Company car spawn point
 
-Config.Price = 5            -- Means $5 per one window, so the full reward depends on current location
+Config.Price = 12            -- Means $5 per one window, so the full reward depends on current location
 
-Config.EnableCloakroom = true                                 -- if false, then you can't see the Cloakroom button under Work Menu
+Config.EnableCloakroom = false                                 -- if false, then you can't see the Cloakroom button under Work Menu
 Config.Clothes = {
     male = {
         ["mask"] = {clotheId = 0, variation = 0},

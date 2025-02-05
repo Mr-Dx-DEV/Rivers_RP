@@ -1,7 +1,7 @@
 fx_version "cerulean"
 game "gta5"
 author "Malizniak - 17Movement"
-version "4.0.14"
+version "2.5.4"
 lua54 "yes"
 
 files {

@@ -2,10 +2,10 @@ Config = {}
 
 Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
     Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
-Config.UseBuiltInNotifications = true   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
+Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used.=
 
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
-Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount.
+Config.multiplyRewardWhileWorkingInGroup = false     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
 
 Config.MailboxRenewalTime = 45000 * 60      -- Only one letter can be taken from one box. This is global, so if one player takes from one mailbox, then the next player can no longer take from it. This is the renewal time, in this case after 45 minutes you will be able to take letters from that particular mailbox again
 Config.SyncMailboxStatus = true        -- If it's true, then when one player will collect letters from one box, then the second player will see information about the box is empty. If it's false, then every player has his own mailbox status. 
@@ -16,20 +16,20 @@ Config.Props = {
     -- Add more if u want!
 }
 
-Config.UseTarget = false                        -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
+Config.UseTarget = true                        -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
 Config.RequiredJob = "none"                     -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.RequiredItem = "none"                    -- Required Item needed to start the job. Set to "none", if you dont want to use RequiredItem
 Config.RequireOneFriendMinimum = false          -- Set to true if you want to force players to create teams
 Config.Scenario = "prop_human_parking_meter"    -- An animation that plays while searching a crate. Note: this must be a Scenario, not an animation
 Config.JobVehicleModel = "17mov_PostmanCar"              -- Vehicle Job Model
-Config.Price = 2                                -- 2$ per one letter
+Config.Price = 4                                -- 2$ per one letter
 
-Config.RequireWorkClothes = false                   -- Set it to true, to change players clothes everytime when they're starting job.
+Config.RequireWorkClothes = true                   -- Set it to true, to change players clothes everytime when they're starting job.
 Config.RequireItemFromWholeTeam = true              -- If it's false, then only host needs to have the required item, otherwise all team needs it.
 
 Config.EnableVehicleTeleporting = true          -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
-Config.PenaltyAmount = 500                      -- Penalty that is levied when a player finishes work without a company vehicle
+Config.PenaltyAmount = 100                      -- Penalty that is levied when a player finishes work without a company vehicle
 Config.DontPayRewardWithoutVehicle = false      -- Set to true if you want to dont pay reward to players who want's to end without company vehicle (accepting the penalty)
 Config.DeleteVehicleWithPenalty = false         -- Delete Vehicle even if its not company veh
 Config.JobCooldown = 0 * 60 -- 10 * 60            -- 0 minutes cooldown between making jobs (in brackets there's example for 10 minutes)
@@ -52,7 +52,7 @@ Config.Blips = {                                -- Here you can configure Compan
     [1] = {
         Sprite = 365,
         Color = 44,
-        Scale = 0.3,
+        Scale = 0.8,
         Pos = vector3(-232.16, -915.15, 32.31),
         Label = 'Postman Job'
     },
@@ -95,7 +95,7 @@ Config.Locations = {                            -- Here u can change all of the 
 }
 
 Config.SpawnPoint = vector4(-276.66, -894.68, 31.08, 337.31)  -- Vehicle spawn point
-Config.EnableCloakroom = true                                 -- Set to false if you want to hide the "CLoakroom" button under WorkMenu
+Config.EnableCloakroom = false                                 -- Set to false if you want to hide the "CLoakroom" button under WorkMenu
 
 Config.Clothes = {
     male = {

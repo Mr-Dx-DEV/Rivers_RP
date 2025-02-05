@@ -345,7 +345,9 @@ function ShowDifficultyMenu(nextJob, showCancel) {
 
 function selectDifficulty(diff, nextJob) {
     if (PlayerOwnsTeam || scriptIntialized) {
-        $.post(`https://${GetParentResourceName()}/startJob`, JSON.stringify({ diff: diff, nextjob: nextJob}))
+        if (diff != 'close') {
+            $.post(`https://${GetParentResourceName()}/startJob`, JSON.stringify({ diff: diff, nextjob: nextJob}))
+        }
         closeHUD()
         if (startJobBtnExist)
             $("#startJob").fadeIn(250)

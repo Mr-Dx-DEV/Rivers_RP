@@ -102,8 +102,8 @@ function SetVehicle(_vehicle)
     TriggerEvent("vehiclekeys:client:SetOwner", plate)
 
     -- Fuel systems
-    if GetResourceState("LegacyFuel") == "started" then
-        exports["LegacyFuel"]:SetFuel(vehicle, 100.0)
+    if GetResourceState("Renewed-Fuel") == "started" then
+        exports["Renewed-Fuel"]:SetFuel(vehicle, 100.0)
     end
 
     if GetResourceState("cdn-fuel") == "started" then
