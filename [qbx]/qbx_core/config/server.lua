@@ -112,7 +112,7 @@ return {
     },
 
     giveVehicleKeys = function(src, plate, vehicle)
-        return exports.qbx_vehiclekeys:GiveKeys(src, vehicle)
+        return TriggerClientEvent('vehiclekeys:client:SetOwner', src, plate)
     end,
 
     getSocietyAccount = function(accountName)
