@@ -41,12 +41,12 @@ jobs:
             - name: Bundle files
               run: |
                   ls
-                  mkdir -p ./temp/minimal-hud
-                  mkdir -p ./temp/minimal-hud/web/
-                  cp ./{LICENSE,README.md,fxmanifest.lua,require.lua} ./temp/minimal-hud
-                  cp -r ./{client,config,data,modules,server,stream} ./temp/minimal-hud
-                  cp -r ./dist ./temp/minimal-hud/
-                  cd ./temp && zip -r ../minimal-hud.zip ./minimal-hud
+                  mkdir -p ./temp/Dx-hud
+                  mkdir -p ./temp/Dx-hud/web/
+                  cp ./{LICENSE,README.md,fxmanifest.lua,require.lua} ./temp/Dx-hud
+                  cp -r ./{client,config,data,modules,server,stream} ./temp/Dx-hud
+                  cp -r ./dist ./temp/Dx-hud/
+                  cd ./temp && zip -r ../Dx-hud.zip ./Dx-hud
 
             - name: Create Release
               uses: "marvinpinto/action-automatic-releases@v1.2.1"
@@ -55,7 +55,7 @@ jobs:
                   repo_token: "${{ secrets.GITHUB_TOKEN }}"
                   title: ${{ env.RELEASE_VERSION }}
                   prerelease: false
-                  files: minimal-hud.zip
+                  files: Dx-hud.zip
 
               env:
                   CI: false

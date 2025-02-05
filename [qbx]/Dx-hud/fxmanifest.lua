@@ -3,10 +3,10 @@ fx_version("cerulean")
 game("gta5")
 this_is_a_map 'yes'
 
-name("minimal-hud")
+name("Dx-hud")
 author("vipex <discord:vipex.v>")
 version("1.1.0")
-repository("https://github.com/vipexv/minimal-hud")
+repository("https://github.com/vipexv/Dx-hud")
 
 shared_scripts({
 	"require.lua",

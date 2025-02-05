@@ -31,7 +31,7 @@ function SeatbeltLogic.new()
 
 	SetFlyThroughWindscreenParams(self.ejectVelocity, self.unknownEjectVelocity, self.unknownModifier, self.minDamage)
 	SetPedConfigFlag(PlayerPedId(), 32, true)
-	RegisterKeyMapping("toggleSeatbelt", "Toggle Seatbelt", "keyboard", "G")
+	RegisterKeyMapping("toggleSeatbelt", "Toggle Seatbelt", "keyboard", "B")
 
 	return self
 end
