@@ -223,103 +223,103 @@ Config = {
 
 
 
-					["23silvum"] = {
-						CustomName = "2023 Silverado",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["23silvum"] = {
+					-- 	CustomName = "2023 Silverado",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["AS350"] = {
-						CustomName = "AS350 Helicopter",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["AS350"] = {
+					-- 	CustomName = "AS350 Helicopter",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["camaro"] = {
-						CustomName = "Chevy Camaro",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["camaro"] = {
+					-- 	CustomName = "Chevy Camaro",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["Caprice"] = {
-						CustomName = "Chevy Caprice",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["Caprice"] = {
+					-- 	CustomName = "Chevy Caprice",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["Ch14"] = {
-						CustomName = "Charger 2014",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["Ch14"] = {
+					-- 	CustomName = "Charger 2014",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["durango"] = {
-						CustomName = "Dodge Durango",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["durango"] = {
+					-- 	CustomName = "Dodge Durango",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["Explore"] = {
-						CustomName = "Ford Explorer",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["Explore"] = {
+					-- 	CustomName = "Ford Explorer",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["iChallenger"] = {
-						CustomName = "Dodge Challenger",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["iChallenger"] = {
+					-- 	CustomName = "Dodge Challenger",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["pbike"] = {
-						CustomName = "Police Bike",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["pbike"] = {
+					-- 	CustomName = "Police Bike",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["pbike2"] = {
-						CustomName = "Police Bike 2",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["pbike2"] = {
+					-- 	CustomName = "Police Bike 2",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["sovchrg"] = {
-						CustomName = "Sovereign Charger",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["sovchrg"] = {
+					-- 	CustomName = "Sovereign Charger",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["Taurus"] = {
-						CustomName = "Ford Taurus",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["Taurus"] = {
+					-- 	CustomName = "Ford Taurus",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["Van"] = {
-						CustomName = "Utility Van",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["Van"] = {
+					-- 	CustomName = "Utility Van",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
-					["Victoria"] = {
-						CustomName = "Crown Victoria",
-						livery = 0,
-						extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
-						performance = "max",
-					},
+					-- ["Victoria"] = {
+					-- 	CustomName = "Crown Victoria",
+					-- 	livery = 0,
+					-- 	extras = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 },
+					-- 	performance = "max",
+					-- },
 					
 					
 					
