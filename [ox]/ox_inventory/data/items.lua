@@ -8,6 +8,10 @@ return {
         client = { image = "dashcam.png", event = "spy-bodycam:toggleCarCam" }
     },
 
+	['hotels_key'] = {
+		label = 'Hotel Key',
+		weight = 100,
+	},
 	---- snipe-blip
 	["tracker"] = {
 		label = "Tracker",

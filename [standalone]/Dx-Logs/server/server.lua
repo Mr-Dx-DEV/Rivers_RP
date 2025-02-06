@@ -1,25 +1,25 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 local Webhooks = {
-    ['joinleave'] = 'https://discord.com/api/webhooks/1322648738283524156/',
-    ['playerinventory'] = 'https://discord.com/api/webhooks/1322648816826191933/-',
-    ['newweapon'] = 'https://discord.com/api/webhooks/1322648899999236126/64tDf0C44N6lb-5x--',
-    ['inventorydrop'] = 'https://discord.com/api/webhooks/1322648979216793751/-',
-    ['weapon'] = 'https://discord.com/api/webhooks/1322649038138642444/-',
-    ['glovebox'] = 'https://discord.com/api/webhooks/1322649103955525733/-BuBk6K1PtE8dTRkam-',
-    ['trunk'] = 'https://discord.com/api/webhooks/1322649165175455896/',
-    ['stash'] = 'https://discord.com/api/webhooks/1322649225347076268/X9Q--GxtK-',
-    ['robbing'] = 'https://discord.com/api/webhooks/1322649279306928192/--j7j8Wa',
-    ['buyitems'] = 'https://discord.com/api/webhooks/1322649335057481780/CD31U0P-',
-    ['trade'] = 'https://discord.com/api/webhooks/1322649392611721216/ruQv73cNnfVgVGmhcR-',
-    ['invoking'] = 'https://discord.com/api/webhooks/1322649450619080715/',
+    ['joinleave'] = 'https://discord.com/api/webhooks/1336897030890455050/95Kqlxv-qhxvIo99ovklafialHMKeuCcbiS_qwPJeT0y8Ag-7pWHhgzOzpyZbLFgTNWb',
+    ['playerinventory'] = 'https://discord.com/api/webhooks/1336897115464663101/Z1p5OHSryo_USfvwDA39k8-tcgrkH9TXz8_ALA9bSdBcWfPihGlrkQDcqLr2qLHiovAu',
+    ['newweapon'] = 'https://discord.com/api/webhooks/1336897179452706816/w2p6tr2l4_wATVnh0JAP0l2tMZ2WZvTBEdVor27faXuuvgNzJDrCQb36-V5gsu77dgch',
+    ['inventorydrop'] = 'https://discord.com/api/webhooks/1336897115464663101/Z1p5OHSryo_USfvwDA39k8-tcgrkH9TXz8_ALA9bSdBcWfPihGlrkQDcqLr2qLHiovAu',
+    ['weapon'] = 'https://discord.com/api/webhooks/1336897179452706816/w2p6tr2l4_wATVnh0JAP0l2tMZ2WZvTBEdVor27faXuuvgNzJDrCQb36-V5gsu77dgch',
+    ['glovebox'] = 'https://discord.com/api/webhooks/1336897115464663101/Z1p5OHSryo_USfvwDA39k8-tcgrkH9TXz8_ALA9bSdBcWfPihGlrkQDcqLr2qLHiovAu',
+    ['trunk'] = 'https://discord.com/api/webhooks/1336897115464663101/Z1p5OHSryo_USfvwDA39k8-tcgrkH9TXz8_ALA9bSdBcWfPihGlrkQDcqLr2qLHiovAu',
+    ['stash'] = 'https://discord.com/api/webhooks/1336897115464663101/Z1p5OHSryo_USfvwDA39k8-tcgrkH9TXz8_ALA9bSdBcWfPihGlrkQDcqLr2qLHiovAu',
+    ['robbing'] = 'https://discord.com/api/webhooks/1336897498836631693/TftmXktAkJONjHJWxkjLkGRFKGg16oDaZNZk65DrKlJ-gsIo6cXZpuOLBvRucH7AuiE_',
+    ['buyitems'] = 'https://discord.com/api/webhooks/1336897577345613916/H3qZD21xzZ2Ocm1iTNj3qs83VuduUHaG0rJTiJTO5CdAojuJOZpb9G1BUDCdzlzt255b',
+    ['trade'] = 'https://discord.com/api/webhooks/1336897645230428260/8C5bhwOz-DYrbP09g-FE1xkYgT_Cx90yIoJ2bw_Lh-3TJWzg6J2Ep7PLew-g1VVPK9Zl',
+    ['invoking'] = 'https://discord.com/api/webhooks/1336897723034632244/rTUzAmyYKNstcACvBEObQZVZ6KV2GeGKkKweCCplvYtMZtnm9UpGNajwc0eSms9ro7TW',
 
-    ['playerinventoryadmin'] = 'https://discord.com/api/webhooks//heO--',
-    ['playermoney'] = 'https://discord.com/api/webhooks/1322649590218100846/-',
-    ['banking'] = 'https://discord.com/api/webhooks/1322649649575628942/-',
-    ['ganglogs'] = 'https://discord.com/api/webhooks/1322649728902496346/-',
-    ['vehicleshop'] = '',
-    ['scenes'] = 'https://discord.com/api/webhooks/1322649836365025291/-',
+    ['playerinventoryadmin'] = 'https://discord.com/api/webhooks/1336897115464663101/Z1p5OHSryo_USfvwDA39k8-tcgrkH9TXz8_ALA9bSdBcWfPihGlrkQDcqLr2qLHiovAu'',
+    ['playermoney'] = 'https://discord.com/api/webhooks/1336897798041374732/O1sypx2pbqDPIAKrI4q-x_hud5pyTOvMfz4RFkOPHWNQtzC2BXszx6Tn8j1m7bD-k8Hw',
+    ['banking'] = 'https://discord.com/api/webhooks/1336897867167825961/JFVOUwZnm_dijDqaOeEwBfaf808N9c991gVbl7e7qD4-xIo_khy8YOFwhnGO4INpC3Fp',
+    ['ganglogs'] = 'https://discord.com/api/webhooks/1336897933509001256/oKud2pTKFeSC3gbB8BY2Nmqklk93BVJ_x77z1WR7aafiUw6v7CG48RR5q_Qned2z1yB3',
+    ['vehicleshop'] = 'https://discord.com/api/webhooks/1336898002794582087/W9HJynDRySJDtXgJeDzBFdGMpV66XUUIQdBnQeybGTNUA9QbsIuz4sCxdW1bsSLCTJF5',
+    ['scenes'] = 'https://discord.com/api/webhooks/1336898058302001332/B3zOsCw6SULzVZvXtKSCpApAr_s-ptBQPgbtROAFXiYusAQL3Jm3vU8C8TB9lEB_a8e-',
 }
 
 local Colors = { -- https://www.spycolor.com/

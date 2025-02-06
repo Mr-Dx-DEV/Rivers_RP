@@ -98,22 +98,20 @@ end
 
 ---@type table<number, CZone>
 local insideZones = {}
-
----@type CZone[] | Array
-local exitingZones = lib.array:new()
-
----@type CZone[] | Array
-local enteringZones = lib.array:new()
-
+---@type table<number, CZone>
+local enteringZones = {}
+---@type table<number, CZone>
+local exitingZones = {}
+local enteringSize = 0
+local exitingSize = 0
 local tick
 local glm_polygon_contains = glm.polygon.contains
 
-local function removeZone(zone)
-    Zones[zone.id] = nil
-    insideZones[zone.id] = nil
-
-    table.remove(exitingZones, exitingZones:indexOf(zone))
-    table.remove(enteringZones, enteringZones:indexOf(zone))
+local function removeZone(self)
+    Zones[self.id] = nil
+    insideZones[self.id] = nil
+    enteringZones[self.id] = nil
+    exitingZones[self.id] = nil
 end
 
 CreateThread(function()
@@ -136,7 +134,8 @@ CreateThread(function()
                     zone.insideZone = true
 
                     if zone.onEnter then
-                        enteringZones:push(zone)
+                        enteringSize += 1
+                        enteringZones[enteringSize] = zone
                     end
 
                     if zone.inside or zone.debug then
@@ -149,7 +148,8 @@ CreateThread(function()
                     insideZones[zone.id] = nil
 
                     if zone.onExit then
-                        exitingZones:push(zone)
+                        exitingSize += 1
+                        exitingZones[exitingSize] = zone
                     end
                 end
 
@@ -158,9 +158,6 @@ CreateThread(function()
                 end
             end
         end
-
-        local exitingSize = #exitingZones
-        local enteringSize = #enteringZones
 
         if exitingSize > 0 then
             table.sort(exitingZones, function(a, b)
@@ -171,6 +168,7 @@ CreateThread(function()
                 exitingZones[i]:onExit()
             end
 
+            exitingSize = 0
             table.wipe(exitingZones)
         end
 
@@ -183,6 +181,7 @@ CreateThread(function()
                 enteringZones[i]:onEnter()
             end
 
+            enteringSize = 0
             table.wipe(enteringZones)
         end
 

@@ -184,7 +184,7 @@ local vehicleKeys = {
     ['qbx_vehiclekeys'] = 'qbx_vehiclekeys'
 }
 
-Config.Vehiclekeys = dependencyCheck(vehicleKeys) or 'qbx_vehiclekeys'
+Config.Vehiclekeys = dependencyCheck(vehicleKeys) or 'qb-vehiclekeys'
 
 --[[
     General and visual configuration, please read each

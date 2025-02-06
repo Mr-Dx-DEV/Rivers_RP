@@ -25,7 +25,7 @@ return {
             -- The name of the webhook
             name = '24/7 Robbery Logs',
             -- The webhook link
-            link = 'https://discordapp.com/api/webhooks/1330503691458838538/CvS98-7J1JHfSE5R4Qnm92zva3wg5YghHyZlBR0EM8yOYPKrme2Jvanj-NQr_EItrD3P',
+            link = 'https://discord.com/api/webhooks/1336898476134367252/fU5Ayc2YumDwsPxeP0MuqdkSq6SfBbciG08d0unan8CPq_sqgIhKDn6PobjzG_m-8qsz',
             -- The webhook profile image
             image = 'https://i.imgur.com/ILTkWBh.png',
             -- The webhook footer image

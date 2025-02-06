@@ -1,11 +1,11 @@
 local WebHooks = {
-    ["exploit"] = "",
-    ["triggered"] = "",
-    ["report"] = "",
-    ["transcript"] = "",
-    ["bans"] = "",
-    ["duty"] = "", -- when they player logs in on duty
-    ["dutylog"] = "" -- when they player logs off duty
+    ["exploit"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf",
+    ["triggered"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf",
+    ["report"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf",
+    ["transcript"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf",
+    ["bans"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf",
+    ["duty"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf", -- when they player logs in on duty
+    ["dutylog"] = "https://discord.com/api/webhooks/1336900450766553198/Jy9YCF7vJ-d0JNVlO9WJUH7ro7xrbgjTjk5vVsh3d9z8_0XkAQGa_flXeaJO3DPrraaf" -- when they player logs off duty
 }
 
 function SendLogs(source, type, message)

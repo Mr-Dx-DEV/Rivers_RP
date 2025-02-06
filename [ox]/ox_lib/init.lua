@@ -96,6 +96,11 @@ local lib = setmetatable({
     __call = call,
 })
 
+_ENV.lib = lib
+
+-- Override standard Lua require with our own.
+require = lib.require
+
 local intervals = {}
 --- Dream of a world where this PR gets accepted.
 ---@param callback function | number
@@ -210,9 +215,7 @@ function lib.onCache(key, cb)
     table.insert(cacheEvents[key], cb)
 end
 
-_ENV.lib = lib
 _ENV.cache = cache
-_ENV.require = lib.require
 
 local notifyEvent = ('__ox_notify_%s'):format(cache.resource)
 

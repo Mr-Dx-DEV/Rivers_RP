@@ -1,0 +1,1362 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+:root {
+    --main-color: rgba(223, 20, 60, 1);
+    --main-color2: rgba(223, 20, 60, 0.471);
+    --main-color3: rgba(223, 20, 61, 0.706);
+    --dark-color: black;
+    --dark-color2: #1e1e1e99;
+    --dark-color3: #232323;
+    --font-family: "Libre Franklin";
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+
+::-webkit-scrollbar {
+	width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 50px;
+	background: var(--main-color);
+}
+
+.noselect {
+    user-select: none;
+}
+
+
+
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family);
+}
+
+.f9container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #16161699, transparent 85vh);
+    display: none;
+    left: -50%;
+}
+
+.rentmenu{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.managemenu{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.pricecontainer{
+    position: absolute;
+    width: 7vh;
+    height: 6vh;
+    background: var(--main-color);
+    display: none;
+    justify-content: center;
+    overflow: hidden;
+    right: 23vh;
+    border-radius: 0vh 0vh 1vh 1vh;
+}
+
+.pricecontainer .bgshadow{
+    position: relative;
+    width: 6vh;
+    height: 6vh;
+    background: radial-gradient(#00000087 -2px, transparent 3vh);
+    top: -39px;
+}
+
+.pricecontainer .text{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui;
+    line-height: 16px;
+    font-weight: 700;
+}
+
+.pricecontainer .text > div:first-child{
+    font-size: 13px;
+}
+
+.pricecontainer .text > div:last-child{
+    font-size: 16px;
+}
+
+
+
+.leftheader{
+    position: absolute;
+    left: 1%;
+    top: 2%;
+    width: 6vh;
+    height: 96%;
+    background: #3e3e3e2b;
+    border-radius: 3px;
+    border: 1px solid #ffffff14;
+    display: flex;
+    padding: 10px 0px;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.leftheader .hotelicon{
+    position: relative;
+    width: 4vh;
+    height: 4vh;
+    background: #ffffff0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftheader .hotelicon > img{
+    width: 47%;
+}
+
+.leftheader .hotelname{
+    position: relative;
+    width: 5vh;
+    height: 4vh;
+    font-size: 9px;
+    text-align: center;
+    color: white;
+    font-family: var(--font-family);
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.leftheader .hotelname > div:first-child{
+    line-height: 12px;
+}
+
+.leftheader .hotelname > div:last-child{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.leftheader .closemenu{
+    position: absolute;
+    bottom: 17px;
+    color: var(--main-color);
+    font-size: 25px;
+    font-family: cursive;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+.floorsmenu{
+    position: absolute;
+    left: 6%;
+    top: 0%;
+    width: 10vh;
+    height: 94%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    justify-content: center;
+}
+
+.manageing{
+    left: 7%;
+}
+
+.avaliablerooms{
+    position: relative;
+    top: 27px;
+    left: 55px;
+    width: auto;
+    color: white;
+    font-family: var(--font-family);
+    text-transform: uppercase;
+    line-height: 33px;
+    padding-right: 30px;
+    padding-top: 7px;
+}
+
+.avaliablerooms > div:first-child{
+    font-size: 30px;
+}
+
+.avaliablerooms > div:last-child{
+    font-size: 40px;
+    color: var(--main-color);
+    text-shadow: 0 0 10px var(--main-color2);
+    font-weight: bold;
+}
+
+.floorsitems{
+    position: relative;
+    left: 0%;
+    top: 0%;
+    width: 10vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    justify-content: center;
+    max-height: 94%;
+}
+
+.flooresing{
+    left: 6.4%;
+}
+
+.floorsmorethanten{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    width: 16vh !important;
+    gap: 8px !important;
+    align-items: center !important;
+    align-content: center !important;
+}
+
+.manageitems{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: auto;
+    min-width: 20vh;
+    height: 96%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    justify-content: center;
+}
+
+.oneflooritem{
+    position: relative;
+    width: 99%;
+    height: 10vh;
+    border: 0px solid #ffffff14;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #ffffff05;
+    transition: all 0.25s;
+}
+
+.oneflooritem:hover{
+    background: #e1e1e11e;
+}
+
+.selectedfloor{
+    background: #e1e1e118; 
+}
+
+.selectedfloor > .itemline1{
+    background: linear-gradient(90deg, var(--main-color3), transparent) !important;
+}
+
+.selectedfloor > .itemline2{
+    background: linear-gradient(0deg, var(--main-color3), transparent) !important;
+}
+
+.selectedfloor > .itemline3{
+    background: linear-gradient(-90deg, var(--main-color3), transparent) !important;
+}
+
+.selectedfloor > .itemline4{
+    background: linear-gradient(180deg, var(--main-color3), transparent) !important;
+}
+
+.selectedfloor .floortext > div:first-child{
+    color: var(--main-color) !important;
+}
+
+.selectedfloor .floortext > div:last-child{
+    color: var(--main-color) !important;
+}
+
+.oneflooritem .itemline1{
+    position: absolute;
+    width: 5vh;
+    height: 1px;
+    background: linear-gradient(90deg, #c4c4c48f, transparent);
+    bottom: 0px;
+    left: 0px;
+}
+
+.oneflooritem .itemline2{
+    position: absolute;
+    width: 1px;
+    height: 5vh;
+    background: linear-gradient(0deg, #c4c4c48f, transparent);
+    bottom: 0px;
+    left: -1px;
+}
+
+.oneflooritem .itemline3{
+    position: absolute;
+    width: 5vh;
+    height: 1px;
+    background: linear-gradient(-90deg, #c4c4c48f, transparent);
+    top: 0px;
+    right: 0px;
+}
+
+.oneflooritem .itemline4{
+    position: absolute;
+    width: 1px;
+    height: 5vh;
+    background: linear-gradient(180deg, #c4c4c48f, transparent);
+    top: 0px;
+    right: -1px;
+}
+
+.oneflooritem .floortext{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #f9f9f924, transparent);
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: var(--font-family);
+}
+
+.oneflooritem .floortext > div:first-child{
+    font-size: 26px;
+    color: white;
+}
+
+.oneflooritem .floortext > div:last-child{
+    font-size: 32px;
+    color: white;
+}
+
+
+
+.mroomitem{
+    position: relative;
+    width: 30vh;
+    min-height: 8.25vh;
+    height: auto;
+    border: 0px solid #ffffff14;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #ffffff10;
+    transition: all 0.25s;
+}
+
+.arrowemoji{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 9vh;
+    height: 100%;
+    opacity: 0.06;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: -14px;
+    background: url(imgs/arrows.png);
+    background-position: center;
+    background-size: cover;
+    user-select: none;
+  }
+
+.arrowemojiback{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 9vh;
+  height: 100%;
+  opacity: 0.06;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -14px;
+  background: url(imgs/arrows.png);
+  background-position: center;
+  background-size: cover;
+  user-select: none;
+  transform: rotate(180deg);
+}
+
+.arrowicon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 71px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--main-color);
+  text-shadow: 0 0 8px var(--main-color);
+  user-select: none;
+}
+
+.arrowiconback{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 71px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--main-color);
+  text-shadow: 0 0 8px var(--main-color);
+  user-select: none;
+}
+
+.mroomitem .iteminfo{
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    display: flex;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+
+.mroomitem .iteminfo .title{
+    color: white;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.mroomitem .iteminfo .text{
+    color: #ededed;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.mroomitem .itemline1{
+    position: absolute;
+    width: 5vh;
+    height: 1px;
+    background: linear-gradient(90deg, #c4c4c48f, transparent);
+    bottom: 0px;
+    left: 0px;
+}
+
+.mroomitem .itemline2{
+    position: absolute;
+    width: 1px;
+    height: 5vh;
+    background: linear-gradient(0deg, #c4c4c48f, transparent);
+    bottom: 0px;
+    left: -1px;
+}
+
+.mroomitem .itemline3{
+    position: absolute;
+    width: 5vh;
+    height: 1px;
+    background: linear-gradient(-90deg, #c4c4c48f, transparent);
+    top: 0px;
+    right: 0px;
+}
+
+.mroomitem .itemline4{
+    position: absolute;
+    width: 1px;
+    height: 5vh;
+    background: linear-gradient(180deg, #c4c4c48f, transparent);
+    top: 0px;
+    right: -1px;
+}
+
+.mroomitem:hover{
+    background: #e1e1e11e;
+}
+
+
+
+.noavaliablerooms{
+    position: absolute;
+    width: 43.5vh;
+    height: 63vh;
+    background: #ffffff11;
+    border: 1px solid #ffffff1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.noavaliablerooms > .text{
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--main-color);
+    z-index: 1;
+}
+
+.noavaliablerooms > .bgback{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #0000003a, transparent);
+    z-index: 0;
+}
+
+.noavaliablerooms > i{
+    color: var(--main-color);
+    font-size: 8vh;
+    text-shadow: 0 0 10px var(--main-color2);
+    z-index: 1;
+}
+
+.roomsmenu{
+    position: absolute;
+    left: 14%;
+    top: 16.6%;
+    width: 44.3vh;
+    height: 67%;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    overflow: auto;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.oneroomitem{
+    position: relative;
+    width: 14vh;
+    height: 16vh;
+    border: 1px solid #ffffff1c;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #ffffff0f;
+    transition: all 0.25s;
+}
+
+.oneroomitem:hover{
+    background: #ffffff22;
+}
+
+.oneroomitem:hover .bgshadow{
+    background: linear-gradient(0deg, #25252532, transparent);
+}
+
+.oneroomitem .bgshadow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #00000042, transparent);
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: monospace;
+    transition: all 0.25s;
+}
+
+.oneroomitem .roominfo{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.oneroomitem .roominfo .viewroom{
+    position: absolute;
+    top: 21px;
+    right: 0;
+    width: 21px;
+    height: 1.9vh;
+    padding-left: 5px;
+    background: var(--main-color);
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    border-radius: 1vh 0vh 0vh 1vh;
+    transition: all 0.21s;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+/* .oneroomitem .roominfo .viewroom:hover{
+    width: 112px;
+} */
+
+.oneroomitem .roominfo .viewroom > i{
+    padding-left: 1px;
+}
+
+.oneroomitem .roominfo .viewroom > .text{
+    position: absolute;
+    width: 6vh;
+    left: 26px;
+}
+
+.oneroomitem .roominfo .roomname{
+    position: absolute;
+    width: 100%;
+    top: 83px;
+    text-align: center;
+    color: white;
+    font-size: 31px;
+    font-weight: 700;
+}
+
+.oneroomitem .roominfo .roomprice{
+    position: absolute;
+    width: 100%;
+    top: 121px;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+}
+.oneroomitem .roominfo .rentbutton{
+    position: absolute;
+    bottom: 23px;
+    right: 18px;
+    width: 11vh;
+    height: 2vh;
+    background: rgb(124, 124, 124);
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 17px;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+
+.oneroomitem .roominfo .rentbutton:hover{
+    background: var(--main-color);
+    color: var(--dark-color);
+}
+
+.selectedButton{
+    background: var(--main-color) !important;
+    color: var(--dark-color) !important;
+}
+
+
+.circlepoint{
+    position: absolute;
+    width: 1vh;
+    height: 1vh;
+    margin-left: -6px;
+    left: 76.25vh;
+    top: 48.88%;
+    background: var(--main-color);
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px var(--main-color);
+}
+
+.rentinfos{
+    position: absolute;
+    left: 78vh;
+    width: 19vh;
+    height: auto;
+    top: 39%;
+    gap: 5px;
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.rentinfos .header{
+    position: relative;
+    width: 100%;
+    height: 25px;
+    background: #dbdbdb;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 0px 14px;
+    box-sizing: border-box;
+}
+
+.rentinfos .header > .rentroominfoheader{
+    width: auto;
+    display: flex;
+}
+
+.rentinfos .header > .rentroominfoheader > div{
+    color: var(--main-color);
+}
+
+.rentinfos .header > .viewimage{
+    position: absolute;
+    right: 27px;
+    top: 0px;
+    height: 25px;
+    width: 25px;
+    background: var(--main-color);
+    color: var(--dark-color3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.rentinfos .header > .viewimage:hover{
+    background: var(--dark-color3);
+    color: var(--main-color);
+}
+
+
+.rentinfos .header > .closerentinfo{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 25px;
+    width: 25px;
+    background: var(--main-color);
+    color: var(--dark-color3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.rentinfos .header > .closerentinfo:hover{
+    background: var(--dark-color3);
+    color: var(--main-color);
+}
+
+
+.rentinfos .roomimageview{
+    position: absolute;
+    /* top: 0px; */
+    /* height: 12vh; */
+    top: 30px;
+    width: 100%;
+    height: 0vh;
+    background: #181818;
+    padding: 7px;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+.rentinfos .roomimageview > img{
+    width: 112%;
+    position: absolute;
+    left: -28px;
+    top: 0;
+}
+
+.rentinfos .infoitem{
+    position: relative;
+    width: 100%;
+    height: 27px;
+    background: var(--dark-color2);
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 0px 14px;
+    color: white;
+    display: flex;
+    gap: 5px;
+    box-sizing: border-box;
+}
+
+.rentinfos .infoitem > div:first-child{
+    color: var(--main-color);
+}
+
+.rentinfos .infoitemstash{
+    position: relative;
+    width: 100%;
+    background: var(--dark-color2);
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    box-sizing: border-box;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 8px 14px 11px 14px;
+}
+
+.rentinfos .infoitemstash > div:first-child{
+    color: var(--main-color);
+    display: flex;
+    gap: 5px;
+}
+
+.rentinfos .infoitemstash > div:first-child > div{
+    color: white;
+}
+
+.rentinfos .infoitemstash .stashlists{
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.selectedStash{
+    background: var(--main-color) !important;
+}
+
+.rentinfos .infoitemstash .stashlists .onestash{
+    position: relative;
+    width: 73px;
+    height: 39px;
+    background: rgb(120 120 120);
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--dark-color);
+    transition: all 0.25s;
+}
+
+.rentinfos .infoitemstash .stashlists .onestash:hover{
+    background: var(--main-color);
+}
+
+.mainselection{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 13px;
+    height: 13px;
+    background: var(--dark-color2);
+    font-size: 7px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rentinfos .biginfoitem{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background: var(--dark-color2);
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 7px;
+    color: white;
+    display: flex;
+    gap: 20px;
+    padding-bottom: 3px;
+    box-sizing: border-box;
+}
+
+.rentinfos .biginfoitem > .pricesqaure{
+    color: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.rentinfos .biginfoitem > .pricesqaure > div{
+    font-size: 15px;
+}
+
+.rentinfos .choosepalyer{
+    position: relative;
+    width: 100%;
+    min-height: 45px;
+    height: auto;
+    background: var(--dark-color2);
+    padding: 11px 10px;
+    box-sizing: border-box;
+    display: none;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.rentinfos .choosepalyer .emptymenu{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+.rentinfos .choosepalyer .oneplayer{
+    position: relative;
+    width: 49%;
+    height: 26px;
+    background: rgb(120 120 120);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.25s;
+    overflow: hidden;
+    text-align: center;
+    padding: 3px 0px;
+}
+
+.rentinfos .choosepalyer .oneplayer:hover{
+    background: var(--main-color);
+}
+
+.selectedplayer{
+    background: var(--main-color) !important;
+}
+
+.pricesqaure{
+    position: relative;
+    width: auto;
+    height: auto;
+    border: 1px solid;
+    padding: 5px 13px;
+    font-size: 13px;
+}
+
+.startrentbutton{
+    position: relative;
+    top: 2px;
+    width: 100%;
+    height: 35px;
+    background: rgb(124, 124, 124);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 17px;
+    transition: all 0.25s;
+    padding: 0px 7px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.startrentbutton:hover{
+    background: var(--main-color);
+}
+
+.startrenttypes{
+    position: relative;
+    top: 2px;
+    width: 100%;
+    height: 35px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.25s ease 0s;
+    padding: 0px 0px;
+}
+
+.startrenttypes > div{
+    position: relative;
+    width: 49.5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.25s ease 0s;
+    padding: 0px 7px;
+    background: rgb(124, 124, 124);
+    gap: 3px;
+}
+
+.startrenttypes > div:hover{
+    background: var(--main-color);
+}
+
+
+
+
+
+@media screen and (min-width: 1920px) and (height: 1080px) {
+    .avaliablerooms{
+        position: relative;
+        top: 27px;
+        left: 55px;
+        width: auto;
+        color: white;
+        font-family: var(--font-family);
+        text-transform: uppercase;
+        line-height: 33px;
+        padding-right: 30px;
+        padding-top: 7px;
+    }
+    #managingmenu{
+        position: relative;
+        top: 27px;
+        left: 0px;
+        width: auto;
+        color: white;
+        font-family: var(--font-family);
+        text-transform: uppercase;
+        line-height: 33px;
+        padding-right: 30px;
+        padding-top: 7px; 
+    }
+    .roomsmenu {
+        position: absolute;
+        left: 14%;
+        top: 16.6%;
+        width: 44.8vh;
+        height: 68%;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        overflow: auto;
+        flex-wrap: wrap;
+        padding-top: 2px;
+    }
+    .oneroomitem {
+        position: relative;
+        width: 14vh;
+        height: 16vh;
+        border: 1px solid #ffffff1c;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: #ffffff0f;
+        transition: all 0.25s;
+    }
+    .oneroomitem .roominfo .viewroom {
+        position: absolute;
+        top: 21px;
+        right: 0;
+        width: 17px;
+        height: 1.9vh;
+        padding-left: 5px;
+        background: var(--main-color);
+        color: var(--dark-color);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        border-radius: 1vh 0vh 0vh 1vh;
+        transition: all 0.21s;
+        overflow: hidden;
+        font-size: 12px;
+    }
+    .oneroomitem .roominfo .roomname {
+        position: absolute;
+        width: 100%;
+        top: 62px;
+        text-align: center;
+        color: white;
+        font-size: 27px;
+        font-weight: 700;
+    }
+    .oneroomitem .roominfo .roomprice {
+        position: absolute;
+        width: 100%;
+        top: 96px;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+    }
+    .oneroomitem .roominfo .rentbutton {
+        position: absolute;
+        bottom: 20px;
+        right: 14px;
+        width: 11vh;
+        height: 2vh;
+        background: rgb(124, 124, 124);
+        color: var(--dark-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        border-radius: 17px;
+        transition: all 0.25s;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .rentinfos {
+        position: absolute;
+        left: 79vh;
+        width: 27vh;
+        height: auto;
+        top: 34%;
+        gap: 5px;
+        display: none;
+        flex-direction: column;
+        box-sizing: border-box;
+        align-items: center;
+    }
+    .rentinfos .header {
+        position: relative;
+        width: 100%;
+        height: 25px;
+        background: #dbdbdb;
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 0px 14px;
+        box-sizing: border-box;
+    }
+    .rentinfos .infoitem {
+        position: relative;
+        width: 100%;
+        height: 29px;
+        background: var(--dark-color2);
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 0px 14px;
+        color: white;
+        display: flex;
+        gap: 5px;
+        box-sizing: border-box;
+    }
+    .rentinfos .biginfoitem {
+        position: relative;
+        width: 100%;
+        height: 95px;
+        background: var(--dark-color2);
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0px 7px;
+        color: white;
+        display: flex;
+        gap: 20px;
+        padding-bottom: 3px;
+        box-sizing: border-box;
+    }
+    .rentinfos .biginfoitem > .pricesqaure {
+        color: var(--main-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+    }
+    .floorsmenu {
+        position: absolute;
+        left: 6%;
+        top: 0%;
+        width: 11vh;
+        height: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 17px;
+        justify-content: center;
+    }
+    .floorsitems {
+        position: relative;
+        left: 0%;
+        top: 0%;
+        width: 11vh;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 17px;
+        justify-content: center;
+        max-height: 94%;
+    }
+    .manageitems {
+        position: absolute;
+        left: 0%;
+        top: 0%;
+        width: auto;
+        min-width: 21vh;
+        height: 96%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 17px;
+        justify-content: center;
+    }
+    .oneflooritem {
+        position: relative;
+        width: 99%;
+        height: 11vh;
+        border: 0px solid #ffffff14;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: #ffffff05;
+        transition: all 0.25s;
+    }
+    .oneflooritem .floortext > div:first-child {
+        font-size: 24px;
+        color: white;
+    }
+
+
+    .oneroomitem .roominfo .viewroom{
+        position: absolute;
+        top: 21px;
+        right: 0;
+        width: 17px;
+        height: 2vh;
+        padding-left: 5px;
+        background: var(--main-color);
+        color: var(--dark-color);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        border-radius: 1vh 0vh 0vh 1vh;
+        transition: all 0.21s;
+        overflow: hidden;
+    }
+    .oneroomitem .roominfo .viewroom > i {
+        padding-left: 0px;
+    }
+    .oneroomitem .roominfo .viewroom > .text {
+        position: absolute;
+        width: 6vh;
+        left: 23px;
+    }
+    .startrentbutton {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        background: rgb(124, 124, 124);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 17px;
+        transition: all 0.25s;
+        padding: 0px 7px;
+        top: 2px;
+    }
+}
+
+@media screen and (min-width: 3440px) and (height: 1440px) {
+    .rentinfos {
+        position: absolute;
+        left: 85vh;
+        width: 19vh;
+        height: auto;
+        top: 39%;
+        gap: 5px;
+        display: none;
+        flex-direction: column;
+        box-sizing: border-box;
+        align-items: center;
+    }
+    .circlepoint {
+        position: absolute;
+        width: 1vh;
+        height: 1vh;
+        margin-left: -6px;
+        left: 82.9vh;
+        top: 48.5%;
+        background: var(--main-color);
+        border-radius: 50%;
+        box-shadow: 0 0 5px 1px var(--main-color);
+    }
+}
+
+
+
+/*  */
+
+#range {
+    width: 200px;
+    height: 5px;
+    border: 0;
+    border-radius: 100px;
+    background: rgba(0,0,0,0.3);
+    outline: none;
+  }
+  #range .ui-slider-handle {
+    position: absolute;
+    margin: -7px 0px 0px -10px;
+    border-radius: 100px;
+    background: var(--main-color);
+    color: var(--dark-color);
+    border: 0;
+    line-height: 24px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.11s ease;
+  }
+  #range .ui-slider-handle:hover,
+  #range .ui-slider-handle:focus {
+    transform: scale(1.1);
+  }
+  #range .ui-slider-range {
+    background: var(--main-color);
+  }
+  .cntr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

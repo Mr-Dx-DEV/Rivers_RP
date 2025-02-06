@@ -1,6 +1,6 @@
 local QBCore = exports[Config.Core]:GetCoreObject()
-local ScreenShotHook = 'https://discordapp.com/api/webhooks/1297563730967662653/-NZs9FiZuUp9WBIklBJEalr'
-local MugShotHook = 'https://discordapp.com/api/webhooks/1297563730967662653/-NZs9FiZuUp9WBIklBJEalr'
+local ScreenShotHook = 'https://discord.com/api/webhooks/1336900575845027870/7DjkTgFG2ccQox6R2m6_ezGL_6NIvPv9i3AEL30EpTbolfnAMQGXJ7Wod5PhDN3GYMif'
+local MugShotHook = 'https://discord.com/api/webhooks/1336900575845027870/7DjkTgFG2ccQox6R2m6_ezGL_6NIvPv9i3AEL30EpTbolfnAMQGXJ7Wod5PhDN3GYMif'
 
 QBCore.Functions.CreateCallback("kael-mugshot:server:GetWebhook", function(source, cb)
     cb(ScreenShotHook)

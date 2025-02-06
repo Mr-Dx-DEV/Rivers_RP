@@ -17,4 +17,4 @@ LOG_WEBHOOKS = {
     Ambulance = 'https://discordapp.com/api/webhooks/1329609757069414531/raT3o0tWWJQzXfT65W9k2BM1Lxcp70-KnWl9IrIOuCtCge5iTbjfYqwLskOz_mF5vi7J',
 }
 
-DISCORD_TOKEN = 'MTMyOTU2NjAzOTg4ODg4ODAxMg.GfhSdW.FWfMAIMyK1G79LfsG1tWvwFEf1KrycuO5Lb94U' -- you can set a discord bot token here to get the players discord avatar for logs
+DISCORD_TOKEN = 'MTMyOTU2NjAzOTg4ODg4ODAxMg.GUMMLz.b2oKKehsi49cUXrP0rsIwbAC_BHIV-wpOwoigE' -- you can set a discord bot token here to get the players discord avatar for logs

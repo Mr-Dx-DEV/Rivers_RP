@@ -1,3 +1,3 @@
 SConfig = {
-    Webhook = "https://discord.com/api/webhooks/1269294049299529819/GNWeJ0gkIDc37RSPHC_DxW4tL3ZZY6YtulsCHZp7tfYFw3bYY06uxYCAkTpdfEkoCZJo",
+    Webhook = "https://discord.com/api/webhooks/1336899531765317672/p8ZP3RA3P_drIv3-OjpxxHW65T8-hiXcYZq9EnCNpvE86z5tI-K2YpcFSGo4XtQMS4mF",
 }
