@@ -27,20 +27,10 @@ function lib.notify(data)
     data.sound = nil
     data.position = data.position or settings.notification_position
 
-    if GetResourceState("17mov_Hud") == "started" then
-        if data.type == "inform" then
-            data.type = "info"
-        elseif data.type == "warning" then
-            data.type = "info"
-        end
-
-        exports["17mov_Hud"]:ShowNotification(data.description, data.type, data.title, data.duration)
-    else
-        SendNUIMessage({
-            action = 'notify',
-            data = data
-        })
-    end
+    SendNUIMessage({
+        action = 'notify',
+        data = data
+    })
 
     if not sound then return end
 
@@ -66,7 +56,7 @@ function lib.defaultNotify(data)
     -- Backwards compat for v3
     data.type = data.status
     if data.type == 'inform' then data.type = 'info' end
-    return lib.notify(data)
+    return lib.notify(data --[[@as NotifyProps]])
 end
 
 RegisterNetEvent('ox_lib:notify', lib.notify)
