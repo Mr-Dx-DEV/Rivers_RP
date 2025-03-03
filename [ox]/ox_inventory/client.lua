@@ -1333,7 +1333,7 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
 
 	PlayerData.loaded = true
 
-	lib.notify({ description = locale('inventory_setup') })
+	exports["SK-UI"]:Notify('inventory READY', 'success', 6000)
 	Shops.refreshShops()
 	Inventory.Stashes()
 	Inventory.Evidence()

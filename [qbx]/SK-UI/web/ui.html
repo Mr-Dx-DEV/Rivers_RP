@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luci Developments | UI System</title>
+    <link rel="stylesheet" href="https://assets.cdak.ws/fa/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="progress.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="radial.css">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <div class="notify-div">
+    
+    </div>
+
+    <div class="leftinfo">
+        <div class="leftinfo_top">
+         SK Developments
+        </div>
+        <div class="leftinfo_top_line">
+             <hr class="style-two"> 
+             <div class="parlakline"></div>
+        </div>
+ 
+        <div class="leftinfo_bottom">
+         Put some information here, Like go to an ammunation and check the receipt to see if where the container is
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-labels">
+            <div id="progress-label">Loading...</div>
+            <div id="progress-percentage">0%</div>
+        </div>
+        <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="radial-menu" id="main-menu">
+      <input type="checkbox" id="toggle" />
+      <label id="show-menu" for="toggle">
+          <div class="radial-text-container">
+              <p class="toggleBtn menuBtn"></p>
+          </div>
+          <!-- Buttons will be inserted dynamically here -->
+      </label>
+  </div>
+      <div class="radial-menu" id="second-menu">
+        <input type="checkbox" id="toggle" />
+        <label id="show-menu" for="toggle">
+            <div class="radial-text-container">
+            <p class="toggleBtn menuBtn"></p>
+            </div>
+            <div class="btn btn0" onmouseenter="ChangeTitle('Test')" onclick="radialOption('9')">
+                <i class="fa regular fa-masks-theater"></i>
+              </div>
+              <div class="btn btn1" onmouseenter="ChangeTitle('SHOW CASH')" onclick="radialOption('10')">
+                <i class="fa solid fa-dollar-sign"></i>
+              </div>
+              <div class="btn btn2" onmouseenter="ChangeTitle('EMOTIONS')" onclick="radialOption('11')">
+                <i class="fa fa-regular fa-face-angry"></i>
+              </div>
+              <div class="btn btn3" onmouseenter="ChangeTitle('GROUPS')" onclick="radialOption('12')">
+                <i class="fa fa-people-group"></i>
+              </div>
+              <div class="btn btn4" onmouseenter="ChangeTitle('UNDRESS MENU')" onclick="radialOption('13')">
+                <i class="fa fa-tshirt"></i>
+              </div>
+              <div class="btn btn5" onmouseenter="ChangeTitle('PERKS MENU')" onclick="radialOption('14')">
+                <i class="fa fa-regular fa-star"></i>
+              </div>
+              <div class="btn btn6" onmouseenter="ChangeTitle('VEHICLE MENU')" onclick="radialOption('15')">
+                <i class="fa fa-car"></i>
+              </div>
+              <div class="btn btn7" onmouseenter="ChangeTitle('WALKING STYLES')" onclick="radialOption('16')">
+                <i class="fa fa-person-walking"></i>
+              </div>
+        </label>
+      </div>
+      <div class="radial-menu" id="third-menu">
+        <input type="checkbox" id="toggle" />
+        <label id="show-menu" for="toggle">
+            <div class="radial-text-container">
+            <p class="toggleBtn menuBtn"></p>
+            </div>
+            <div class="btn btn0" onmouseenter="ChangeTitle('TESTMENU')" onclick="radialOption('17')">
+                <i class="fa regular fa-masks-theater"></i>
+              </div>
+              <div class="btn btn1" onmouseenter="ChangeTitle('SHOW CASH')" onclick="radialOption('18')">
+                <i class="fa solid fa-dollar-sign"></i>
+              </div>
+              <div class="btn btn2" onmouseenter="ChangeTitle('EMOTIONS')" onclick="radialOption('19')">
+                <i class="fa fa-regular fa-face-angry"></i>
+              </div>
+              <div class="btn btn3" onmouseenter="ChangeTitle('GROUPS')" onclick="radialOption('20')">
+                <i class="fa fa-people-group"></i>
+              </div>
+              <div class="btn btn4" onmouseenter="ChangeTitle('UNDRESS MENU')" onclick="radialOption('21')">
+                <i class="fa fa-tshirt"></i>
+              </div>
+              <div class="btn btn5" onmouseenter="ChangeTitle('PERKS MENU')" onclick="radialOption('22')">
+                <i class="fa fa-regular fa-star"></i>
+              </div>
+              <div class="btn btn6" onmouseenter="ChangeTitle('VEHICLE MENU')" onclick="radialOption('23')">
+                <i class="fa fa-car"></i>
+              </div>
+              <div class="btn btn7" onmouseenter="ChangeTitle('WALKING STYLES')" onclick="radialOption('24')">
+                <i class="fa fa-person-walking"></i>
+              </div>
+        </label>
+      </div>
+      <div class="drawtext-container">
+        <p class="drawtext-key">E</p><p class="drawtext-message">OPEN AMMUNATION STORE</p>
+      </div>
+
+      <div class="contextmenu-container">
+        <div id="buttons"></div>
+      </div>
+
+      <div class="dispatch-container">
+        <div class="dispatch-dispatch">
+          <p class="dispatch-time"><i class="fa fa-clock" style="font-size: 16px;"></i> 1:16:41 PM</p>
+          <p class="dispatch-job">// [Police]</p>
+          <hr class="dispatch-breaker-1">
+          <p class="dispatch-title">Shots Fired</p>
+          <hr class="dispatch-breaker-2">
+          <p class="dispatch-location"><i class="fa fa-map-marker location-icon"></i> Forum Dr  <span class="dispatch-phone-number"><i class="fa fa-phone location-icon"></i> (491) 376 377 312</p></span>
+          <hr class="dispatch-breaker-3">
+          <p class="dispatch-message"><i class="fas fa-message-bubble"></i> Help me some guy stabbed me!</p>
+          <p class="dispatch-btn" id="markonmap">Mark On Map</p>
+          <p class="dispatch-btn" id="react">React</p>
+        </div>
+      </div>
+      <div class="texthud-container">
+         <div id="texthud">
+          <!-- <div class="texthud-part">
+           <h2>TIME LEFT</h2>
+           <h1 style="color: #87DA21;">07:48:30</h1>
+       </div> -->
+         </div>
+      </div>
+      <div class="dialog-container">
+        <div class="dialog-wrapper">
+          <div class="dialog-question-container">
+            <div class="dialog-title"><span class="dialog-name"></span></div>
+            <div class="dialog-question"></div>
+        </div>
+        <div class="dialog-options-container">
+          <div class="dialog-option"></div>
+          <div class="dialog-option"></div>
+          <div class="dialog-option"></div>
+          <div class="dialog-option"></div>
+        </div>
+        </div>
+      </div>
+    <script type="text/javascript" src="tilt.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelector(".dialog-options-container"), {
+            max: 50,
+            startY: 10,
+            "reset-to-start": true,
+        })
+    VanillaTilt.init(document.querySelector(".dialog-question-container"), {
+            max: 50,
+            startX: -10,
+            "reset-to-start": true,
+        })
+      VanillaTilt.init(document.querySelector(".dispatch-container"), {
+            max: 50,
+            startX: 10,
+            startY: 10,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".contextmenu-container"), {
+            max: 50,
+            startX: 15,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".drawtext-key"), {
+            max: 50,
+            startY: 25,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".drawtext-container"), {
+            max: 50,
+            startY: 25,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".notify-div"), {
+            max: 50,
+            startX: 17.5,
+            startY: 10,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".leftinfo"), {
+            max: 50,
+            startX: -10,
+            "reset-to-start": true,
+        })
+        // Unorthadox i know tilt library only allows it to work like this tho ;P
+        VanillaTilt.init(document.querySelector(".toggleBtn"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn1"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn2"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn3"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn4"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn5"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn6"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+        VanillaTilt.init(document.querySelector(".btn7"), {
+            max: 500,
+            startX: 20,
+            "reset-to-start": true,
+        })
+    </script>
+</body>
+</html>

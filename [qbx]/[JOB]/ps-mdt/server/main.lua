@@ -16,7 +16,7 @@ local calls = {}
 -- https://docs.fivemerr.com/integrations/mdt-scripts/ps-mdt
 -- Images for mug shots will be uploaded here and will not expire.
 local FivemerrMugShot = 'https://api.fivemerr.com/v1/media/images'
-local FivemerrApiKey = 'YOUR API KEY HERE'
+local FivemerrApiKey = '1eeff4a44ee926d6f434792b42a20c92'
 
 --------------------------------
 -- NOT RECOMMENDED. WE RECOMMEND USING Fivemerr.

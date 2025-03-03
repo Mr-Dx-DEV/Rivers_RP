@@ -9,32 +9,43 @@ local positionConfig = require 'config.shared'.notifyPosition
 ---@param notifyStyle? table Custom styling. Please refer too https://overextended.dev/ox_lib/Modules/Interface/Client/notify#libnotify
 ---@param notifyIcon? string Font Awesome 6 icon name
 ---@param notifyIconColor? string Custom color for the icon chosen before
-function Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
-    local title, description
-    if type(text) == 'table' then
-        title = text.text or 'Placeholder'
-        description = text.caption or nil
-    elseif subTitle then
-        title = text
-        description = subTitle
+--function Notify(text, notifyType, duration, subTitle, notifyPosition, notifyStyle, notifyIcon, notifyIconColor)
+--    local title, description
+--    if type(text) == 'table' then
+--        title = text.text or 'Placeholder'
+--        description = text.caption or nil
+--    elseif subTitle then
+--        title = text
+--        description = subTitle
+--    else
+--        description = text
+--    end
+--    local position = notifyPosition or positionConfig
+--
+--    lib.notify({
+--        id = title,
+--        title = title,
+--        description = description,
+--        duration = duration,
+--        type = notifyType,
+--        position = position,
+--        style = notifyStyle,
+--        icon = notifyIcon,
+--        iconColor = notifyIconColor
+--    })
+--end
+function Notify(text, notifyType, duration)
+    notifyType = notifyType or 'info'
+    if notifyType == 'primary' then notifyType = 'info' end
+    if notifyType == "inform" then notifyType = "info" end
+    duration = duration or 5000
+    if type(text) == "table" then
+        local description = description or 'Placeholder'
+        exports["SK-UI"]:Notify(description, notifyType, duration)
     else
-        description = text
+        exports["SK-UI"]:Notify(description, notifyType, duration)
     end
-    local position = notifyPosition or positionConfig
-
-    lib.notify({
-        id = title,
-        title = title,
-        description = description,
-        duration = duration,
-        type = notifyType,
-        position = position,
-        style = notifyStyle,
-        icon = notifyIcon,
-        iconColor = notifyIconColor
-    })
 end
-
 exports('Notify', Notify)
 
 ---@return PlayerData? playerData

@@ -22,25 +22,38 @@ local settings = require 'resource.settings'
 ---`client`
 ---@param data NotifyProps
 ---@diagnostic disable-next-line: duplicate-set-field
-function lib.notify(data)
-    local sound = settings.notification_audio and data.sound
-    data.sound = nil
-    data.position = data.position or settings.notification_position
+--function lib.notify(data)
+--    local sound = settings.notification_audio and data.sound
+--    data.sound = nil
+--    data.position = data.position or settings.notification_position
+--
+--    SendNUIMessage({
+--        action = 'notify',
+--        data = data
+--    })
+--
+--    if not sound then return end
+--
+--    if sound.bank then lib.requestAudioBank(sound.bank) end
+--
+--    local soundId = GetSoundId()
+--    PlaySoundFrontend(soundId, sound.name, sound.set, true)
+--    ReleaseSoundId(soundId)
+--
+--    if sound.bank then ReleaseNamedScriptAudioBank(sound.bank) end
+--end
 
-    SendNUIMessage({
-        action = 'notify',
-        data = data
-    })
-
-    if not sound then return end
-
-    if sound.bank then lib.requestAudioBank(sound.bank) end
-
-    local soundId = GetSoundId()
-    PlaySoundFrontend(soundId, sound.name, sound.set, true)
-    ReleaseSoundId(soundId)
-
-    if sound.bank then ReleaseNamedScriptAudioBank(sound.bank) end
+function lib.notify(text, notifyType, duration)
+    notifyType = notifyType or 'info'
+    if notifyType == 'primary' then notifyType = 'info' end
+    if notifyType == "inform" then notifyType = "info" end
+    duration = duration or 5000
+    if type(text) == "table" then
+        local description = text.caption or 'Placeholder'
+        exports["SK-UI"]:Notify(description, notifyType, duration)
+    else
+        exports["SK-UI"]:Notify(text, notifyType, duration)
+    end
 end
 
 ---@class DefaultNotifyProps

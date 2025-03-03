@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="./style.css" />
+        <script src="./script.js" defer></script>
+    </head>
+    <body>
+        <div id="Container">
+            <div id="Title" class="Title">Table</div>
+            <div class="Container2">
+                <div class="TopBar" id="TopBar"></div>
+                <div class="CraftableItemsGrid" id="CraftableItems"></div>
+            <div class="Container3">
+                <div class="SelectedImage" id='SelectedImage'></div>
+                <div class="ItemInfo">
+                    <div class="SelectedItemName" id="SelectedItemName">The Bleeder</div>
+                    <div class="SelectedItemDesc" id="SelectedItemDesc">Just your average burger</div>
+                    <p class="SelectedCraftTime">Crafting time: <span style="color: #ffffff;" id="SelectedCraftTime">5sec</span></p>
+                </div>
+                <div id="FavButton" class="FavButton" onclick="toggleFavorite()"><i class="fa-solid fa-star"></i></div>
+                <div class="Container4">
+                    <div class="SelectedItemName" style="margin-top: 2vh; margin-left: 2vh;">Items required</div>
+                    <div class="RequiredItemsGrid" id="RequiredItems"></div>
+                </div>
+                <div class="CraftButton" onclick="craftItem()">Craft</div>
+                <div class="CountContainer">
+                    <input id="CraftAmount" type="number" class="CountInput" value="1">
+                    <div class="CountButton" style="left: 0vh;"><i class="fa-solid fa-minus" style="margin-top: 1.3vh;" onclick="updateCraftAmount(-1)"></i></div>
+                    <div class="CountButton" style="right: 0vh;"><i class="fa-solid fa-plus" style="margin-top: 1.3vh;" onclick="updateCraftAmount(1)"></i></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
