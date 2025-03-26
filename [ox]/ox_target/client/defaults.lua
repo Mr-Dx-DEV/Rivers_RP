@@ -1,19 +1,10 @@
-if GetConvarInt('ox_target:defaults', 1) ~= 1 then return end
+if GetConvarInt('ox_target:defaults', 0) ~= 1 then return end
 
 local api = require 'client.api'
 local GetEntityBoneIndexByName = GetEntityBoneIndexByName
 local GetEntityBonePosition_2 = GetEntityBonePosition_2
 local GetVehicleDoorLockStatus = GetVehicleDoorLockStatus
 
-local bones = {
-    [0] = 'dside_f',
-    [1] = 'pside_f',
-    [2] = 'dside_r',
-    [3] = 'pside_r'
-}
-
----@param vehicle number
----@param door number
 local function toggleDoor(vehicle, door)
     if GetVehicleDoorLockStatus(vehicle) ~= 2 then
         if GetVehicleDoorAngleRatio(vehicle, door) > 0.0 then
@@ -24,55 +15,26 @@ local function toggleDoor(vehicle, door)
     end
 end
 
----@param entity number
----@param coords vector3
----@param door number
----@param useOffset boolean?
----@return boolean?
-local function canInteractWithDoor(entity, coords, door, useOffset)
-    if not GetIsDoorValid(entity, door) or GetVehicleDoorLockStatus(entity) > 1 or IsVehicleDoorDamaged(entity, door) then return end
-
-    if useOffset then return true end
-
-    local boneName = bones[door]
-
-    if not boneName then return false end
-
-    boneId = GetEntityBoneIndexByName(entity, 'door_' .. boneName)
-
-    if boneId ~= -1 then
-        return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.5 or
-            #(coords - GetEntityBonePosition_2(entity, GetEntityBoneIndexByName(entity, 'seat_' .. boneName))) < 0.72
-    end
-end
-
-local function onSelectDoor(data, door)
-    local entity = data.entity
-
-    if NetworkGetEntityOwner(entity) == cache.playerId then
-        return toggleDoor(entity, door)
-    end
-
-    TriggerServerEvent('ox_target:toggleEntityDoor', VehToNet(entity), door)
-end
-
-RegisterNetEvent('ox_target:toggleEntityDoor', function(netId, door)
-    local entity = NetToVeh(netId)
-    toggleDoor(entity, door)
-end)
-
 api.addGlobalVehicle({
     {
         name = 'ox_target:driverF',
         icon = 'fa-solid fa-car-side',
         label = locale('toggle_front_driver_door'),
         bones = { 'door_dside_f', 'seat_dside_f' },
-        distance = 2,
         canInteract = function(entity, distance, coords, name)
-            return canInteractWithDoor(entity, coords, 0)
+            if GetVehicleDoorLockStatus(entity) > 1 then return end
+
+            local boneId = GetEntityBoneIndexByName(entity, 'door_dside_f')
+
+            if IsVehicleDoorDamaged(entity, 0) then return end
+
+            if boneId ~= -1 then
+                return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.5 or
+                    #(coords - GetEntityBonePosition_2(entity, GetEntityBoneIndexByName(entity, 'seat_dside_f'))) < 0.72
+            end
         end,
         onSelect = function(data)
-            onSelectDoor(data, 0)
+            toggleDoor(data.entity, 0)
         end
     },
     {
@@ -80,12 +42,19 @@ api.addGlobalVehicle({
         icon = 'fa-solid fa-car-side',
         label = locale('toggle_front_passenger_door'),
         bones = { 'door_pside_f', 'seat_pside_f' },
-        distance = 2,
         canInteract = function(entity, distance, coords, name)
-            return canInteractWithDoor(entity, coords, 1)
+            if GetVehicleDoorLockStatus(entity) > 1 then return end
+
+            local boneId = GetEntityBoneIndexByName(entity, 'door_pside_f')
+            if IsVehicleDoorDamaged(entity, 1) then return end
+
+            if boneId ~= -1 then
+                return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.5 or
+                    #(coords - GetEntityBonePosition_2(entity, GetEntityBoneIndexByName(entity, 'seat_pside_f'))) < 0.72
+            end
         end,
         onSelect = function(data)
-            onSelectDoor(data, 1)
+            toggleDoor(data.entity, 1)
         end
     },
     {
@@ -93,12 +62,19 @@ api.addGlobalVehicle({
         icon = 'fa-solid fa-car-side',
         label = locale('toggle_rear_driver_door'),
         bones = { 'door_dside_r', 'seat_dside_r' },
-        distance = 2,
-        canInteract = function(entity, distance, coords)
-            return canInteractWithDoor(entity, coords, 2)
+        canInteract = function(entity, distance, coords, name)
+            if GetVehicleDoorLockStatus(entity) > 1 then return end
+
+            local boneId = GetEntityBoneIndexByName(entity, 'door_dside_r')
+            if IsVehicleDoorDamaged(entity, 2) then return end
+
+            if boneId ~= -1 then
+                return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.5 or
+                    #(coords - GetEntityBonePosition_2(entity, GetEntityBoneIndexByName(entity, 'seat_dside_r'))) < 0.72
+            end
         end,
         onSelect = function(data)
-            onSelectDoor(data, 2)
+            toggleDoor(data.entity, 2)
         end
     },
     {
@@ -106,69 +82,47 @@ api.addGlobalVehicle({
         icon = 'fa-solid fa-car-side',
         label = locale('toggle_rear_passenger_door'),
         bones = { 'door_pside_r', 'seat_pside_r' },
-        distance = 2,
-        canInteract = function(entity, distance, coords)
-            return canInteractWithDoor(entity, coords, 3)
+        canInteract = function(entity, distance, coords, name)
+            if GetVehicleDoorLockStatus(entity) > 1 then return end
+
+            local boneId = GetEntityBoneIndexByName(entity, 'door_pside_r')
+            if IsVehicleDoorDamaged(entity, 3) then return end
+
+            if boneId ~= -1 then
+                return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.5 or
+                    #(coords - GetEntityBonePosition_2(entity, GetEntityBoneIndexByName(entity, 'seat_pside_r'))) < 0.72
+            end
         end,
         onSelect = function(data)
-            onSelectDoor(data, 3)
+            toggleDoor(data.entity, 3)
         end
     },
     {
         name = 'ox_target:bonnet',
         icon = 'fa-solid fa-car',
         label = locale('toggle_hood'),
-        offset = vec3(0.5, 1, 0.5),
-        distance = 2,
-        canInteract = function(entity, distance, coords)
-            return canInteractWithDoor(entity, coords, 4, true)
-        end,
-        onSelect = function(data)
-            onSelectDoor(data, 4)
-        end
-    },
-
-    {
-        name = 'ox_target:body',
-        icon = 'fa-solid fa-car-burst',
-        label = 'Flip Car',
+        bones = 'bonnet',
         canInteract = function(entity, distance, coords, name, boneId)
-            if not IsVehicleOnAllWheels(entity) then return true end
+            if GetVehicleDoorLockStatus(entity) > 1 then return end
+            if IsVehicleDoorDamaged(entity, 4) then return end
+            return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.9
         end,
         onSelect = function(data)
-            TriggerEvent('animations:client:EmoteCommandStart', { "mechanic" })
-            if lib.progressBar({
-                    duration = 5000,
-                    label = 'Flipping Car',
-                    position = 'bottom',
-                    useWhileDead = false,
-                    canCancel = true,
-                    disable = {
-                       mouse = false,
-                       car = true,
-                       move = true,
-                       combat = true,
-                    },
-                }) then -- Done
-                SetVehicleOnGroundProperly(data.entity)
-                TriggerEvent('animations:client:EmoteCommandStart', { "c" })
-            else -- Cancel
-                TriggerEvent('animations:client:EmoteCommandStart', { "c" })
-            end
+            toggleDoor(data.entity, 4)
         end
     },
-
     {
         name = 'ox_target:trunk',
         icon = 'fa-solid fa-car-rear',
         label = locale('toggle_trunk'),
-        offset = vec3(0.5, 0, 0.5),
-        distance = 2,
-        canInteract = function(entity, distance, coords, name)
-            return canInteractWithDoor(entity, coords, 5, true)
+        bones = 'boot',
+        canInteract = function(entity, distance, coords, name, boneId)
+            if GetVehicleDoorLockStatus(entity) > 1 then return end
+            if IsVehicleDoorDamaged(entity, 5) then return end
+            return #(coords - GetEntityBonePosition_2(entity, boneId)) < 0.9
         end,
         onSelect = function(data)
-            onSelectDoor(data, 5)
+            toggleDoor(data.entity, 5)
         end
     }
 })

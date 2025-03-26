@@ -5,13 +5,44 @@ lib.locale()
 local utils = require 'client.utils'
 local state = require 'client.state'
 local getEntityOptions = require 'client.api'.getEntityOptions
+local icons = {
+    ped = "person-walking",
+    free_ped = "person-walking",
+    player = "person",
+    entity = "bullseye-pointer",
+    vehicle = {
+		[0] = "car",
+		[1] = "car",
+		[2] = "car",
+		[3] = "car",
+		[4] = "car",
+		[5] = "car",
+		[6] = "car",
+		[7] = "car",
+		[8] = "motorcycle",
+		[9] = "truck-monster",
+		[10] = "truck-pickup",
+		[11] = "car",
+		[12] = "car",
+		[13] = "bicycle",
+		[14] = "ship",
+		[15] = "helicopter",
+		[16] = "plane",
+		[17] = "taxi-bus",
+		[18] = "car",
+		[19] = "car",
+		[20] = "truck",
+		[21] = "train",
+    }
+}
 
 require 'client.debug'
 require 'client.defaults'
 require 'client.compat.qtarget'
 require 'client.compat.qb-target'
 
-local raycastFromCamera, getNearbyZones, drawZoneSprites in utils
+local objRefresh = 300
+local raycastFromCamera, getNearbyZones, drawZoneSprites, refreshObjectSprites in utils
 local SendNuiMessage = SendNuiMessage
 local GetEntityCoords = GetEntityCoords
 local GetEntityType = GetEntityType
@@ -26,7 +57,7 @@ local DisablePlayerFiring = DisablePlayerFiring
 local GetModelDimensions = GetModelDimensions
 local GetOffsetFromEntityInWorldCoords = GetOffsetFromEntityInWorldCoords
 local options = {}
-local currentTarget = {}
+currentTarget = {}
 local currentMenu
 local menuHistory = {}
 local nearbyZones
@@ -55,7 +86,35 @@ local function shouldHide(option, distance, endCoords, entityHit, entityType, en
         return true
     end
 
+    if option.jobPerms and not utils.hasPlayerGotGroup(option.jobPerms) then
+        return true
+    end
+
     if option.items and not utils.hasPlayerGotItems(option.items, option.anyItem) then
+        return true
+    end
+
+    if option.item and not utils.hasPlayerGotItems(option.item, option.anyItem) then
+        return true
+    end
+
+    if option.anyItems and not utils.hasPlayerGotItems(option.anyItems, true) then
+        return true
+    end
+
+    if option.state and not utils.hasPlayerGotState(option.state) then
+        return true
+    end
+
+    if option.rep and not utils.hasPlayerGotRep(option.rep) then
+        return true
+    end
+
+    if option.tempJob and not utils.doesPlayerHasTempJob(option.tempJob) then
+        return true
+    end
+
+    if option.model and entityModel and entityModel ~= option.model then
         return true
     end
 
@@ -73,6 +132,7 @@ local function shouldHide(option, distance, endCoords, entityHit, entityType, en
 
             if boneId ~= -1 and #(endCoords - GetEntityBonePosition_2(entityHit, boneId)) <= 2 then
                 bone = boneId
+                option.targetBone = boneId
             else
                 return true
             end
@@ -94,6 +154,7 @@ local function shouldHide(option, distance, endCoords, entityHit, entityType, en
 
             if closestBone then
                 bone = closestBone
+                option.targetBone = closestBone
             else
                 return true
             end
@@ -125,15 +186,48 @@ local function shouldHide(option, distance, endCoords, entityHit, entityType, en
     end
 end
 
+local hasTarget = false
+
+AddEventHandler("Keybinds:Client:KeyUp:primary_action", function()
+    if hasTarget then
+        state.setNuiFocus(true, true)
+    end
+end)
+
+Citizen.CreateThread(function()
+    local hit, entityHit, lastEntity
+    while true do
+        hit, entityHit = raycastFromCamera(511)
+        if entityHit ~= lastEntity then
+            local success, result = pcall(GetEntityType, entityHit)
+            if success then
+                lastEntity = entityHit
+                TriggerEvent("Targeting:Client:TargetChanged", entityHit ~= 0 and entityHit or false)
+            else
+                lastEntity = entityHit
+                TriggerEvent("Targeting:Client:TargetChanged", false)
+            end
+        end
+        Citizen.Wait(500)
+    end
+end)
+
+local isDead = false
+AddStateBagChangeHandler("isDead", ("player:%s"):format(GetPlayerServerId(PlayerId())), function(bagName, key, value, reserved, replicated)
+    isDead = value
+end)
+
+
 local function startTargeting()
-    if state.isDisabled() or state.isActive() or IsNuiFocused() or IsPauseMenuActive() then return end
+    if state.isDisabled() or state.isActive() or IsNuiFocused() or IsPauseMenuActive() or IsPedInAnyVehicle(cache.ped, false) or isDead then return end
 
     state.setActive(true)
 
     local flag = 511
-    local hit, entityHit, endCoords, distance, lastEntity, entityType, entityModel, hasTick, hasTarget, zonesChanged
+    local hit, entityHit, endCoords, distance, lastEntity, entityType, entityModel, hasTick, zonesChanged, entityOptions
     local zones = {}
 
+    local timer = GetGameTimer() - 500
     while state.isActive() do
         if not state.isNuiFocused() and lib.progressActive() then
             state.setActive(false)
@@ -168,6 +262,11 @@ local function startTargeting()
             local newOptions
             nearbyZones, zonesChanged = getNearbyZones(endCoords)
 
+            if GetGameTimer() - timer > objRefresh then
+                refreshObjectSprites()
+                timer = GetGameTimer()
+            end
+
             if entityHit ~= lastEntity then
                 currentMenu = nil
 
@@ -201,6 +300,7 @@ local function startTargeting()
             end
 
             ---@type table<string, OxTargetOption[]>
+            entityOptions = newOptions
             options = newOptions or options or {}
             newOptions = (newOptions or zonesChanged or entityHit ~= lastEntity) and true
             lastEntity = entityHit
@@ -226,6 +326,7 @@ local function startTargeting()
                     if hide then hidden += 1 end
                 end
             end
+    
 
             if zonesChanged then table.wipe(zones) end
 
@@ -268,10 +369,44 @@ local function startTargeting()
                         }
                     end
 
+                    local jsonOptions = {
+                        __builtin = options.__builtin,
+                    }
+                    local mainIcon, backupIcon
+                    for intType, opArray in pairs(options) do
+                        if not jsonOptions[intType] then
+                            jsonOptions[intType] = {}
+                        end
+                        local icon, typeIcon = CheckOptions(opArray, jsonOptions[intType], entityHit, distance, endCoords, bone)
+                        if icon and not mainIcon then
+                            mainIcon = icon
+                        end
+                        if typeIcon and not backupIcon then
+                            backupIcon = typeIcon
+                        end
+                    end
+                    local zoneCpy = {}
+                    local icon, zoneIcon = CheckOptions(zones, zoneCpy, entityHit, distance, endCoords, bone, true)
+                    if icon and not mainIcon then
+                        mainIcon = icon
+                    end
+                    if zoneIcon and not backupIcon then
+                        backupIcon = zoneIcon
+                    end
+
+                    if not mainIcon then
+                        mainIcon = GetIconFromEntity(entityHit, entityType, entityOptions)
+                    end
+
+                    if not mainIcon then
+                        mainIcon = backupIcon
+                    end
+
                     SendNuiMessage(json.encode({
                         event = 'setTarget',
-                        options = options,
-                        zones = zones,
+                        options = jsonOptions,
+                        zones = zoneCpy,
+                        icon = mainIcon,
                     }, { sort_keys=true }))
                 end
             end
@@ -308,6 +443,7 @@ local function startTargeting()
 
                     drawZoneSprites(dict, texture)
                     DisablePlayerFiring(cache.playerId, true)
+                    DisableControlAction(0, 24, true)
                     DisableControlAction(0, 25, true)
                     DisableControlAction(0, 140, true)
                     DisableControlAction(0, 141, true)
@@ -317,17 +453,19 @@ local function startTargeting()
                         DisableControlAction(0, 1, true)
                         DisableControlAction(0, 2, true)
 
-                        if not hasTarget or options and IsDisabledControlJustPressed(0, 25) then
-                            state.setNuiFocus(false, false)
-                        end
-                    elseif hasTarget and IsDisabledControlJustPressed(0, mouseButton) then
-                        SendNuiMessage('{"event": "ClickEvent"}')
+                        -- if not hasTarget or (options and IsDisabledControlJustPressed(0, 25)) then
+                        --     state.setNuiFocus(false, false)
+                        -- end
+                    elseif hasTarget and (IsDisabledControlJustPressed(0, 24) or IsDisabledControlJustPressed(0, 25)) then
                         state.setNuiFocus(true, true)
                     end
 
                     Wait(0)
                 end
-
+                if state.isNuiFocused() then
+                    -- ensure disabling nui focus
+                    state.setNuiFocus(false, false)
+                end
                 SetStreamedTextureDictAsNoLongerNeeded(dict)
             end)
         end
@@ -339,10 +477,13 @@ local function startTargeting()
         Wait(60)
     end
 
+    SendNuiMessage('{"event": "leftTarget"}')
+
     if lastEntity and debug then
         SetEntityDrawOutline(lastEntity, false)
     end
 
+    hasTarget = false
     state.setNuiFocus(false)
     SendNuiMessage('{"event": "visible", "state": false}')
     table.wipe(currentTarget)
@@ -389,6 +530,12 @@ local function getResponse(option, server)
     response.zone = currentTarget.zone
     response.coords = currentTarget.coords
     response.distance = currentTarget.distance
+    if response.entity ~= 0 then
+        local success, result = pcall(GetEntityType, currentTarget.entity)
+        response.entityType = success and result or nil
+        success, result = pcall(GetEntityModel, currentTarget.entity)
+        response.model = success and result or nil
+    end
 
     if server then
         response.entity = response.entity ~= 0 and NetworkGetEntityIsNetworked(response.entity) and NetworkGetNetworkIdFromEntity(response.entity) or 0
@@ -434,19 +581,17 @@ RegisterNUICallback('select', function(data, cb)
         else
             state.setNuiFocus(false)
         end
-
-        if option.onSelect then
-            option.onSelect(option.qtarget and currentTarget.entity or getResponse(option))
-        elseif option.export then
-            exports[option.resource][option.export](nil, getResponse(option))
-        elseif option.event then
-            TriggerEvent(option.event, getResponse(option))
-        elseif option.serverEvent then
-            TriggerServerEvent(option.serverEvent, getResponse(option, true))
-        elseif option.command then
-            ExecuteCommand(option.command)
-        end
-
+            if option.onSelect then
+                option.onSelect(option.qtarget and currentTarget.entity or getResponse(option))
+            elseif option.export then
+                exports[option.resource][option.export](nil, getResponse(option))
+            elseif option.event then
+                TriggerEvent(option.event, getResponse(option))
+            elseif option.serverEvent then
+                TriggerServerEvent(option.serverEvent, getResponse(option, true))
+            elseif option.command then
+                ExecuteCommand(option.command)
+            end
         if option.menuName == 'home' then return end
     end
 
@@ -454,3 +599,67 @@ RegisterNUICallback('select', function(data, cb)
         state.setActive(false)
     end
 end)
+
+function CheckOptions(opArray, jsonOptions, entityHit, distance, endCoords, bone, isZone)
+    local mainIcon, icon
+    for k, v in pairs(opArray) do
+        local _option = {}
+        if not mainIcon and v.mainIcon and not v.hide then
+            mainIcon = v.mainIcon
+        end
+        if not icon and v.icon and not v.hide then
+            icon = v.icon
+        end
+        for index, value in pairs(v) do
+            if index == "textCb" then
+                local success, error = pcall(function()
+                    _option.label = value(v.data, { entity = entityHit, distance = distance, endCoords = endCoords, text = v.label, boneIndex = bone }, v.data)
+                end)
+                if not success then
+                    _option.label = "ERROR"
+                end
+            elseif type(value) ~= "function" then
+                _option[index] = value
+                if isZone and type(value) == "table" then
+                    -- zones are array in array for some reason
+                    if type(value) == "table" and not mainIcon and value.mainIcon and not value.hide then
+                        mainIcon = value.mainIcon
+                    end
+                    if type(value) == "table" and not icon and value.icon and not value.hide then
+                        icon = value.icon
+                    end
+                    if value.textCb then
+                        local success = pcall(function()
+                            value.label = value.textCb(value.data, { entity = entityHit, distance = distance, endCoords = endCoords, text = v.label, boneIndex = bone }, v.data)
+                        end)
+                        if not success then
+                            value.label = "ERROR"
+                        end
+                    end
+                end
+            end
+        end
+        jsonOptions[k] = _option
+    end
+    return mainIcon, icon
+end
+
+function GetIconFromEntity(entity, entityType, entityOptions)
+    if entity == 0 or not DoesEntityExist(entity) then return nil end
+    if entityType == 1 then
+        if IsPedAPlayer(entity) then
+            return icons.player
+        else
+            if entityOptions and (entityOptions.model or entityOptions.entity or entityOptions.localEntity) then
+                return icons.ped
+            else
+                TaskTurnPedToFaceEntity(entity, cache.ped, 4000)
+                return icons.free_ped
+            end
+        end
+    elseif entityType == 2 then
+        return icons.vehicle[GetVehicleClass(entity)]
+    elseif entityType == 3 then
+        return icons.entity
+    end
+end

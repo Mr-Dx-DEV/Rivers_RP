@@ -132,6 +132,10 @@ end
 
 local api = require 'client.api'
 
+exportHandler('SpawnPed', function(data)
+  api.addModel(data.model, convert(data))
+end)
+
 exportHandler('AddBoxZone', function(name, center, length, width, options, targetoptions)
     local z = center.z
 

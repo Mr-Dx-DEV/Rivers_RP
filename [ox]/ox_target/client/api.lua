@@ -59,7 +59,11 @@ function api.removeZone(id, suppressWarning)
 
     if suppressWarning then return end
 
-    --warn(('attempted to remove a zone that does not exist (id: %s)'):format(id))
+    warn(('attempted to remove a zone that does not exist (id: %s)'):format(id))
+end
+
+function api.zoneExists(id)
+    return Zones and Zones[id] ~= nil
 end
 
 ---Throws a formatted type error
@@ -68,30 +72,6 @@ end
 ---@param received string
 local function typeError(variable, expected, received)
     error(("expected %s to have type '%s' (received %s)"):format(variable, expected, received))
-end
-
----@param target table
----@param remove string | string[]
----@param resource string
----@param showWarning? boolean
-local function removeTarget(target, remove, resource, showWarning)
-    if type(remove) ~= 'table' then remove = { remove } end
-
-    for i = #target, 1, -1 do
-        local option = target[i]
-
-        if option.resource == resource then
-            for j = #remove, 1, -1 do
-                if option.name == remove[j] then
-                    table.remove(target, i)
-
-                    if showWarning then
-                        --utils.warn(("Replacing existing target option '%s'."):format(option.name))
-                    end
-                end
-            end
-        end
-    end
 end
 
 ---@param target table
@@ -114,29 +94,13 @@ local function addTarget(target, options, resource)
 
     ---@cast options OxTargetOption[]
 
-    local checkNames = {}
-
-    resource = resource or 'ox_target'
-
-    for i = 1, #options do
-        local option = options[i]
-        option.resource = resource
-
-        if option.name then
-            checkNames[#checkNames + 1] = option.name
-        end
-    end
-
-    if checkNames[1] then
-        removeTarget(target, checkNames, resource, true)
-    end
-
     local num = #target
 
     for i = 1, #options do
         local option = options[i]
+        option.resource = resource or 'ox_target'
 
-        if resource == 'ox_target' then
+        if not resource then
             if option.canInteract then
                 option.canInteract = msgpack.unpack(msgpack.pack(option.canInteract))
             end
@@ -148,6 +112,25 @@ local function addTarget(target, options, resource)
 
         num += 1
         target[num] = options[i]
+    end
+end
+
+---@param target table
+---@param remove string | string[]
+---@param resource string
+local function removeTarget(target, remove, resource)
+    if type(remove) ~= 'table' then remove = { remove } end
+
+    for i = #target, 1, -1 do
+        local option = target[i]
+
+        if option.resource == resource then
+            for j = #remove, 1, -1 do
+                if option.name == remove[j] then
+                    table.remove(target, i)
+                end
+            end
+        end
     end
 end
 
@@ -386,6 +369,48 @@ local function removeResourceTargets(resource, target)
     end
 end
 
+function api.removeZonesByProperty(property)
+    if Zones then
+        for _, v in pairs(Zones) do
+            if v[property.key] == property.value then
+                v:remove()
+            end
+        end
+    end
+end
+
+function api.removeGlobalsByProperty(property)
+    local target = { peds, vehicles, objects, players }
+    for i = 1, #target do
+        local options = target[i]
+
+        for j = #options, 1, -1 do
+            if options[j][property.key] == property.value then
+                table.remove(options, j)
+            end
+        end
+    end
+end
+
+function api.removeTargetsByProperty(property)
+    local target = { models, entities, localEntities }
+    for i = 1, #target do
+        local tbl = target[i]
+
+        for key, options in pairs(tbl) do
+            for j = #options, 1, -1 do
+                if options[j][property.key] == property.value then
+                    table.remove(options, j)
+                end
+            end
+
+            if #options == 0 then
+                tbl[key] = nil
+            end
+        end
+    end
+end
+
 ---@param resource string
 AddEventHandler('onClientResourceStop', function(resource)
     removeResourceGlobals(resource, { peds, vehicles, objects, players })
@@ -433,6 +458,14 @@ function api.getEntityOptions(entity, _type, model)
         entity = netId and entities[netId] or nil,
         localEntity = localEntities[entity],
     }
+end
+
+function api.getModels()
+    return models
+end
+
+function api.getEntities()
+    return localEntities, entity
 end
 
 local state = require 'client.state'

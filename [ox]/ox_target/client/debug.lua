@@ -17,7 +17,7 @@ ox_target:addBoxZone({
     size = vec3(3, 3, 3),
     rotation = 45,
     debug = drawZones,
-    drawSprite = false,
+    drawSprite = true,
     options = {
         {
             name = 'box',
@@ -32,7 +32,7 @@ ox_target:addSphereZone({
     coords = vec3(440.5363, -1015.666, 28.85637),
     radius = 3,
     debug = drawZones,
-    drawSprite = false,
+    drawSprite = true,
     options = {
         {
             name = 'sphere',
